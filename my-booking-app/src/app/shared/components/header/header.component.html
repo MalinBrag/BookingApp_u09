@@ -1,0 +1,50 @@
+<header class="header">
+    <div class="mob-menu" *ngIf="isMobile">
+        <button class="btn-icon">
+            <i class="fa-solid fa-bars" (click)="toggleDropdown()"></i>
+        </button>
+
+        <div class="dropdown-menu" [hidden]="!dropdownOpen">
+
+            <a class="mob-menu-item"
+            *ngIf="!isLoggedIn"
+            [ngClass]="{ 'guest-item': !isLoggedIn }"
+            >Sign In</a>
+            <!--lägg till funktion (click)-->
+
+            <a class="mob-menu-item"
+            *ngIf="!isLoggedIn"
+            [ngClass]="{ 'guest-item': !isLoggedIn }"
+            >Register</a>
+            <!--lägg till funktion (click)-->
+
+            <a class="mob-menu-item"
+            *ngIf="isLoggedIn"
+            [ngClass]="{ 'user-item': !isLoggedIn }"
+            >My Reservations</a>
+            <!--lägg till funktion (click)-->
+
+            <a class="mob-menu-item"
+            *ngIf="!isLoggedIn"
+            [ngClass]="{ 'user-item': !isLoggedIn }"
+            >Log out</a>
+            <!--lägg till funktion (click)-->
+
+            <a class="mob-menu-item" href="#">FAQ</a>
+            <!--lägg till funktion (click)-->
+
+        </div>
+    </div>
+
+    <div class="title-container">
+        <a [routerLink]="['/']">
+            <h1 class="main-title">{{ title }}</h1>
+        </a>
+    </div>
+
+    <nav class="navbar" *ngIf="!isMobile">
+        <a href="#" class="Login">Login</a>
+        <a href="#" class="Register">Register</a>
+        <a href="#" class="FAQ">FAQ</a>
+    </nav>
+</header>

@@ -1,0 +1,80 @@
+@use "../../../../assets/styles/variables.scss";
+@import "../../../../assets/styles/styles.scss";
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+    margin: 1.5rem;
+
+    @media (min-width: $sm) {
+        flex-direction: column;
+    }
+}
+
+.btn-icon {
+    font-size: $size3;
+    border: none;
+    background: none;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 70%;
+    left: 0;
+    background-color: $color2;
+    border: 2px solid $color3;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+
+    .mob-menu-item {
+        padding: 0.8rem;
+        font-size: $size1;
+        font-family: $font3;
+
+        &:hover {
+            background-color: $color5;
+            color: $color2;
+        }
+    }
+}
+
+[hidden] {
+    display: none;
+  }
+
+.title-container {
+    text-align: center;
+    flex-grow: 1;
+
+    a:hover {
+        color: inherit;
+    }
+}
+
+.main-title {
+    font-weight: 400;
+    font-size: $size3;
+
+    @media (min-width: $sm) {
+        font-size: 4rem;
+        font-weight: 700;
+    }
+   
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0;
+    font-size: $size2;
+    font-family: $font1;
+    line-height: 1.6;
+}
+
+
