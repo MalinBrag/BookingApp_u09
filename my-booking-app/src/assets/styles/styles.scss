@@ -1,0 +1,28 @@
+@import './variables.scss';
+
+
+html, body {
+    height: 100%; 
+    width: 100%;
+    margin: 0;
+    font-family: $font3; 
+    --link-color: #000000;
+}
+
+a {
+    text-decoration: none;
+    color: var(--link-color);
+    cursor: pointer;
+
+    &:hover {
+        color: $color5;
+    }
+}
+
+button {
+    cursor: pointer;
+
+    &:hover {
+        color: $color5;
+    }
+}
