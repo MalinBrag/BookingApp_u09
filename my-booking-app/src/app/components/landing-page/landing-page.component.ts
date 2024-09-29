@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SearchFormComponent } from '../../shared/components/search-form/search-form.component'; 
+import { SearchFormComponent } from '../search-form/search-form.component'; 
 import { CommonModule, NgIf } from '@angular/common';
 
 @Component({
