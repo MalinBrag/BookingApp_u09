@@ -6,7 +6,13 @@
     </div>
     
     <div class="form-container">
-        <app-search-form></app-search-form>
+        <app-search-form (formSubmit)="handleFormSubmit($event)"></app-search-form>
+    </div>
+
+    <div *ngIf="recievedFormData">
+        <!--
+        <app-flight-list [searchData]="recievedFormData"></app-flight-list>
+    -->
     </div>
     
 </main>
