@@ -1,0 +1,40 @@
+<form (ngSubmit)="onSubmit()" #flightSearchForm="ngForm">
+
+    <div class="date-section">
+        <div class="date-from">
+            <label for="departureDate">Departure date:</label>
+            <input type="date" id="departureDate" name="departureDate" [(ngModel)]="searchData.departureDate" required>
+        </div>
+        <div class="date-to">
+            <label for="returnDate">Return date:</label>
+            <input type="date" id="returnDate" name="returnDate" [(ngModel)]="searchData.returnDate">
+        </div>
+    </div>
+
+    <div class="location-section">
+        <div class="location-from">
+            <label for="locationFrom">From destination</label>
+            <select name="locationFrom" id="locationFrom" [(ngModel)]="searchData.locationFrom" required>
+                <option value="" disabled>Select</option> <!-- Placeholder option -->
+                <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+            </select>
+        </div>
+
+        <div class="location-to">
+            <label for="locationTo">To destination</label>
+            <select name="locationTo" id="locationTo" [(ngModel)]="searchData.locationTo">
+                <option value="" disabled>Select</option> <!-- Placeholder option -->
+                <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="passenger-section">
+        <label for="passenger">Passengers</label>
+        <input type="number" id="passenger" name="passengers" [(ngModel)]="searchData.passengers" required min="1" max="10">
+    </div>
+
+    <button type="submit" [disabled]="!flightSearchForm.valid">Show me flights!</button>
+
+
+</form>

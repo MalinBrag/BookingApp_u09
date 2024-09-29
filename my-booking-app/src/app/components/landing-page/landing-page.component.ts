@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { title } from 'process';
+import { SearchFormComponent } from '../../shared/components/search-form/search-form.component'; 
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [],
+  imports: [
+    SearchFormComponent
+  ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
