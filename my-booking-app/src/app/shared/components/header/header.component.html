@@ -20,13 +20,13 @@
 
             <a class="mob-menu-item"
             *ngIf="isLoggedIn"
-            [ngClass]="{ 'user-item': !isLoggedIn }"
+            [ngClass]="{ 'user-item': isLoggedIn }"
             >My Reservations</a>
             <!--lägg till funktion (click)-->
 
             <a class="mob-menu-item"
-            *ngIf="!isLoggedIn"
-            [ngClass]="{ 'user-item': !isLoggedIn }"
+            *ngIf="isLoggedIn"
+            [ngClass]="{ 'user-item': isLoggedIn }"
             >Log out</a>
             <!--lägg till funktion (click)-->
 
@@ -43,8 +43,32 @@
     </div>
 
     <nav class="navbar" *ngIf="!isMobile">
-        <a href="#" class="Login">Login</a>
-        <a href="#" class="Register">Register</a>
-        <a href="#" class="FAQ">FAQ</a>
+
+        <a class="desk-menu-item"
+        *ngIf="!isLoggedIn"
+        [ngClass]="{ 'guest-item': !isLoggedIn }"
+        >Sign In</a>
+        <!--lägg till funktion (click)-->
+
+        <a class="desk-menu-item"
+        *ngIf="!isLoggedIn"
+        [ngClass]="{ 'guest-item': !isLoggedIn }"
+        >Register</a>
+        <!--lägg till funktion (click)-->
+
+        <a class="desk-menu-item"
+        *ngIf="isLoggedIn"
+        [ngClass]="{ 'user-item': isLoggedIn }"
+        >My Reservations</a>
+        <!--lägg till funktion (click)-->
+
+        <a class="desk-menu-item"
+        *ngIf="isLoggedIn"
+        [ngClass]="{ 'user-item': isLoggedIn }"
+        >Log out</a>
+        <!--lägg till funktion (click)-->
+
+        <a class="desk-menu-item" href="#">FAQ</a>
+
     </nav>
 </header>
