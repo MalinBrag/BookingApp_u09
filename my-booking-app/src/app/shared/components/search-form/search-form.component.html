@@ -1,11 +1,24 @@
-<form (ngSubmit)="onSubmit()" #flightSearchForm="ngForm">
+<form class="form" (ngSubmit)="onSubmit()" #flightSearchForm="ngForm">
+    <div class="radio-btn-section">
+
+        <div class="one-way">
+            <input type="radio" id="one-way" name="trip-type" [(ngModel)]="searchData.tripType" value="one-way" checked />
+            <label for="one-way">One way</label>
+        </div>
+
+        <div class="round-trip">
+            <input type="radio" id="round-trip" name="trip-type" [(ngModel)]="searchData.tripType" value="round-trip" />
+            <label for="round-trip">Round trip</label>
+        </div>
+    </div>
+
 
     <div class="date-section">
         <div class="date-from">
             <label for="departureDate">Departure date:</label>
             <input type="date" id="departureDate" name="departureDate" [(ngModel)]="searchData.departureDate" required>
         </div>
-        <div class="date-to">
+        <div class="date-to" *ngIf="searchData.tripType === 'round-trip'">
             <label for="returnDate">Return date:</label>
             <input type="date" id="returnDate" name="returnDate" [(ngModel)]="searchData.returnDate">
         </div>
@@ -20,7 +33,7 @@
             </select>
         </div>
 
-        <div class="location-to">
+        <div class="location-to" *ngIf="searchData.tripType === 'round-trip'">
             <label for="locationTo">To destination</label>
             <select name="locationTo" id="locationTo" [(ngModel)]="searchData.locationTo">
                 <option value="" disabled>Select</option> <!-- Placeholder option -->
@@ -34,7 +47,7 @@
         <input type="number" id="passenger" name="passengers" [(ngModel)]="searchData.passengers" required min="1" max="10">
     </div>
 
-    <button type="submit" [disabled]="!flightSearchForm.valid">Show me flights!</button>
+    <button type="submit" class="submit-btn" [disabled]="!flightSearchForm.valid">Check availability</button>
 
 
 </form>

@@ -1,0 +1,49 @@
+@use "../../../../assets/styles/variables.scss";
+@import "../../../../assets/styles/styles.scss";
+
+.form {
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    padding: 0 3rem;
+    font-weight: 700;
+}
+
+.radio-btn-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.date-section,
+.location-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.location-from,
+.location-to,
+.date-from,
+.date-to,
+.passenger-section {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0.5rem;
+}
+
+.passenger-section,
+.submit-btn {
+    align-self: center;
+    margin: 1rem 0.5rem;
+}
+
+input,
+select {
+    padding: 0.2rem;
+}
+
+

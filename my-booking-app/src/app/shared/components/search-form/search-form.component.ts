@@ -15,7 +15,9 @@ import { NgFor, NgIf } from '@angular/common';
   styleUrl: './search-form.component.scss'
 })
 export class SearchFormComponent {
+  
   searchData = {
+    tripType: 'one-way',
     departureDate: '',
     returnDate: '',
     locationFrom: '',

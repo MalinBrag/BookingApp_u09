@@ -20,8 +20,16 @@ a {
 
 button {
     cursor: pointer;
+    color: $color2;
+    font-family: $font1;
+    font-size: $size1;
+    text-transform: uppercase;
+    background-color: $color5;
+    width: 15rem;
+    height: 3rem;
+    border-radius: 0.5rem;
 
     &:hover {
-        color: $color5;
+        color: $color3;
     }
 }

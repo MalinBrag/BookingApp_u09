@@ -3,22 +3,39 @@
 
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     position: relative;
     background-color: $color3;
-
+    padding: 3rem 0;
+    width: 100%;
 
     @media (min-width: $sm) {
         flex-direction: column;
+        padding: 0;
     }
+}
+
+.mob-menu {
+    display: flex;
+    justify-content: start;
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .btn-icon {
     font-size: $size3;
     color: $color2;
     border: none;
-    background: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        color: $color5;
+    }
 }
 
 .dropdown-menu {
@@ -50,7 +67,6 @@
 
 .title-container {
     text-align: center;
-    flex-grow: 1;
 
     a:hover {
         color: inherit;
