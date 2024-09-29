@@ -18,7 +18,7 @@ import { BreakpointService } from './../../../core/services/breakpoint.service';
 export class HeaderComponent implements OnInit {
   title = 'My Booking App';
   isMobile: boolean = false;
-  isLoggedIn: boolean = false;
+  isLoggedIn: boolean = true;
   dropdownOpen: boolean = false;
   
 

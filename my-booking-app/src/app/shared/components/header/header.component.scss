@@ -5,9 +5,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
     position: relative;
-    margin: 1.5rem;
+    background-color: $color3;
+
 
     @media (min-width: $sm) {
         flex-direction: column;
@@ -16,6 +16,7 @@
 
 .btn-icon {
     font-size: $size3;
+    color: $color2;
     border: none;
     background: none;
 }
@@ -59,10 +60,12 @@
 .main-title {
     font-weight: 400;
     font-size: $size3;
+    color: $color2;
 
     @media (min-width: $sm) {
-        font-size: 4rem;
+        font-size: $size4;
         font-weight: 700;
+        line-height: 0.5;
     }
    
 }
@@ -74,7 +77,9 @@
     margin-top: 0;
     font-size: $size2;
     font-family: $font1;
+    color: $color2;
     line-height: 1.6;
+    margin-bottom: 1rem;
 }
 
 

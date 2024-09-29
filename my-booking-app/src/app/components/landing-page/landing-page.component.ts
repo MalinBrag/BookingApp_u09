@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { title } from 'process';
 
 @Component({
   selector: 'app-landing-page',
@@ -8,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrl: './landing-page.component.scss'
 })
 export class LandingPageComponent {
+  subtitle = 'Welcome to My Booking App';
 
 }
