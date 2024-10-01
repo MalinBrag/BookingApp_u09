@@ -1,0 +1,31 @@
+@use "../../../../assets/styles/variables.scss";
+@import "../../../../assets/styles/styles.scss";
+
+.footer {
+  background-color: $color1;
+  color: $color2;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-container-links {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;   
+}
+
+i {
+    font-size: $size2;
+}
+
+.footer-container-social {
+    display: flex;
+    gap: 1.2rem;
+}
