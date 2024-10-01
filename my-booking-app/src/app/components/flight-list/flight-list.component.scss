@@ -1,0 +1,9 @@
+@use "../../../assets/styles/variables.scss";
+@import "../../../assets/styles/styles.scss";
+
+.flight-list {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+

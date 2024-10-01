@@ -9,10 +9,8 @@
         <app-search-form (formSubmit)="handleFormSubmit($event)"></app-search-form>
     </div>
 
-    <div *ngIf="recievedFormData">
-        <!--
+    <div class="flight-list" *ngIf="recievedFormData">
         <app-flight-list [searchData]="recievedFormData"></app-flight-list>
-    -->
     </div>
     
 </main>
