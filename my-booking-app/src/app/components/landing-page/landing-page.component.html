@@ -1,7 +1,21 @@
 <main class="landing-page">
+    
     <div class="subheader">
         <h2 class="h2">{{ subtitle }}</h2>
         <p class="description">Book your next appointment with us</p>
+        <!--
+        <img src="../../../assets/images/earth.png" alt="Spinning Globe" class="spinning-globe">
+        -->
         <h2 class="h2">Book Now</h2>
     </div>
+    
+    <div class="form-container">
+        <app-search-form (formSubmit)="handleFormSubmit($event)"></app-search-form>
+    </div>
+
+<!--ändra nedan till om INTE isformdataempty-->
+    <div class="flight-list" *ngIf="!isFormDataEmpty()">
+        <app-flight-list [searchData]="recievedFormData"></app-flight-list>
+    </div>
+    
 </main>

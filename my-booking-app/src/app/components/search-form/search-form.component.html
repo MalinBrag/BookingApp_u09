@@ -1,0 +1,62 @@
+<form class="form" (ngSubmit)="onSubmit()" #flightSearchForm="ngForm">
+
+    <div class="radio-btn-section">
+
+        <div class="one-way">
+            <input type="radio" id="one-way" name="trip-type" [(ngModel)]="searchData.tripType" value="one-way" checked />
+            <label for="one-way">One way</label>
+        </div>
+
+        <div class="round-trip">
+            <input type="radio" id="round-trip" name="trip-type" [(ngModel)]="searchData.tripType" value="round-trip" />
+            <label for="round-trip">Round trip</label>
+        </div>
+    </div>
+
+
+    <div class="date-section">
+        <div class="date-from">
+            <label for="departureDate">Departure date:</label>
+            <input type="date" id="departureDate" name="departureDate" [(ngModel)]="searchData.departureFlight.departureDate" required>
+        </div>
+        <div class="date-to" *ngIf="searchData.tripType === 'round-trip'">
+            <label for="returnDate">Return date:</label>
+            <input type="date" id="returnDate" name="returnDate" [(ngModel)]="searchData.returnFlight.returnDate">
+        </div>
+    </div>
+
+    <!-- inte aktiv -->
+     <!--
+    <div class="expand-results">
+        <input type="checkbox" id="expand-results" name="expand-results" />
+        <label for="expandDates">Show flights close to selected date</label>
+    </div>
+-->
+    <div class="location-section">
+
+        <div class="location-from">
+            <label for="locationFrom">From destination</label>
+            <select name="locationFrom" id="locationFrom" [(ngModel)]="searchData.departureFlight.locationFrom" required>
+                <option value="" disabled>Select</option> <!-- Placeholder option -->
+                <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+            </select>
+        </div>
+
+        <div class="location-to">
+            <label for="locationTo">To destination</label>
+            <select name="locationTo" id="locationTo" [(ngModel)]="searchData.departureFlight.locationTo">
+                <option value="" disabled>Select</option> <!-- Placeholder option -->
+                <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="passenger-section">
+        <label for="passenger">Passengers</label>
+        <input type="number" id="passenger" name="passengers" [(ngModel)]="searchData.departureFlight.passengers" required min="1" max="10">
+    </div>
+
+    <button type="button" class="submit-btn" (click)="onSubmit()">Check availability</button>
+
+
+</form>

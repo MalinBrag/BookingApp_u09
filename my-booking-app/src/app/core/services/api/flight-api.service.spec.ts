@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BreakpointService } from './breakpoint.service';
+import { FlightApiService } from './flight-api.service';
 
-describe('BreakpointService', () => {
-  let service: BreakpointService;
+describe('FlightApiService', () => {
+  let service: FlightApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BreakpointService);
+    service = TestBed.inject(FlightApiService);
   });
 
   it('should be created', () => {
