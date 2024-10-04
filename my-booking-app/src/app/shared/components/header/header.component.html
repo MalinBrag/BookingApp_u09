@@ -25,8 +25,7 @@
             <a class="mob-menu-item"
             *ngIf="isLoggedIn"
             [ngClass]="{ 'user-item': isLoggedIn }"
-            >Log out</a>
-            <!--lägg till funktion (click)-->
+            (click)="logoutUser()">Log out</a>
 
             <a class="mob-menu-item" href="#">FAQ</a>
             <!--lägg till funktion (click)-->
@@ -61,8 +60,7 @@
         <a class="desk-menu-item"
         *ngIf="isLoggedIn"
         [ngClass]="{ 'user-item': isLoggedIn }"
-        >Log out</a>
-        <!--lägg till funktion (click)-->
+        [routerLink]="['/logout']">Log out</a>
 
         <a class="desk-menu-item" href="#">FAQ</a>
 

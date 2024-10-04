@@ -15,6 +15,9 @@ export class UserAuthenticationService {
     console.log(data);
   }
 
+  logoutUser() {
+    console.log('User logged out');
+  }
 
 
 

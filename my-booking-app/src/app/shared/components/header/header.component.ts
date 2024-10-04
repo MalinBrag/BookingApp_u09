@@ -5,6 +5,7 @@ import { BreakpointService } from './../../../core/services/breakpoint.service';
 import { DialogFrameService } from '../../../core/services/dialogframe.service';
 import { RegisterComponent } from '../../../components/user-components/register/register.component';
 import { SignInComponent } from '../../../components/user-components/sign-in/sign-in.component';
+import { LogoutComponent } from '../../../components/user-components/logout/logout.component';
 
 @Component({
   selector: 'app-header',
@@ -56,6 +57,10 @@ export class HeaderComponent implements OnInit {
     this.dropdownOpen = false;
   }
 
+  logoutUser() {
+    this.router.navigate(['logout']);
+    this.dropdownOpen = false;
+  }
 
 
 }
