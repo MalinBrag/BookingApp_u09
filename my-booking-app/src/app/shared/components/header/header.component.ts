@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
   }
 
   registerUser() {
-    this.dialog.open(RegisterComponent, {
+    this.dialog.openDialogFrame(RegisterComponent, {
       fields: ['name', 'email', 'password', 'password_confirmation'],
     });
     this.dropdownOpen = false;
