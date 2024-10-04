@@ -6,4 +6,19 @@ import { Injectable } from '@angular/core';
 export class UserAuthenticationService {
 
   constructor() { }
+
+  registerUser(data: any) {
+    console.log(data);
+  }
+
+
+
+
+
+
+
+
+
+
+
 }

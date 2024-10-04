@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule, NgIf, NgClass } from '@angular/common';
 import { BreakpointService } from './../../../core/services/breakpoint.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RegisterComponent } from '../../../components/user-components/register/register.component';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +13,7 @@ import { BreakpointService } from './../../../core/services/breakpoint.service';
     NgIf,
     NgClass,
     RouterLink,
+    RegisterComponent,
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
@@ -37,6 +40,12 @@ export class HeaderComponent implements OnInit {
     this.dropdownOpen = !this.dropdownOpen;
   }
 
+  registerUser() {
+    this.dialog.open(RegisterComponent, {
+      fields: ['name', 'email', 'password', 'password_confirmation'],
+    });
+    this.dropdownOpen = false;
+  }
 
 
 

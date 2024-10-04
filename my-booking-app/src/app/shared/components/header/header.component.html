@@ -15,8 +15,7 @@
             <a class="mob-menu-item"
             *ngIf="!isLoggedIn"
             [ngClass]="{ 'guest-item': !isLoggedIn }"
-            >Register</a>
-            <!--lägg till funktion (click)-->
+            (click)="registerUser()">Register</a>
 
             <a class="mob-menu-item"
             *ngIf="isLoggedIn"
@@ -53,8 +52,7 @@
         <a class="desk-menu-item"
         *ngIf="!isLoggedIn"
         [ngClass]="{ 'guest-item': !isLoggedIn }"
-        >Register</a>
-        <!--lägg till funktion (click)-->
+        [routerLink]="['/register']">Register</a>
 
         <a class="desk-menu-item"
         *ngIf="isLoggedIn"
