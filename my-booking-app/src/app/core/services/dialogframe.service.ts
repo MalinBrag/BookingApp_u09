@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DialogframeService {
+export class DialogFrameService {
 
   constructor(
     private dialog: MatDialog,

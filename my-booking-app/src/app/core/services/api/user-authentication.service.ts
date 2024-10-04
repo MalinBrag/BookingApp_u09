@@ -11,6 +11,9 @@ export class UserAuthenticationService {
     console.log(data);
   }
 
+  signInUser(data: any) {
+    console.log(data);
+  }
 
 
 
