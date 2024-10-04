@@ -2,10 +2,12 @@
 @import "../../../../assets/styles/styles.scss";
 
 .footer {
+  width: 100%;
   background-color: $color1;
   color: $color2;
   padding: 20px;
   text-align: center;
+  z-index: 1;
 }
 
 .footer-container {

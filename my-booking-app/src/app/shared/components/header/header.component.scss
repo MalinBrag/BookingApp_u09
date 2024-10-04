@@ -9,6 +9,7 @@
     background-color: $color3;
     padding: 3rem 0;
     width: 100%;
+    z-index: 3;
 
     @media (min-width: $sm) {
         flex-direction: column;
@@ -47,7 +48,7 @@
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    z-index: 1;
+    z-index: 2;
 
     .mob-menu-item {
         padding: 0.8rem;

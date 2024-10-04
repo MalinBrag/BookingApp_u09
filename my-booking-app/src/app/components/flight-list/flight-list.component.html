@@ -1,52 +1,96 @@
 <div class="flight-list">
-    <h2>Available flights</h2>
-    <p>Flights between 
-        <span class="range-date">{{ expandedDateRange.startDate }}</span> 
-        and 
-        <span class="range-date">{{ expandedDateRange.endDate }}</span>
-      </p>
 
-      <div class="search-data">
-        <div class="departure">
-            <p>From: <span>{{ searchData.departureDate }}</span></p>
-            <p>To: <span>{{ searchData.locationTo }}</span></p>
-            <p>Passengers: <span>{{ searchData.passengers }}</span></p>
-        </div>
-        <div class="return" *ngIf="searchData.tripType === 'round-trip'">
-            <p>Return: <span>{{ searchData.returnDate }}</span></p>
-            <p>To: <span>{{ searchData.locationFrom }}</span></p>
-            <p>Passengers: <span>{{ searchData.passengers }}</span></p>
-        </div>
-      </div>
+    <!-- ONE WAY -->
+    <div class="one-way-section">
+        <div class="search-data" >
 
-    <div class="flights-table">
-        <table>
-            <thead>
-                <tr>
-                    <th>Departure date</th>
-                    <th>Departure time</th>
-                    <th>Destination</th>
-                    <th>Price</th>
-                    <th>Airport</th>
-                    <th>Flight number</th>
-                    <th>Book</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let flight of flights">
-                    <td>{{ flight.departureDate }}</td>
-                    <td>{{ flight.departureTime }}</td>
-                    <td>{{ flight.destination }}</td>
-                    <td>{{ flight.price }}</td>
-                    <td>{{ flight.airport }}</td>
-                    <td>{{ flight.flightNumber }}</td>
-                    <td><button class="book-btn">Book</button></td>
-                </tr>
-            </tbody>
-        </table>
+            <ul>
+                <span>Search input: </span>
+                <li>Date: <span>{{ searchData.departureFlight.departureDate }}</span> </li>
+                <li>From: <span>{{ searchData.departureFlight.locationFrom }}</span></li>
+                <li>To: <span>{{ searchData.departureFlight.locationTo }}</span></li>
+                <li>Passengers: <span>{{ searchData.departureFlight.passengers }}</span></li>
+            </ul>
+
+        </div>
+    
+        <div class="flights-table">
+            <h3>Departure flights</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Destination</th>
+                        <th>Price</th>
+                        <th>Airport</th>
+                        <th>Book</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let flight of departureFlights">
+                        <td>{{ flight.departureDate }}</td>
+                        <td>{{ flight.departureTime }}</td>
+                        <td>{{ flight.destination }}</td>
+                        <td>{{ flight.price }}</td>
+                        <td>{{ flight.airport }}</td>
+                        <td><button class="book-btn">Book</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+   
+    <!-- ROUND TRIP -->
+        <div class="round-trip-section" *ngIf="searchData.tripType === 'round-trip' && returnFlights.length > 0">
+            <div class="search-data">
+            
+                <ul>
+                    <span>Search input: </span>
+                    <li>Date: <span>{{ searchData.returnFlight.returnDate }}</span> </li>
+                    <li>From: <span>{{ searchData.returnFlight.locationFrom }}</span></li>
+                    <li>To: <span>{{ searchData.returnFlight.locationTo }}</span></li>
+                    <li>Passengers: <span>{{ searchData.returnFlight.passengers }}</span></li>
+                </ul>
+
+            </div>
+
+        <div class="flights-table" >
+            <h3>Return flights</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Return date</th>
+                        <th>Time</th>
+                        <th>Destination</th>
+                        <th>Price</th>
+                        <th>Airport</th>
+                        <th>Book</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let flight of returnFlights">
+                        <td>{{ flight.departureDate }}</td>
+                        <td>{{ flight.departureTime }}</td>
+                        <td>{{ flight.destination }}</td>
+                        <td>{{ flight.price }}</td>
+                        <td>{{ flight.airport }}</td>
+                        <td><button class="book-btn">Book</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        
     </div>
 
 
 
 
 </div>
+

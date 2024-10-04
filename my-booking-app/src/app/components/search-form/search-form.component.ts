@@ -15,35 +15,33 @@ import { NgFor, NgIf } from '@angular/common';
   styleUrl: './search-form.component.scss'
 })
 export class SearchFormComponent {
-
   searchData = {
     tripType: 'one-way',
-    departureDate: '',
-    returnDate: '',
-    locationFrom: '',
-    locationTo: '',
-    passengers: 1,
-  }
+    departureFlight: {
+      departureDate: '',
+      locationFrom: '',
+      locationTo: '',
+      passengers: '1',
+    },
+    returnFlight: {
+      returnDate: '',
+      locationFrom: '',
+      locationTo: '',
+      passengers: '1',
+    }
+  };
 
   @Output() formSubmit = new EventEmitter<any>();
 
   locations = ['Paris', 'Rome', 'Berlin', 'New York'];
 
   onSubmit() {
+    if (this.searchData.tripType === 'round-trip') {
+      this.searchData.returnFlight.locationFrom = this.searchData.departureFlight.locationTo;
+      this.searchData.returnFlight.locationTo = this.searchData.departureFlight.locationFrom;
+      this.searchData.returnFlight.passengers = this.searchData.departureFlight.passengers;
+    }
     this.formSubmit.emit(this.searchData);
-  }
-
-  getDateRange(date: Date, range: number) {
-    const startDate = new Date(date);
-    startDate.setDate(date.getDate() - range);
-
-    const endDate = new Date(date);
-    endDate.setDate(date.getDate() + range);
-
-    return {
-      startDate: formatDate(startDate, 'yyyy-MM-dd', 'en'),
-      endDate: formatDate(endDate, 'yyyy-MM-dd', 'en')
-    };
   }
 
 

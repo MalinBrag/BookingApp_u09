@@ -4,6 +4,86 @@
 .flight-list {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    font-size: 0.8rem;
+    width: 100%;
+    min-height: 100vh;
+    background-color: transparent;
+    margin-bottom: 3rem;
+
+    @media (min-width: $lg) {
+        font-size: $size1;
+    }
 }
+
+.one-way-section,
+.round-trip-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $color4;
+   
+    .search-data {
+        width: 100%;
+        font-family: $font2;
+        color: $color2;
+        
+        ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            
+            span {
+                padding-left: 0.3rem;
+            }
+        }
+    }
+}
+
+.flights-table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: $color2;
+    font-family: $font1;
+    font-weight: 500;
+
+    h3 {
+        text-align: center;
+    }
+
+    table {
+        padding: 1rem;
+        border-collapse: collapse;
+        margin: 1.5rem;
+        line-height: 1.4;
+        
+        th {
+            text-align: initial;
+            border-bottom: 1px solid #ccc;
+        }
+
+        td {
+           border-bottom: 1px solid #ccc;
+        }
+    }
+}
+
+.book-btn {
+    height: auto;
+    width: auto;
+    //font-size: 0.6rem;
+    padding: 0 0.3rem;
+    //background-color: $color4;
+    border-color: $color1;
+    //color: $color3;
+
+    &:hover {
+        color: $color2;
+    }
+}
+
+
+
+
 

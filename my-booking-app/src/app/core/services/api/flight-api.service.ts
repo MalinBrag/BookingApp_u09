@@ -12,7 +12,14 @@ export class FlightApiService {
     private http: HttpClient
   ) { }
 
-  getFlights(): Observable<any[]> {
-    return this.http.get<any[]>(this.mockDataUrl);
+  getFlights(params: any): Observable<any[]> {
+    return this.http.get<any[]>(this.mockDataUrl, {
+      params: {
+        date: params.date,
+        from: params.from,
+        to: params.to,
+        passengers: params.passengers
+      }
+    });
   }
 }

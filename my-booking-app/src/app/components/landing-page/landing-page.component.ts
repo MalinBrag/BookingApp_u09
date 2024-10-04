@@ -18,8 +18,14 @@ import { FlightListComponent } from '../flight-list/flight-list.component';
 export class LandingPageComponent {
   subtitle = 'Welcome to My Booking App';
   recievedFormData: any = {};
+
   handleFormSubmit(event: any) {
-    this.recievedFormData = event;
+    this.recievedFormData = { ...event };
+  }
+
+  isFormDataEmpty(): boolean {
+    return Object.keys(this.recievedFormData).length === 0;
+    
   }
 
 
