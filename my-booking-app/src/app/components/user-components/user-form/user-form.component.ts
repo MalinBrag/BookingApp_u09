@@ -1,6 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Optional } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { NgIf, CommonModule } from '@angular/common';
+import { DialogFrameService } from '../../../core/services/dialogframe.service';
+import { BreakpointService } from '../../../core/services/breakpoint.service';
 
 @Component({
   selector: 'app-user-form',
@@ -17,22 +19,30 @@ export class UserFormComponent implements OnInit {
   @Input() fields: string[] = [];
   @Output() formSubmit = new EventEmitter<any>();
   form!: FormGroup;
+  isMobile: boolean = false;
+  title: string = 'User Form'; //gör om
  
   constructor(
     private builder: FormBuilder,
+    @Optional() private dialog: DialogFrameService,
+    private breakpoint: BreakpointService,
   ) {}
 
 
   ngOnInit(): void {
+    this.breakpoint.isMobile$.subscribe(isMobile => {
+      this.isMobile = isMobile;
+    });
+
     this.createForm();
   }
 
-  createForm() {
-    const group: { [key : string]: any } = {};
+  createForm(): void {
+    const formFields: { [key : string]: any } = {};
     this.fields.forEach(field => {
-      group[field] = ['', Validators.required];
+      formFields[field] = ['', Validators.required];
     });
-    this.form = this.builder.group(group);
+    this.form = this.builder.group(formFields);
 
     if (this.fields.includes('password') && this.fields.includes('confirmPassword')) {
       this.form.setValidators(this.passwordMatchValidator());
@@ -53,11 +63,16 @@ export class UserFormComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       this.formSubmit.emit(this.form.value);
+      this.dialog.closeDialogFrame();
     } else {
       if (this.form.errors?.['passwordMismatch']) {
         window.alert('Passwords do not match');
       }
     }
+  }
+
+  closeDialog() {
+    this.dialog.closeDialogFrame();
   }
 
 

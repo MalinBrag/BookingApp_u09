@@ -1,8 +1,9 @@
 <section class="sign-in">
-    <h1>Sign In</h1>
 
     <div class="form-container">
-        <app-user-form></app-user-form>
+        <app-user-form [fields]="fields" (formSubmit)="onSubmitSignIn($event)">
+            
+        </app-user-form>
     </div>
-    
+
 </section>

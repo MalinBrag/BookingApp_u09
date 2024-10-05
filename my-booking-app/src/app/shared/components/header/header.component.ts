@@ -16,6 +16,7 @@ import { LogoutComponent } from '../../../components/user-components/logout/logo
     NgClass,
     RouterLink,
     //RegisterComponent,
+    SignInComponent
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
@@ -52,7 +53,9 @@ export class HeaderComponent implements OnInit {
 
   signInUser() {
     this.dialog.openDialogFrame(SignInComponent, {
-      fields: ['email', 'password'],
+      width: '300px',
+      position: { top: '50px', right: '10px' },
+      //fields: ['email', 'password'],
     });
     this.dropdownOpen = false;
   }

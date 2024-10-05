@@ -4,7 +4,7 @@
             <i class="fa-solid fa-bars" (click)="toggleDropdown()"></i>
         </button>
 
-        <div class="dropdown-menu" [hidden]="!dropdownOpen">
+        <div class="dropdown-menu" *ngIf="dropdownOpen">
 
             <a class="mob-menu-item"
             *ngIf="!isLoggedIn"
@@ -34,7 +34,7 @@
     </div>
 
     <div class="title-container">
-        <a [routerLink]="['/']">
+        <a [routerLink]="['']">
             <h1 class="main-title">{{ title }}</h1>
         </a>
     </div>

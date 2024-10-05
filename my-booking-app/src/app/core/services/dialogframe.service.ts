@@ -13,13 +13,14 @@ export class DialogFrameService {
   ) { }
 
   openDialogFrame(component: any, data?: any): Observable<any> {
-    const ref = this.dialog.open(component);
-    ref.afterOpened().subscribe(() => {
+    console.log(data);
+    const dialogRef = this.dialog.open(component);
+    dialogRef.afterOpened().subscribe(() => {
       if (data?.fields) {
-        (ref.componentInstance as any).fields = data.fields;
+        (dialogRef.componentInstance as any).fields = data.fields;
       }
     });
-    return ref.afterClosed();
+    return dialogRef.afterClosed();
   } 
 
   closeDialogFrame() {
