@@ -1,8 +1,3 @@
 <section class="register">
-    <h1>Register As New User</h1>
-
-    <div class="form-container">
-        <app-user-form></app-user-form>
-    </div>
-    
+    <app-user-form [fields]="fields" (formSubmit)="onSubmitRegister($event)"></app-user-form>
 </section>

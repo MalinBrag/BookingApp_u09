@@ -63,6 +63,10 @@
     margin: 1rem 0.5rem;
 }
 
+.submit-btn {
+    @include button;
+}
+
 input,
 select {
     padding: 0.2rem;

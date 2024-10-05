@@ -45,19 +45,25 @@ export class HeaderComponent implements OnInit {
   }
 
   registerUser() {
-    this.dialog.openDialogFrame(RegisterComponent, {
-      fields: ['name', 'email', 'password', 'password_confirmation'],
-    });
-    this.dropdownOpen = false;
+    if (this.isMobile) {
+      this.dialog.openDialogFrame(RegisterComponent, {
+        fields: ['name', 'email', 'password', 'password_confirmation'],
+      });
+      this.dropdownOpen = false;
+    } else {
+      this.router.navigate(['/register']);
+    }
   }
 
   signInUser() {
-    this.dialog.openDialogFrame(SignInComponent, {
-      width: '300px',
-      position: { top: '50px', right: '10px' },
-      //fields: ['email', 'password'],
-    });
-    this.dropdownOpen = false;
+    if (this.isMobile) {
+      this.dialog.openDialogFrame(SignInComponent, {
+        fields: ['email', 'password'],
+      });
+      this.dropdownOpen = false;
+    } else {
+      this.router.navigate(['/sign-in']);
+    }
   }
 
   logoutUser() {

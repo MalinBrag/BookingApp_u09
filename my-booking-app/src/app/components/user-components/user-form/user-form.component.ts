@@ -43,7 +43,7 @@ export class UserFormComponent implements OnInit {
       formFields[field] = ['', Validators.required];
     });
     this.form = this.builder.group(formFields);
-
+    
     if (this.fields.includes('password') && this.fields.includes('confirmPassword')) {
       this.form.setValidators(this.passwordMatchValidator());
     }
