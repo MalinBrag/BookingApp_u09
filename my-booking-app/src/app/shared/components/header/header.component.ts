@@ -5,7 +5,7 @@ import { BreakpointService } from './../../../core/services/breakpoint.service';
 import { DialogFrameService } from '../../../core/services/dialogframe.service';
 import { RegisterComponent } from '../../../components/user-components/register/register.component';
 import { SignInComponent } from '../../../components/user-components/sign-in/sign-in.component';
-import { LogoutComponent } from '../../../components/user-components/logout/logout.component';
+import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -32,12 +32,14 @@ export class HeaderComponent implements OnInit {
     private breakpoint: BreakpointService,
     private router: Router,
     private dialog: DialogFrameService,
+    private userAuth: UserAuthenticationService,
   ) { }
 
   ngOnInit(): void {
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
+    //this.isLoggedIn = true;
   }
 
   toggleDropdown() {
@@ -67,8 +69,10 @@ export class HeaderComponent implements OnInit {
   }
 
   logoutUser() {
-    this.router.navigate(['logout']);
+    this.userAuth.logoutUser();
+    this.isLoggedIn = false;
     this.dropdownOpen = false;
+    this.router.navigate(['']);
   }
 
 

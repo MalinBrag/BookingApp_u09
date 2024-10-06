@@ -60,7 +60,7 @@
         <a class="desk-menu-item"
         *ngIf="isLoggedIn"
         [ngClass]="{ 'user-item': isLoggedIn }"
-        [routerLink]="['/logout']">Log out</a>
+        (click)="logoutUser()">Log out</a>
 
         <a class="desk-menu-item" href="#">FAQ</a>
 
