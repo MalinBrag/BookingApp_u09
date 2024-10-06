@@ -4,19 +4,17 @@
             <i class="fa-solid fa-bars" (click)="toggleDropdown()"></i>
         </button>
 
-        <div class="dropdown-menu" [hidden]="!dropdownOpen">
+        <div class="dropdown-menu" *ngIf="dropdownOpen">
 
             <a class="mob-menu-item"
             *ngIf="!isLoggedIn"
             [ngClass]="{ 'guest-item': !isLoggedIn }"
-            >Sign In</a>
-            <!--lägg till funktion (click)-->
+            (click)="signInUser()">Sign In</a>
 
             <a class="mob-menu-item"
             *ngIf="!isLoggedIn"
             [ngClass]="{ 'guest-item': !isLoggedIn }"
-            >Register</a>
-            <!--lägg till funktion (click)-->
+            (click)="registerUser()">Register</a>
 
             <a class="mob-menu-item"
             *ngIf="isLoggedIn"
@@ -27,8 +25,7 @@
             <a class="mob-menu-item"
             *ngIf="isLoggedIn"
             [ngClass]="{ 'user-item': isLoggedIn }"
-            >Log out</a>
-            <!--lägg till funktion (click)-->
+            (click)="logoutUser()">Log out</a>
 
             <a class="mob-menu-item" href="#">FAQ</a>
             <!--lägg till funktion (click)-->
@@ -37,7 +34,7 @@
     </div>
 
     <div class="title-container">
-        <a [routerLink]="['/']">
+        <a [routerLink]="['']">
             <h1 class="main-title">{{ title }}</h1>
         </a>
     </div>
@@ -47,14 +44,12 @@
         <a class="desk-menu-item"
         *ngIf="!isLoggedIn"
         [ngClass]="{ 'guest-item': !isLoggedIn }"
-        >Sign In</a>
-        <!--lägg till funktion (click)-->
+        [routerLink]="['/sign-in']">Sign In</a>
 
         <a class="desk-menu-item"
         *ngIf="!isLoggedIn"
         [ngClass]="{ 'guest-item': !isLoggedIn }"
-        >Register</a>
-        <!--lägg till funktion (click)-->
+        [routerLink]="['/register']">Register</a>
 
         <a class="desk-menu-item"
         *ngIf="isLoggedIn"
@@ -65,8 +60,7 @@
         <a class="desk-menu-item"
         *ngIf="isLoggedIn"
         [ngClass]="{ 'user-item': isLoggedIn }"
-        >Log out</a>
-        <!--lägg till funktion (click)-->
+        [routerLink]="['/logout']">Log out</a>
 
         <a class="desk-menu-item" href="#">FAQ</a>
 

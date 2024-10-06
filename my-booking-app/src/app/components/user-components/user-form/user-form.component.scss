@@ -1,0 +1,79 @@
+@use "../../../../assets/styles/variables.scss";
+@import "../../../../assets/styles/styles.scss";
+@import "../../../../assets/styles/mixins";
+
+.form-group {
+    @include form-frame;
+
+    @media (min-width: $sm) {
+
+        .image-container {
+            display: flex;
+            justify-content: end;
+            width: 50%;
+
+            .img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+.form-content {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0 1rem;
+
+    @media (min-width: $sm) {
+        width: 50%;
+    }
+
+    .title {
+        font-family: $font1;
+        font-size: $size1;
+        text-align: center;
+        font-weight: 500;
+        margin: 1rem 0;
+
+        @media (min-width: $sm) {
+            font-size: $size2;
+        }
+    }
+
+    .fields {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin: 0 1rem 2rem 1rem;
+
+        @media (min-width: $sm) {
+            font-size: 1.2rem;
+        }
+    }
+
+    .form-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        font-family: $font1;
+        font-weight: 500;
+
+        input {
+            padding: 0.5rem;
+        }
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: center;
+        padding: 2rem 0 3rem 0;
+        
+        .submit-btn {
+            @include button;
+        }
+    }
+}

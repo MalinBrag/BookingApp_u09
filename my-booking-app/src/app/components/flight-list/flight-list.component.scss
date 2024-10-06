@@ -1,5 +1,6 @@
 @use "../../../assets/styles/variables.scss";
 @import "../../../assets/styles/styles.scss";
+@import "../../../assets/styles/mixins.scss";
 
 .flight-list {
     display: flex;
@@ -72,11 +73,8 @@
 .book-btn {
     height: auto;
     width: auto;
-    //font-size: 0.6rem;
     padding: 0 0.3rem;
-    //background-color: $color4;
     border-color: $color1;
-    //color: $color3;
 
     &:hover {
         color: $color2;
