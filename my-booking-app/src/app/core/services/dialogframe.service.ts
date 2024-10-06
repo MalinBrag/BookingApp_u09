@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { LogoutComponent } from '../../components/user-components/logout/logout.component';
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +24,5 @@ export class DialogFrameService {
   closeDialogFrame() {
     this.dialog.closeAll();
   }
-
-  openLogoutDialog(): Observable<any> {
-    return this.openDialogFrame(LogoutComponent);
-  } 
-
 
 }
