@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgIf, NgFor } from '@angular/common';
 import { Router } from '@angular/router';
 import { BreakpointService } from '../../../app/core/services/breakpoint.service';
+import { UserAuthenticationService } from '../../../app/core/services/api/user-authentication.service';
+import { UserFormComponent } from '../user-components/user-form/user-form.component';
+import { RegisterComponent } from '../user-components/register/register.component';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -17,23 +20,42 @@ import { BreakpointService } from '../../../app/core/services/breakpoint.service
 export class AdminDashboardComponent implements OnInit {
   title = 'Dashboard';
   isMobile: boolean = false;
+  isLoggedIn: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(
     private router: Router,
     private breakpoint: BreakpointService,
+    private userAuth: UserAuthenticationService,
   ) { }
 
   ngOnInit(): void {
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
+
+    this.userAuth.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+    });
+
+    this.userAuth.isAdmin$.subscribe(isAdmin => {
+      this.isAdmin = isAdmin;
+    });
   }
 
-  registerUser() {}
+  registerUser() {
+    this.router.navigate(['register'], { queryParams: { isAdmin: true } });
+  }
+  
 
   manageUsers() {}
 
-  logout() {}
+  logout() {
+    this.userAuth.logoutUser();
+    this.isLoggedIn = false;
+    this.isAdmin = false;
+    this.router.navigate(['']);
+  }
 
 
 

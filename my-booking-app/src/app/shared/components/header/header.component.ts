@@ -38,22 +38,11 @@ export class HeaderComponent implements OnInit {
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
-    
-    
-    /*this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.userAuth.isLoggedIn$.subscribe(isLoggedIn => {
-          this.isLoggedIn = isLoggedIn;
-        });
-        this.userAuth.isAdmin$.subscribe(isAdmin => {
-          this.isAdmin = isAdmin
-        });
-      }
-    })*/
 
-      this.userAuth.isLoggedIn$.subscribe(isLoggedIn => {
+    this.userAuth.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
     });
+    
     this.userAuth.isAdmin$.subscribe(isAdmin => {
       this.isAdmin = isAdmin;
     });
