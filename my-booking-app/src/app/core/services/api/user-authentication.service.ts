@@ -11,9 +11,11 @@ import { User } from '../../../shared/interfaces/user.model';
 export class UserAuthenticationService {
   private api = environment.api;
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
+  private isAdminSubject = new BehaviorSubject<boolean>(false);
   private isBrowser: boolean;
 
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
+  isAdmin$ = this.isAdminSubject.asObservable();
 
   constructor(private http: HttpClient) { 
     this.isBrowser = typeof window !== 'undefined';
@@ -25,11 +27,18 @@ export class UserAuthenticationService {
       tap((response: LoginResponse) => {
         const token = response.token;
         const userId = response.userId;
+        const role = response.role;
 
         this.setToken(token);
         if (userId)
         {
           this.setUserId(userId);
+        }
+
+        if (role === 'admin') {
+          this.isAdminSubject.next(true);
+        } else {
+          this.isAdminSubject.next(false);
         }
       })
     );
@@ -40,11 +49,18 @@ export class UserAuthenticationService {
       tap((response: LoginResponse) => {
         const token = response.token;
         const userId = response.userId;
+        const role = response.role;
 console.log(response);
         this.setToken(token);
         if (userId)
         {
           this.setUserId(userId);
+        }
+
+        if (role === 'admin') {
+          this.isAdminSubject.next(true);
+        } else {
+          this.isAdminSubject.next(false);
         }
       })
     );
@@ -66,17 +82,6 @@ console.log(response);
         console.log(response);
       })
     );
-    /*const token = localStorage.getItem('token');
-    console.log('token här: ', token); 
-    this.http.get(`${this.api}/users/profile`).pipe(
-      tap((response: any) => {
-        console.log('response här: ', response);
-      })
-    ).  
-    
-    subscribe(
-    );
-    return this.http.get(`${this.api}/users/profile`);*/
   }
 
   checkLoginStatus(): void {

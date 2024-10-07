@@ -79,15 +79,15 @@ export class HeaderComponent implements OnInit {
 
   getMyPages() {
     if (this.isLoggedIn) {
-      this.userAuth.getProfile().subscribe(
-        (response: any) => {
+      this.userAuth.getProfile().subscribe({
+        next: (response: any) => {
+          console.log(response);
           this.router.navigate(['/profile']);
         },
-        (error: any) => {
-          console.log(error);
+        error: (error: any) => {
           window.alert('Error getting profile');
         }
-      );
+      });
     } else {
       this.router.navigate(['/sign-in']);
     }

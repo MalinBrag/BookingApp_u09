@@ -4,12 +4,13 @@ import { RegisterComponent } from './components/user-components/register/registe
 import { SignInComponent } from './components/user-components/sign-in/sign-in.component';
 import { ProfileComponent } from './components/user-components/profile/profile.component';
 
-import { userAuthGuard } from './core/guards/user-auth.guard';
+import { UserAuthGuard } from './core/guards/user-auth.guard';
+import { AdminAuthGuard } from './core/guards/admin-auth.guard';
 
 export const routes: Routes = [
     { path: '', component: LandingPageComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'sign-in', component: SignInComponent },
-    { path: 'profile', component: ProfileComponent, canActivate: [userAuthGuard] },
+    { path: 'profile', component: ProfileComponent, canActivate: [UserAuthGuard] },
     
 ];
