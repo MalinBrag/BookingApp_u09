@@ -1,0 +1,20 @@
+<main class="dashboard">
+
+    <div class="content">
+        <div class="header">
+            <h1 class="title">{{ title }}</h1>
+        </div>
+
+        <div class="buttons">
+            <button class="dashboard-btn" (click)="registerUser()">Add user or admin</button>
+            <button class="dashboard-btn" (click)="manageUsers()">Manage Users</button>
+            <button class="dashboard-btn" (click)="logout()">Log out</button>
+            <button class="dashboard-btn">Edit my info</button>
+        </div>
+    </div>
+
+    <div class="image-container" *ngIf="!isMobile">
+        <img class="img" src="assets/images/inside_plane.jpg" alt="glasses" />
+    </div>
+
+</main>

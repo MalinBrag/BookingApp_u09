@@ -20,6 +20,7 @@ export class UserAuthenticationService {
   constructor(private http: HttpClient) { 
     this.isBrowser = typeof window !== 'undefined';
     this.checkLoginStatus();
+    this.checkAdminStatus();
   }
 
   registerUser(data: User): Observable<LoginResponse> {
@@ -35,8 +36,9 @@ export class UserAuthenticationService {
           this.setUserId(userId);
         }
 
-        if (role === 'admin') {
+        if (role === 'Admin') {
           this.isAdminSubject.next(true);
+          this.setRole(role);
         } else {
           this.isAdminSubject.next(false);
         }
@@ -50,15 +52,16 @@ export class UserAuthenticationService {
         const token = response.token;
         const userId = response.userId;
         const role = response.role;
-console.log(response);
+
         this.setToken(token);
         if (userId)
         {
           this.setUserId(userId);
         }
 
-        if (role === 'admin') {
+        if (role === 'Admin') {
           this.isAdminSubject.next(true);
+          this.setRole(role);
         } else {
           this.isAdminSubject.next(false);
         }
@@ -91,11 +94,31 @@ console.log(response);
     }
   }
 
+  checkAdminStatus(): void {
+    const role = this.getRole();
+    if (role === 'Admin') {
+      this.isAdminSubject.next(true);
+    }
+  }
+
   setToken(token: string): void {
     if (this.isBrowser) {
       localStorage.setItem('token', token);
       this.isLoggedInSubject.next(true);
     }
+  }
+
+  setRole(role: string): void {
+    if (this.isBrowser) {
+      localStorage.setItem('role', role);
+    }
+  }
+
+  getRole(): string | null {
+    if (this.isBrowser) {
+      return localStorage.getItem('role');
+    }
+    return null;
   }
 
   getToken(): string | null {
@@ -117,7 +140,8 @@ console.log(response);
     console.log(localStorage.getItem)
     return localStorage.getItem('userId');
   }
-  
+
+
 
 
 

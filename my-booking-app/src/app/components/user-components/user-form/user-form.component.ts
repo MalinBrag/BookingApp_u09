@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, Optional } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ReactiveFormsModule } from '@angular/forms';
-import { NgIf, CommonModule } from '@angular/common';
+import { NgIf, CommonModule, NgFor } from '@angular/common';
 import { DialogFrameService } from '../../../core/services/dialogframe.service';
 import { BreakpointService } from '../../../core/services/breakpoint.service';
 
@@ -10,6 +10,7 @@ import { BreakpointService } from '../../../core/services/breakpoint.service';
   imports: [
     CommonModule,
     NgIf,
+    NgFor,
     ReactiveFormsModule,
   ],
   templateUrl: './user-form.component.html',
@@ -21,6 +22,7 @@ export class UserFormComponent implements OnInit {
   form!: FormGroup;
   isMobile: boolean = false;
   title: string = 'User Form'; //gör om
+  roles = ['Admin', 'User'];
  
   constructor(
     private builder: FormBuilder,
