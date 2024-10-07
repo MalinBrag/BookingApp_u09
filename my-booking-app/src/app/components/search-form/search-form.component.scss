@@ -1,5 +1,6 @@
 @use "../../../assets/styles/variables.scss";
 @import "../../../assets/styles/styles.scss";
+@import "../../../assets/styles/mixins.scss";
 
 .form {
     display: flex;
@@ -60,6 +61,10 @@
 .submit-btn {
     align-self: center;
     margin: 1rem 0.5rem;
+}
+
+.submit-btn {
+    @include button;
 }
 
 input,

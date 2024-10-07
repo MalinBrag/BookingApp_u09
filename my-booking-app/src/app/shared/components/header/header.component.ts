@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule, NgIf, NgClass } from '@angular/common';
 import { BreakpointService } from './../../../core/services/breakpoint.service';
+import { DialogFrameService } from '../../../core/services/dialogframe.service';
+import { RegisterComponent } from '../../../components/user-components/register/register.component';
+import { SignInComponent } from '../../../components/user-components/sign-in/sign-in.component';
+import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +15,8 @@ import { BreakpointService } from './../../../core/services/breakpoint.service';
     NgIf,
     NgClass,
     RouterLink,
+    //RegisterComponent,
+    SignInComponent
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
@@ -25,11 +31,16 @@ export class HeaderComponent implements OnInit {
   constructor(
     private breakpoint: BreakpointService,
     private router: Router,
+    private dialog: DialogFrameService,
+    private userAuth: UserAuthenticationService,
   ) { }
 
   ngOnInit(): void {
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
+    });
+    this.userAuth.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
     });
   }
 
@@ -37,7 +48,34 @@ export class HeaderComponent implements OnInit {
     this.dropdownOpen = !this.dropdownOpen;
   }
 
+  registerUser() {
+    if (this.isMobile) {
+      this.dialog.openDialogFrame(RegisterComponent, {
+        fields: ['name', 'email', 'password', 'password_confirmation'],
+      });
+      this.dropdownOpen = false;
+    } else {
+      this.router.navigate(['/register']);
+    }
+  }
 
+  signInUser() {
+    if (this.isMobile) {
+      this.dialog.openDialogFrame(SignInComponent, {
+        fields: ['email', 'password'],
+      });
+      this.dropdownOpen = false;
+    } else {
+      this.router.navigate(['/sign-in']);
+    }
+  }
+
+  logoutUser() {
+    this.userAuth.logoutUser();
+    this.isLoggedIn = false;
+    this.dropdownOpen = false;
+    this.router.navigate(['']);
+  }
 
 
 }

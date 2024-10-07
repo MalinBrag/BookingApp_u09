@@ -1,4 +1,5 @@
 @import './variables.scss';
+@import './mixins.scss';
 
 
 html, body {
@@ -8,6 +9,7 @@ html, body {
     padding: 0;
     font-family: $font3; 
     overflow-x: hidden;
+    //overflow-y: hidden;
 }
 
 a {
@@ -17,21 +19,5 @@ a {
 
     &:hover {
         color: $color5;
-    }
-}
-
-button {
-    cursor: pointer;
-    color: $color2;
-    font-family: $font1;
-    font-size: $size1;
-    text-transform: uppercase;
-    background-color: $color5;
-    width: 15rem;
-    height: 3rem;
-    border-radius: 0.5rem;
-
-    &:hover {
-        color: $color3;
     }
 }

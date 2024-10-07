@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLinkActive, RouterLink } from '@angular/router';
 import { HeaderComponent } from "./shared/components/header/header.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
 import { FooterComponent } from "./shared/components/footer/footer.component";
@@ -9,6 +9,8 @@ import { FooterComponent } from "./shared/components/footer/footer.component";
   standalone: true,
   imports: [
     RouterOutlet, 
+    RouterLinkActive,
+    RouterLink,
     HeaderComponent, 
     LandingPageComponent,
     FooterComponent,
