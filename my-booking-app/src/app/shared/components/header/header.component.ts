@@ -39,7 +39,9 @@ export class HeaderComponent implements OnInit {
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
-    //this.isLoggedIn = true;
+    this.userAuth.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+    });
   }
 
   toggleDropdown() {

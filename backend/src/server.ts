@@ -10,7 +10,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 //middleware
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:4200',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 //database

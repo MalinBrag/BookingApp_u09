@@ -28,19 +28,18 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
-    });
+    })
   }
 
   onSubmitSignIn(data: any) {
-    console.log(data);
-    this.userAuth.signInUser(data)/*.subscribe(
+    this.userAuth.signInUser(data).subscribe(
       (response: any) => {
         if (response.error) {
           window.alert(response.error);
         } else {
           this.router.navigate(['']);
         }     
-      });*/
+      });
   }
 
 }

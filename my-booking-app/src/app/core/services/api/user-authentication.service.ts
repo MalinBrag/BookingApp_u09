@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap, BehaviorSubject } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { LoginResponse } from '../../../shared/interfaces/login-response.model';
+import { User } from '../../../shared/interfaces/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,19 +11,20 @@ import { LoginResponse } from '../../../shared/interfaces/login-response.model';
 export class UserAuthenticationService {
   private api = environment.api;
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
+  private isBrowser: boolean;
 
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
   constructor(private http: HttpClient) { 
+    this.isBrowser = typeof window !== 'undefined';
     this.checkLoginStatus();
   }
 
-  registerUser(data: any): Observable<LoginResponse> {
-    console.log(data);
+  registerUser(data: User): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.api}/users/register`, data).pipe(
       tap((response: LoginResponse) => {
         const token = response.token;
-        const userId = response.user.id;
+        const userId = response.userId;
 
         this.setToken(token);
         if (userId)
@@ -33,13 +35,12 @@ export class UserAuthenticationService {
     );
   }
 
-  signInUser(data: any): Observable<LoginResponse> {
-    console.log(data);
+  signInUser(data: User): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.api}/users/sign-in`, data).pipe(
       tap((response: LoginResponse) => {
         const token = response.token;
-        const userId = response.user.id;
-
+        const userId = response.userId;
+console.log(response);
         this.setToken(token);
         if (userId)
         {
@@ -67,23 +68,29 @@ export class UserAuthenticationService {
   }
 
   setToken(token: string): void {
-    localStorage.setItem('token', token);
-    this.isLoggedInSubject.next(true);
+    if (this.isBrowser) {
+      localStorage.setItem('token', token);
+      this.isLoggedInSubject.next(true);
+    }
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    if (this.isBrowser) {
+      return localStorage.getItem('token');
+    }
+    return null;
   }
 
   isLoggedIn(): boolean {
     return this.isLoggedInSubject.getValue();
   }
 
-  setUserId(id: string): void {
-    localStorage.setItem('userId', id);
+  setUserId(userId: string): void {
+    localStorage.setItem('userId', userId);
   }
 
   getUserId(): string | null {
+    console.log(localStorage.getItem)
     return localStorage.getItem('userId');
   }
   
