@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { client } from '../config/db';
@@ -11,7 +11,7 @@ const dbName = 'u09';
 export const userController = {
 
     registerUser: async (req: Request, res: Response): Promise<void> => {
-        const { name, email, password, password_confirmation } = req.body;
+        const { name, email, password, password_confirmation, role } = req.body;
 
         try {
             const hashedPassword = await bcrypt.hash(password, 10);
@@ -24,16 +24,30 @@ export const userController = {
                 return;
             }
         
-            const newUser = await collection.insertOne({ name, email, password: hashedPassword });
+            const newUser = await collection.insertOne(
+                { 
+                    name, 
+                    email, 
+                    password: hashedPassword, 
+                    role: role || 'user'
+                });
+            
             const userId = newUser.insertedId;
+            const token = jwt.sign(
+                { 
+                    id: userId, 
+                    email,
+                    role: role || 'user',
+                }, 
+                process.env.JWT_SECRET as string, 
+                { expiresIn: '1h' }
+            );
 
-            const token = jwt.sign({ id: userId, email }, process.env.JWT_SECRET as string, {
-                expiresIn: '1h',
-            });
             res.status(201).json({ 
                 message: 'User registered successfully', 
                 token,
-                userId
+                userId,
+                role: role || 'user',
             });
         } catch (error) {
             console.error(error);
@@ -60,14 +74,20 @@ export const userController = {
                 return;
             }
 
-            const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET as string, {
-                 expiresIn: '1h',
-            });
+            const token = jwt.sign(
+                { 
+                    id: user._id, 
+                    role: user.role, 
+                }, 
+                process.env.JWT_SECRET as string, 
+                { expiresIn: '1h' }
+            );
 
             res.json({
                 message: 'User signed in successfully',
                 token,
                 userId: user._id,
+                role: user.role,
             });
         } catch (error) {
             console.error(error);
@@ -77,7 +97,46 @@ export const userController = {
 
     logoutUser: async (req: Request, res: Response): Promise<void> => {
         res.json({ message: 'User logged out successfully' });
-    }
+    },
+
+    getProfile: async (req: Request, res: Response): Promise<void> => {
+        const userId: string = (req as any).body.user.id;
+
+        try {
+            const db = client.db(dbName);
+            const collection = db.collection('AuthUsers');
+            const user = await collection.findOne({ _id: new ObjectId(userId) });
+
+            if (!user) {
+                res.status(400).json({ message: 'User not found' });
+                return;
+            }
+
+            res.json({ user });
+            console.log('user', user);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Server error during profile retrieval' });
+        }
+        /*const userId = (req as any).body.user.id;
+        console.log('userId', userId);
+
+        try {
+            const db = client.db(dbName);
+            const collection = db.collection('AuthUsers');
+            const user = await collection.findOne({ _id: userId });
+
+            if (!user) {
+                res.status(400).json({ message: 'User not found' });
+                return;
+            }
+
+            res.json({ user });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Server error during profile retrieval' });
+        }*/
+    },
 };
 
 

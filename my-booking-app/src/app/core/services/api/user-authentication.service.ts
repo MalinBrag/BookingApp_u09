@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap, BehaviorSubject } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { LoginResponse } from '../../../shared/interfaces/login-response.model';
@@ -11,9 +11,11 @@ import { User } from '../../../shared/interfaces/user.model';
 export class UserAuthenticationService {
   private api = environment.api;
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
+  private isAdminSubject = new BehaviorSubject<boolean>(false);
   private isBrowser: boolean;
 
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
+  isAdmin$ = this.isAdminSubject.asObservable();
 
   constructor(private http: HttpClient) { 
     this.isBrowser = typeof window !== 'undefined';
@@ -25,11 +27,18 @@ export class UserAuthenticationService {
       tap((response: LoginResponse) => {
         const token = response.token;
         const userId = response.userId;
+        const role = response.role;
 
         this.setToken(token);
         if (userId)
         {
           this.setUserId(userId);
+        }
+
+        if (role === 'admin') {
+          this.isAdminSubject.next(true);
+        } else {
+          this.isAdminSubject.next(false);
         }
       })
     );
@@ -40,11 +49,18 @@ export class UserAuthenticationService {
       tap((response: LoginResponse) => {
         const token = response.token;
         const userId = response.userId;
+        const role = response.role;
 console.log(response);
         this.setToken(token);
         if (userId)
         {
           this.setUserId(userId);
+        }
+
+        if (role === 'admin') {
+          this.isAdminSubject.next(true);
+        } else {
+          this.isAdminSubject.next(false);
         }
       })
     );
@@ -58,6 +74,14 @@ console.log(response);
         localStorage.clear();
       })
     ).subscribe();
+  }
+
+  getProfile(): Observable<any> {
+    return this.http.get(`${this.api}/users/profile`).pipe(
+      tap((response: any) => {
+        console.log(response);
+      })
+    );
   }
 
   checkLoginStatus(): void {
