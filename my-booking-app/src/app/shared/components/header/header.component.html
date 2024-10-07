@@ -19,8 +19,7 @@
             <a class="mob-menu-item"
             *ngIf="isLoggedIn"
             [ngClass]="{ 'user-item': isLoggedIn }"
-            >My Reservations</a>
-            <!--lägg till funktion (click)-->
+            (click)="getMyPages()">My Pages</a>
 
             <a class="mob-menu-item"
             *ngIf="isLoggedIn"
@@ -54,8 +53,7 @@
         <a class="desk-menu-item"
         *ngIf="isLoggedIn"
         [ngClass]="{ 'user-item': isLoggedIn }"
-        >My Reservations</a>
-        <!--lägg till funktion (click)-->
+        (click)="getMyPages()">My Pages</a>
 
         <a class="desk-menu-item"
         *ngIf="isLoggedIn"

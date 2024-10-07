@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap, BehaviorSubject } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { LoginResponse } from '../../../shared/interfaces/login-response.model';
@@ -58,6 +58,25 @@ console.log(response);
         localStorage.clear();
       })
     ).subscribe();
+  }
+
+  getProfile(): Observable<any> {
+    return this.http.get(`${this.api}/users/profile`).pipe(
+      tap((response: any) => {
+        console.log(response);
+      })
+    );
+    /*const token = localStorage.getItem('token');
+    console.log('token här: ', token); 
+    this.http.get(`${this.api}/users/profile`).pipe(
+      tap((response: any) => {
+        console.log('response här: ', response);
+      })
+    ).  
+    
+    subscribe(
+    );
+    return this.http.get(`${this.api}/users/profile`);*/
   }
 
   checkLoginStatus(): void {

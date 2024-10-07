@@ -77,5 +77,22 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  getMyPages() {
+    if (this.isLoggedIn) {
+      this.userAuth.getProfile().subscribe(
+        (response: any) => {
+          this.router.navigate(['/profile']);
+        },
+        (error: any) => {
+          console.log(error);
+          window.alert('Error getting profile');
+        }
+      );
+    } else {
+      this.router.navigate(['/sign-in']);
+    }
+    this.dropdownOpen = false;
+  }
+
 
 }
