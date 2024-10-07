@@ -22,14 +22,14 @@ export class RegisterComponent {
 
   onSubmitRegister(data: any) {
     console.log(data);
-    this.userAuth.registerUser(data)/*.subscribe(
+    this.userAuth.registerUser(data).subscribe(
       (response: any) => {
         if (response.error) {
           window.alert(response.error);
         } else {
           this.router.navigate(['']);
         }     
-      });*/
+      });
   }
   
 

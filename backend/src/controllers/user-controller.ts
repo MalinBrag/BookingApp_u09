@@ -11,7 +11,6 @@ const dbName = 'u09';
 export const userController = {
 
     registerUser: async (req: Request, res: Response): Promise<void> => {
-        //await client.connect();
         const { name, email, password, password_confirmation } = req.body;
 
         try {
@@ -25,13 +24,16 @@ export const userController = {
                 return;
             }
         
-            await collection.insertOne({ name, email, password: hashedPassword });
-            const token = jwt.sign({ email }, process.env.JWT_SECRET as string, {
+            const newUser = await collection.insertOne({ name, email, password: hashedPassword });
+            const userId = newUser.insertedId;
+
+            const token = jwt.sign({ id: userId, email }, process.env.JWT_SECRET as string, {
                 expiresIn: '1h',
             });
             res.status(201).json({ 
                 message: 'User registered successfully', 
-                token 
+                token,
+                userId
             });
         } catch (error) {
             console.error(error);
@@ -40,7 +42,6 @@ export const userController = {
     },
 
     signInUser: async (req: Request, res: Response): Promise<void> => {
-        //await client.connect();
         const { email, password } = req.body;
 
         try {
@@ -66,12 +67,17 @@ export const userController = {
             res.json({
                 message: 'User signed in successfully',
                 token,
+                userId: user._id,
             });
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Server error during sign in' });
         }
     },
+
+    logoutUser: async (req: Request, res: Response): Promise<void> => {
+        res.json({ message: 'User logged out successfully' });
+    }
 };
 
 
