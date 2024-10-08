@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { UserFormComponent } from '../user-form/user-form.component';
 import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service';
 import { BreakpointService } from '../../../core/services/breakpoint.service';
-import { FormService } from '../../../core/services/form.service';
+import { FormUtils } from '../../../utils/form-utils';
 
 @Component({
   selector: 'app-sign-in',
@@ -25,12 +25,12 @@ export class SignInComponent implements OnInit {
     private router: Router,
     private userAuth: UserAuthenticationService,
     private breakpoint: BreakpointService,
-    private formService: FormService
+    private formUtils: FormUtils,
   ) { }
 
   ngOnInit(): void {
-    this.formService.setMode(this.mode);
-    
+    this.formUtils.setMode(this.mode);
+
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     })

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserFormComponent } from '../user-form/user-form.component';
 import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service'; 
-import { FormService } from '../../../core/services/form.service';
+import { FormUtils } from '../../../utils/form-utils';
 import { CommonModule, NgIf } from '@angular/common';
 import { BreakpointService } from '../../../core/services/breakpoint.service';
 
@@ -10,9 +10,9 @@ import { BreakpointService } from '../../../core/services/breakpoint.service';
   selector: 'app-register',
   standalone: true,
   imports: [
-    UserFormComponent,
     CommonModule,
     NgIf,
+    UserFormComponent,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private userAuth: UserAuthenticationService,
     private route: ActivatedRoute,
-    private formService: FormService,
+    private formUtils: FormUtils,
     private breakpoint: BreakpointService,
   ) { }
 
@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
       this.isMobile = isMobile;
     });
 
-    this.formService.setMode(this.mode);
+    this.formUtils.setMode(this.mode);
     this.route.queryParams.subscribe(params => {
       if (params['isAdmin']) {
         this.fields.push('role');

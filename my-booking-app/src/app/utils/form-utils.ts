@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class FormService {
+export class FormUtils {
   private modeSubject = new BehaviorSubject<string>('register');
   mode$ = this.modeSubject.asObservable();
 

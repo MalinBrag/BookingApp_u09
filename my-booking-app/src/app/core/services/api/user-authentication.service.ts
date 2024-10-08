@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, tap, BehaviorSubject } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { LoginResponse } from '../../../shared/interfaces/login-response.model';
 import { User } from '../../../shared/interfaces/user.model';
+import { AdminAuthenticationService } from './admin-authentication.service';
+import { LocalStorageUtils } from '../../../utils/local-storage-utils';
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +19,25 @@ export class UserAuthenticationService {
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
   isAdmin$ = this.isAdminSubject.asObservable();
 
-  constructor(private http: HttpClient) { 
+  constructor(
+    private http: HttpClient,
+  ) { 
     this.isBrowser = typeof window !== 'undefined';
     this.checkLoginStatus();
     this.checkAdminStatus();
   }
 
+  isAdmin(): boolean {
+    return this.isAdminSubject.getValue();
+  }
+
   registerUser(data: User): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.api}/user/register`, data).pipe(
-      tap((response: LoginResponse) => this.handleLoginResponse(response))
+      tap((response: LoginResponse) => {
+        if (!this.isAdmin()) {
+          this.handleLoginResponse(response);
+        }
+      })
     );
   }
 
@@ -36,29 +48,25 @@ export class UserAuthenticationService {
   }
 
   private handleLoginResponse(response: LoginResponse): void {
-    const token = response.token;
-    const userId = response.userId;
-    const role = response.role;
+    const { token, userId, role } = response; 
 
-    this.setToken(token);
-    if (userId)
-    {
-      this.setUserId(userId);
-    }
+    LocalStorageUtils.setItem('token', token);
+    LocalStorageUtils.setItem('userId', userId);
+    LocalStorageUtils.setItem('role', role);
 
+    this.isLoggedInSubject.next(true);
     if (role === 'Admin') {
       this.isAdminSubject.next(true);
-      this.setRole(role);
-    } else {
-      this.isAdminSubject.next(false);
-      this.setRole(role);
     }
   }
 
   logoutUser(): void {
     this.http.post(`${this.api}/user/logout`, {}).pipe(
-      tap((response: any) => {
-        localStorage.removeItem('token');
+      tap(() => {
+        LocalStorageUtils.removeItem('token');
+        LocalStorageUtils.removeItem('userId');
+        LocalStorageUtils.removeItem('role');
+
         this.isLoggedInSubject.next(false);
         localStorage.clear();
       })
@@ -66,7 +74,7 @@ export class UserAuthenticationService {
   }
 
   getProfile(): Observable<any> {
-    const token = this.getToken();
+    const token = LocalStorageUtils.getItem<string>('token');
     return this.http.get(`${this.api}/user/profile`).pipe(
       tap((response: any) => {
         console.log(response);
@@ -75,67 +83,29 @@ export class UserAuthenticationService {
   }
 
   checkLoginStatus(): void {
-    const token = this.getToken();
+    const token = LocalStorageUtils.getItem<string>('token');
     if (token) {
       this.isLoggedInSubject.next(true);
     }
   }
 
   checkAdminStatus(): void {
-    const role = this.getRole();
+    const role = LocalStorageUtils.getItem<string>('role');
     if (role === 'Admin') {
       this.isAdminSubject.next(true);
     }
   }
 
-  setToken(token: string): void {
-    if (this.isBrowser) {
-      localStorage.setItem('token', token);
-      this.isLoggedInSubject.next(true);
-    }
-  }
-
-  setRole(role: string): void {
-    if (this.isBrowser) {
-      localStorage.setItem('role', role);
-    }
-  }
-
   getRole(): string | null {
-    if (this.isBrowser) {
-      return localStorage.getItem('role');
-    }
-    return null;
+    return LocalStorageUtils.getItem<string>('role');
   }
 
   getToken(): string | null {
-    if (this.isBrowser) {
-      return localStorage.getItem('token');
-    }
-    return null;
-  }
-
-  isLoggedIn(): boolean {
-    return this.isLoggedInSubject.getValue();
-  }
-
-  setUserId(userId: string): void {
-    localStorage.setItem('userId', userId);
+    return LocalStorageUtils.getItem<string>('token');
   }
 
   getUserId(): string | null {
-    console.log(localStorage.getItem)
-    return localStorage.getItem('userId');
+    return LocalStorageUtils.getItem<string>('userId');
   }
-
-
-
-
-
-
-
-
-
-
 
 }

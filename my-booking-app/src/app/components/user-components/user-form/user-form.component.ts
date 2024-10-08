@@ -4,7 +4,7 @@ import { NgIf, CommonModule, NgFor } from '@angular/common';
 import { DialogFrameService } from '../../../core/services/dialogframe.service';
 import { BreakpointService } from '../../../core/services/breakpoint.service';
 import { Router } from '@angular/router';
-import { FormService } from '../../../core/services/form.service';
+import { FormUtils } from '../../../utils/form-utils';
 
 @Component({
   selector: 'app-user-form',
@@ -31,7 +31,7 @@ export class UserFormComponent implements OnInit {
     @Optional() private dialog: DialogFrameService,
     private breakpoint: BreakpointService,
     private router: Router,
-    private formService: FormService,
+    private formUtils: FormUtils,
   ) {}
 
   setFormTitle(mode: string) {
@@ -56,7 +56,7 @@ export class UserFormComponent implements OnInit {
       this.isMobile = isMobile;
     });
 
-    const mode = this.formService.getMode();
+    const mode = this.formUtils.getMode();
     this.setFormTitle(mode);
     this.createForm();
   }

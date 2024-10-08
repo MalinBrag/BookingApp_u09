@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { User } from '../../../shared/interfaces/user.model';
-import { UserAuthenticationService } from './user-authentication.service';
-import { of } from 'rxjs';
+import { LocalStorageUtils } from '../../../utils/local-storage-utils';
+import { ErrorHandlingUtils } from '../../../utils/error-handling-utils';
 
 @Injectable({
   providedIn: 'root'
@@ -15,69 +15,50 @@ export class AdminAuthenticationService {
 
   constructor(
     private http: HttpClient,
-    private userAuth: UserAuthenticationService,
   ) { }
 
-  isAdmin(): boolean {
-    const role = this.userAuth.getRole();
-    this.userAuth.checkAdminStatus();
+  checkAdminStatus(): void {
+    const role = LocalStorageUtils.getItem<string>('role');
     if (role !== 'Admin') {
-      return false;
-    } else {
-      return true;
+      throw new Error('Unauthorized access');
     }
   }
 
   getAllUsers(): Observable<User[]> {
-    const token = this.userAuth.getToken();
-    if (this.isAdmin()) {
-      return this.http.get<User[]>(`${this.api}/admin/users`, {}).pipe(
+    try {
+      this.checkAdminStatus();
+      return this.http.get<User[]>(`${this.api}/admin/users`).pipe(
         tap(users => console.log(users)),
-        catchError(error => {
-          console.error(error);
-          return of([]);
-        })
+        catchError(ErrorHandlingUtils.handleError<User[]>('getAllUsers', []))
       );
-    } else {
-      throw new Error('Unauthorized: Only admins can perform this action.');
+    } catch (error) {
+      return ErrorHandlingUtils.handleError<User[]>('getAllUsers', [])(error);
     }
   }
 
   updateUser(userId: string, updatedData: Partial<User>): Observable<any> {
-    const token = this.userAuth.getToken();
-    
-    if (this.isAdmin()) {
-      return this.http.put<any>(`${this.api}/admin/users/${userId}`, updatedData, {}).pipe(
+    try {
+      this.checkAdminStatus();
+      return this.http.put<any>(`${this.api}/admin/users/${userId}`, updatedData).pipe(
         tap(response => console.log(response)),
-        catchError(error => {
-          console.error(error);
-          return of(null);
-        })
+        catchError(ErrorHandlingUtils.handleError<any>('updateUser', null))
       );
-    } else {
-      throw new Error('Unauthorized: Only admins can perform this action.');
-    } 
-  }
-
-  deleteUser(userId: string): Observable<any> {
-    const token = this.userAuth.getToken();
-    
-    if (this.isAdmin()) {
-      return this.http.delete(`${this.api}/admin/users/${userId}`).pipe(
-        tap(response => console.log('User deleted successfully', response)),
-        catchError(error => {
-          console.error('Failed to delete user', error);
-          return of(null);
-        })
-      );
-    } else {
-      throw new Error('Unauthorized: Only admins can perform this action.');
+    } catch (error) {
+      return ErrorHandlingUtils.handleError<any>('updateUser', null)(error);
     }
   }
 
-
-
-
+  deleteUser(userId: string): Observable<any> {
+    try {
+      this.checkAdminStatus();
+      return this.http.delete(`${this.api}/admin/users/${userId}`).pipe(
+        tap(response => console.log('User deleted successfully', response)),
+        catchError(ErrorHandlingUtils.handleError<any>('deleteUser', null))
+      );
+    } catch (error) {
+      return ErrorHandlingUtils.handleError<any>('deleteUser', null)(error);
+    }
+  }
 }
 
 
