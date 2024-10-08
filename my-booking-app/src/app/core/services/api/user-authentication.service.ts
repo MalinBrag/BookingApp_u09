@@ -25,48 +25,34 @@ export class UserAuthenticationService {
 
   registerUser(data: User): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.api}/users/register`, data).pipe(
-      tap((response: LoginResponse) => {
-        const token = response.token;
-        const userId = response.userId;
-        const role = response.role;
-
-        this.setToken(token);
-        if (userId)
-        {
-          this.setUserId(userId);
-        }
-
-        if (role === 'Admin') {
-          this.isAdminSubject.next(true);
-          this.setRole(role);
-        } else {
-          this.isAdminSubject.next(false);
-        }
-      })
+      tap((response: LoginResponse) => this.handleLoginResponse(response))
     );
   }
 
   signInUser(data: User): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.api}/users/sign-in`, data).pipe(
-      tap((response: LoginResponse) => {
-        const token = response.token;
-        const userId = response.userId;
-        const role = response.role;
-
-        this.setToken(token);
-        if (userId)
-        {
-          this.setUserId(userId);
-        }
-
-        if (role === 'Admin') {
-          this.isAdminSubject.next(true);
-          this.setRole(role);
-        } else {
-          this.isAdminSubject.next(false);
-        }
-      })
+      tap((response: LoginResponse) => this.handleLoginResponse(response))
     );
+  }
+
+  private handleLoginResponse(response: LoginResponse): void {
+    const token = response.token;
+    const userId = response.userId;
+    const role = response.role;
+
+    this.setToken(token);
+    if (userId)
+    {
+      this.setUserId(userId);
+    }
+
+    if (role === 'Admin') {
+      this.isAdminSubject.next(true);
+      this.setRole(role);
+    } else {
+      this.isAdminSubject.next(false);
+      this.setRole(role);
+    }
   }
 
   logoutUser(): void {
@@ -80,6 +66,7 @@ export class UserAuthenticationService {
   }
 
   getProfile(): Observable<any> {
+    const token = this.getToken();
     return this.http.get(`${this.api}/users/profile`).pipe(
       tap((response: any) => {
         console.log(response);

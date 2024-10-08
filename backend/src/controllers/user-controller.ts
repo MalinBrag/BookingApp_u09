@@ -100,9 +100,8 @@ export const userController = {
     },
 
     getProfile: async (req: Request, res: Response): Promise<void> => {
-        const userId: string = (req as any).body.user.id;
-
         try {
+            const userId: string = (req as any).user.id;
             const db = client.db(dbName);
             const collection = db.collection('AuthUsers');
             const user = await collection.findOne({ _id: new ObjectId(userId) });
@@ -112,30 +111,16 @@ export const userController = {
                 return;
             }
 
-            res.json({ user });
-            console.log('user', user);
+            res.json({
+                email: user.email,
+                name: user.name,
+                role: user.role,
+                id: user._id,
+            });
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Server error during profile retrieval' });
         }
-        /*const userId = (req as any).body.user.id;
-        console.log('userId', userId);
-
-        try {
-            const db = client.db(dbName);
-            const collection = db.collection('AuthUsers');
-            const user = await collection.findOne({ _id: userId });
-
-            if (!user) {
-                res.status(400).json({ message: 'User not found' });
-                return;
-            }
-
-            res.json({ user });
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: 'Server error during profile retrieval' });
-        }*/
     },
 };
 
