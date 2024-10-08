@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { connect_db } from './config/db';
 import userRouter from './routes/user-routes';
+import adminRouter from './routes/admin-routes';
 
 dotenv.config();
 
@@ -20,7 +21,8 @@ app.use(express.json());
 //database
 connect_db().then(() => {
     //routes
-    app.use('/api/users', userRouter);
+    app.use('/api/user', userRouter);
+    app.use('/api/admin', adminRouter);
 
     //start server
     app.listen(port, () => {

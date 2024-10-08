@@ -20,54 +20,43 @@ export class UserAuthenticationService {
   constructor(private http: HttpClient) { 
     this.isBrowser = typeof window !== 'undefined';
     this.checkLoginStatus();
+    this.checkAdminStatus();
   }
 
   registerUser(data: User): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.api}/users/register`, data).pipe(
-      tap((response: LoginResponse) => {
-        const token = response.token;
-        const userId = response.userId;
-        const role = response.role;
-
-        this.setToken(token);
-        if (userId)
-        {
-          this.setUserId(userId);
-        }
-
-        if (role === 'admin') {
-          this.isAdminSubject.next(true);
-        } else {
-          this.isAdminSubject.next(false);
-        }
-      })
+    return this.http.post<LoginResponse>(`${this.api}/user/register`, data).pipe(
+      tap((response: LoginResponse) => this.handleLoginResponse(response))
     );
   }
 
   signInUser(data: User): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.api}/users/sign-in`, data).pipe(
-      tap((response: LoginResponse) => {
-        const token = response.token;
-        const userId = response.userId;
-        const role = response.role;
-console.log(response);
-        this.setToken(token);
-        if (userId)
-        {
-          this.setUserId(userId);
-        }
-
-        if (role === 'admin') {
-          this.isAdminSubject.next(true);
-        } else {
-          this.isAdminSubject.next(false);
-        }
-      })
+    return this.http.post<LoginResponse>(`${this.api}/user/sign-in`, data).pipe(
+      tap((response: LoginResponse) => this.handleLoginResponse(response))
     );
   }
 
+  private handleLoginResponse(response: LoginResponse): void {
+    const token = response.token;
+    const userId = response.userId;
+    const role = response.role;
+
+    this.setToken(token);
+    if (userId)
+    {
+      this.setUserId(userId);
+    }
+
+    if (role === 'Admin') {
+      this.isAdminSubject.next(true);
+      this.setRole(role);
+    } else {
+      this.isAdminSubject.next(false);
+      this.setRole(role);
+    }
+  }
+
   logoutUser(): void {
-    this.http.post(`${this.api}/users/logout`, {}).pipe(
+    this.http.post(`${this.api}/user/logout`, {}).pipe(
       tap((response: any) => {
         localStorage.removeItem('token');
         this.isLoggedInSubject.next(false);
@@ -77,7 +66,8 @@ console.log(response);
   }
 
   getProfile(): Observable<any> {
-    return this.http.get(`${this.api}/users/profile`).pipe(
+    const token = this.getToken();
+    return this.http.get(`${this.api}/user/profile`).pipe(
       tap((response: any) => {
         console.log(response);
       })
@@ -91,11 +81,31 @@ console.log(response);
     }
   }
 
+  checkAdminStatus(): void {
+    const role = this.getRole();
+    if (role === 'Admin') {
+      this.isAdminSubject.next(true);
+    }
+  }
+
   setToken(token: string): void {
     if (this.isBrowser) {
       localStorage.setItem('token', token);
       this.isLoggedInSubject.next(true);
     }
+  }
+
+  setRole(role: string): void {
+    if (this.isBrowser) {
+      localStorage.setItem('role', role);
+    }
+  }
+
+  getRole(): string | null {
+    if (this.isBrowser) {
+      return localStorage.getItem('role');
+    }
+    return null;
   }
 
   getToken(): string | null {
@@ -117,7 +127,8 @@ console.log(response);
     console.log(localStorage.getItem)
     return localStorage.getItem('userId');
   }
-  
+
+
 
 
 

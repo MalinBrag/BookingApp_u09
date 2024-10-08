@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, Optional } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ReactiveFormsModule } from '@angular/forms';
-import { NgIf, CommonModule } from '@angular/common';
+import { NgIf, CommonModule, NgFor } from '@angular/common';
 import { DialogFrameService } from '../../../core/services/dialogframe.service';
 import { BreakpointService } from '../../../core/services/breakpoint.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -10,6 +11,7 @@ import { BreakpointService } from '../../../core/services/breakpoint.service';
   imports: [
     CommonModule,
     NgIf,
+    NgFor,
     ReactiveFormsModule,
   ],
   templateUrl: './user-form.component.html',
@@ -21,11 +23,13 @@ export class UserFormComponent implements OnInit {
   form!: FormGroup;
   isMobile: boolean = false;
   title: string = 'User Form'; //gör om
+  roles = ['Admin', 'User'];
  
   constructor(
     private builder: FormBuilder,
     @Optional() private dialog: DialogFrameService,
     private breakpoint: BreakpointService,
+    private router: Router,
   ) {}
 
 
@@ -74,6 +78,11 @@ export class UserFormComponent implements OnInit {
   closeDialog() {
     this.dialog.closeDialogFrame();
   }
+
+ /* closeForm() {
+    this.form.reset();
+    this.router.navigate(['']);
+  }*/
 
 
 

@@ -14,11 +14,10 @@ export class AdminAuthGuard implements CanActivate {
     ) { }
 
     canActivate(): Observable<boolean> {
-        return this.userAuth.isLoggedIn$.pipe(
-            map((profile: any) => {
-                const isAdmin = profile.user?.role === 'admin';
+        return this.userAuth.isAdmin$.pipe(
+            map(isAdmin => {
                 if (!isAdmin) {
-                    console.log('You are not an admin');
+                    this.router.navigate(['/sign-in']);
                 }
                 return isAdmin;
             }),

@@ -12,6 +12,14 @@
         </div>
 
         <div class="fields">
+            <div class="form-item" *ngIf="fields.includes('role')">
+                <label for="role">Role: </label>
+                <select name="role" id="role" formControlName="role" required>
+                    <option value="" disabled>Select</option> <!-- Placeholder option -->
+                    <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+                </select>
+            </div>
+
             <div class="form-item" *ngIf="fields.includes('name')">
                 <label for="name">Name: </label>
                 <input type="text" id="name" formControlName="name" required/>

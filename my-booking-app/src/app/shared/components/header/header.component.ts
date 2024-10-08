@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, NavigationEnd } from '@angular/router';
 import { CommonModule, NgIf, NgClass } from '@angular/common';
 import { BreakpointService } from './../../../core/services/breakpoint.service';
 import { DialogFrameService } from '../../../core/services/dialogframe.service';
@@ -15,8 +15,6 @@ import { UserAuthenticationService } from '../../../core/services/api/user-authe
     NgIf,
     NgClass,
     RouterLink,
-    //RegisterComponent,
-    SignInComponent
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
@@ -25,6 +23,7 @@ export class HeaderComponent implements OnInit {
   title = 'My Booking App';
   isMobile: boolean = false;
   isLoggedIn: boolean = false;
+  isAdmin: boolean = false;
   dropdownOpen: boolean = false;
   
 
@@ -39,8 +38,13 @@ export class HeaderComponent implements OnInit {
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
+
     this.userAuth.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
+    });
+    
+    this.userAuth.isAdmin$.subscribe(isAdmin => {
+      this.isAdmin = isAdmin;
     });
   }
 
@@ -81,8 +85,8 @@ export class HeaderComponent implements OnInit {
     if (this.isLoggedIn) {
       this.userAuth.getProfile().subscribe({
         next: (response: any) => {
-          console.log(response);
           this.router.navigate(['/profile']);
+          this.dropdownOpen = false;
         },
         error: (error: any) => {
           window.alert('Error getting profile');
@@ -90,8 +94,17 @@ export class HeaderComponent implements OnInit {
       });
     } else {
       this.router.navigate(['/sign-in']);
+      this.dropdownOpen = false;
     }
-    this.dropdownOpen = false;
+  }
+
+  getAdminDashboard() {
+    if (this.isAdmin) {
+      this.router.navigate(['/dashboard']);
+      this.dropdownOpen = false;
+    } else {
+      window.alert('You are not an admin');
+    }
   }
 
 
