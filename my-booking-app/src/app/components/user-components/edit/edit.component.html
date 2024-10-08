@@ -1,5 +1,5 @@
-<section class="register">
-    <app-user-form class="form" [fields]="fields" (formSubmit)="onSubmitRegister($event)">
+<section class="edit">
+    <app-user-form class="form" [fields]="fields" [userData]="user" (formSubmit)="onSubmitEdit($event)">
     </app-user-form>
 
     <div *ngIf="!isMobile" class="image-container">

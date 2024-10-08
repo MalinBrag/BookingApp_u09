@@ -1,1 +1,22 @@
-<p>profile works!</p>
+<main class="profile">
+
+    <div class="content">
+        <div class="header">
+            <h1 class="title">{{ title }}</h1>
+        </div>
+
+        <div class="buttons">
+            <button class="dashboard-btn">My bookings</button>
+            <button class="dashboard-btn">Edit my info</button>
+            <button class="dashboard-btn">My messages</button>
+            <button class="dashboard-btn" (click)="logout()">Log out</button>
+        </div>
+    </div>
+
+    <div class="image-container" *ngIf="!isMobile">
+        <img class="img" src="assets/images/inside_plane.jpg" alt="glasses" />
+    </div>
+
+</main>
+
+

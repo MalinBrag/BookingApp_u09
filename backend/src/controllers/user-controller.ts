@@ -11,7 +11,7 @@ const dbName = 'u09';
 export const userController = {
 
     registerUser: async (req: Request, res: Response): Promise<void> => {
-        const { name, email, password, password_confirmation, role = 'User' } = req.body;
+        const { name, email, password, role = 'User' } = req.body;
 
         try {
             const hashedPassword = await bcrypt.hash(password, 10);

@@ -24,12 +24,12 @@
             <a class="mob-menu-item"
             *ngIf="isLoggedIn && isAdmin"
             [ngClass]="{ 'user-item': isLoggedIn && isAdmin }"
-            (click)="getAdminDashboard()">Dashboard admin</a>
+            (click)="getAdminDashboard()">Dashboard Admin</a>
 
             <a class="mob-menu-item"
             *ngIf="isLoggedIn"
             [ngClass]="{ 'user-item': isLoggedIn }"
-            (click)="logoutUser()">Log out</a>
+            (click)="logoutUser()">Log Out</a>
 
             <a class="mob-menu-item" href="#">FAQ</a>
             <!--lägg till funktion (click)-->
@@ -63,12 +63,12 @@
         <a class="desk-menu-item"
         *ngIf="isLoggedIn && isAdmin"
         [ngClass]="{ 'user-item': isLoggedIn && isAdmin }"
-        [routerLink]="['/dashboard']">Dashboard admin</a>
+        [routerLink]="['/dashboard']">Dashboard Admin</a>
 
         <a class="desk-menu-item"
         *ngIf="isLoggedIn"
         [ngClass]="{ 'user-item': isLoggedIn }"
-        (click)="logoutUser()">Log out</a>
+        (click)="logoutUser()">Log Out</a>
 
         <a class="desk-menu-item" href="#">FAQ</a>
 

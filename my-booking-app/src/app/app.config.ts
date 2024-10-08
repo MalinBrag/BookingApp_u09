@@ -4,6 +4,7 @@ import { provideHttpClient, withInterceptors, withFetch } from '@angular/common/
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { userAuthInterceptor } from './core/interceptors/user-auth.interceptor';
+import { adminAuthInterceptor } from './core/interceptors/admin.auth.interceptor';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
@@ -12,7 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes), 
     provideClientHydration(),
     provideHttpClient(
-      withInterceptors([userAuthInterceptor]),
+      withInterceptors([userAuthInterceptor, adminAuthInterceptor]),
       withFetch()
     ), provideAnimationsAsync(),
   ]
