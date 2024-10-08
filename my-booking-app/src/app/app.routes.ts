@@ -5,6 +5,7 @@ import { SignInComponent } from './components/user-components/sign-in/sign-in.co
 import { ProfileComponent } from './components/user-components/profile/profile.component';
 import { AdminDashboardComponent } from './components/admin-components/admin-dashboard/admin-dashboard.component';
 import { ManageUsersComponent } from './components/admin-components/manage-users/manage-users.component';
+import { EditComponent } from './components/user-components/edit/edit.component';
 
 import { UserAuthGuard } from './core/guards/user-auth.guard';
 import { AdminAuthGuard } from './core/guards/admin-auth.guard';
@@ -16,4 +17,5 @@ export const routes: Routes = [
     { path: 'profile', component: ProfileComponent, canActivate: [UserAuthGuard] },
     { path: 'dashboard', component: AdminDashboardComponent, canActivate: [AdminAuthGuard] },
     { path: 'manage', component: ManageUsersComponent, canActivate: [AdminAuthGuard] },
+    { path: 'edit/:id', component: EditComponent, canActivate: [AdminAuthGuard] },
 ];

@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter, Optional } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Optional, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { NgIf, CommonModule, NgFor } from '@angular/common';
 import { DialogFrameService } from '../../../core/services/dialogframe.service';
 import { BreakpointService } from '../../../core/services/breakpoint.service';
 import { Router } from '@angular/router';
 import { FormUtils } from '../../../utils/form-utils';
+import { User } from '../../../shared/interfaces/user.model';
 
 @Component({
   selector: 'app-user-form',
@@ -18,7 +19,8 @@ import { FormUtils } from '../../../utils/form-utils';
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.scss'
 })
-export class UserFormComponent implements OnInit {
+export class UserFormComponent implements OnInit, OnChanges {
+  @Input() userData: User | null = null;
   @Input() fields: string[] = [];
   @Output() formSubmit = new EventEmitter<any>();
   form!: FormGroup;
@@ -61,6 +63,18 @@ export class UserFormComponent implements OnInit {
     this.createForm();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['userData'] && this.userData) {
+      this.patchFormWithUserData();
+    }
+  }
+
+  patchFormWithUserData() {
+    if (this.userData) {
+      this.form.patchValue(this.userData);
+    }
+  }
+
   createForm(): void {
     const formFields: { [key : string]: any } = {};
     this.fields.forEach(field => {
@@ -86,7 +100,12 @@ export class UserFormComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      this.formSubmit.emit(this.form.value);
+      if (this.userData) {
+        this.form.value['id'] = this.userData.id;
+        this.formSubmit.emit({ userId: this.userData.id, user: this.form.value });
+      } else {
+        this.formSubmit.emit(this.form.value);
+      }
       this.dialog.closeDialogFrame();
     } else {
       if (this.form.errors?.['passwordMismatch']) {

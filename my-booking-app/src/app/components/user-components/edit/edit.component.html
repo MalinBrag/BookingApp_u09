@@ -1,0 +1,9 @@
+<section class="edit">
+    <app-user-form class="form" [fields]="fields" [userData]="user" (formSubmit)="onSubmitEdit($event)">
+    </app-user-form>
+
+    <div *ngIf="!isMobile" class="image-container">
+        <img class="img" src="assets/images/walking.jpg" alt="glasses" />
+    </div>
+
+</section>

@@ -21,6 +21,26 @@ export const adminController = {
         }
     },
 
+    getUser: async (req: Request, res: Response): Promise<void> => {
+        console.log(req.params);
+        try {
+            const { userId } = req.params;
+            const db = client.db(dbName);
+            const collection = db.collection('AuthUsers');
+            const user = await collection.findOne({ _id: new ObjectId(userId) });
+
+            if (!user) {
+                res.status(404).json({ message: 'User not found' });
+                return;
+            }
+
+            res.status(200).json(user);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Server error during fetching user' });
+        }
+    },
+
     updateUser: async (req: Request, res: Response): Promise<void> => {
         try {
             const { userId } = req.params;

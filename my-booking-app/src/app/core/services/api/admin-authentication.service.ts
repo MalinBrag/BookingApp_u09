@@ -6,6 +6,7 @@ import { environment } from '../../../../environments/environment';
 import { User } from '../../../shared/interfaces/user.model';
 import { LocalStorageUtils } from '../../../utils/local-storage-utils';
 import { ErrorHandlingUtils } from '../../../utils/error-handling-utils';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -24,40 +25,40 @@ export class AdminAuthenticationService {
     }
   }
 
+  getUser(userId: string): Observable<User> {
+    this.checkAdminStatus();
+    return this.http.get<User>(`${this.api}/admin/users/${userId}`).pipe(
+      map((user: any) => ({ ...user, id: user._id })),
+      catchError(ErrorHandlingUtils.handleError<User>('getUser'))
+    );
+  }
+
   getAllUsers(): Observable<User[]> {
-    try {
-      this.checkAdminStatus();
-      return this.http.get<User[]>(`${this.api}/admin/users`).pipe(
-        tap(users => console.log(users)),
-        catchError(ErrorHandlingUtils.handleError<User[]>('getAllUsers', []))
-      );
-    } catch (error) {
-      return ErrorHandlingUtils.handleError<User[]>('getAllUsers', [])(error);
-    }
+    this.checkAdminStatus();
+    return this.http.get<User[]>(`${this.api}/admin/users/all`).pipe(
+      map((users: any[]) => users.map(user => ({ ...user, id: user._id}))),
+      catchError(ErrorHandlingUtils.handleError<User[]>('getAllUsers', []))
+    );
   }
 
   updateUser(userId: string, updatedData: Partial<User>): Observable<any> {
-    try {
-      this.checkAdminStatus();
-      return this.http.put<any>(`${this.api}/admin/users/${userId}`, updatedData).pipe(
-        tap(response => console.log(response)),
-        catchError(ErrorHandlingUtils.handleError<any>('updateUser', null))
-      );
-    } catch (error) {
-      return ErrorHandlingUtils.handleError<any>('updateUser', null)(error);
-    }
+    this.checkAdminStatus();
+    return this.http.put<any>(`${this.api}/admin/edit/${userId}`, updatedData).pipe(
+      tap(response => console.log(response)),
+      catchError(ErrorHandlingUtils.handleError<any>('updateUser', null))
+    );  
   }
 
   deleteUser(userId: string): Observable<any> {
-    try {
-      this.checkAdminStatus();
-      return this.http.delete(`${this.api}/admin/users/${userId}`).pipe(
-        tap(response => console.log('User deleted successfully', response)),
-        catchError(ErrorHandlingUtils.handleError<any>('deleteUser', null))
-      );
-    } catch (error) {
-      return ErrorHandlingUtils.handleError<any>('deleteUser', null)(error);
-    }
+    this.checkAdminStatus();
+    return this.http.delete(`${this.api}/admin/delete/${userId}`).pipe(
+      tap(response => console.log('User deleted successfully', response)),
+      catchError(ErrorHandlingUtils.handleError<any>('deleteUser', null))
+    );
+  }
+
+  getToken(): string | null {
+    return LocalStorageUtils.getItem<string>('token');
   }
 }
 
