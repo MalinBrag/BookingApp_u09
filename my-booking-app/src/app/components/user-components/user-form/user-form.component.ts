@@ -4,6 +4,7 @@ import { NgIf, CommonModule, NgFor } from '@angular/common';
 import { DialogFrameService } from '../../../core/services/dialogframe.service';
 import { BreakpointService } from '../../../core/services/breakpoint.service';
 import { Router } from '@angular/router';
+import { FormService } from '../../../core/services/form.service';
 
 @Component({
   selector: 'app-user-form',
@@ -22,7 +23,7 @@ export class UserFormComponent implements OnInit {
   @Output() formSubmit = new EventEmitter<any>();
   form!: FormGroup;
   isMobile: boolean = false;
-  title: string = 'User Form'; //gör om
+  title: string = '';
   roles = ['Admin', 'User'];
  
   constructor(
@@ -30,14 +31,33 @@ export class UserFormComponent implements OnInit {
     @Optional() private dialog: DialogFrameService,
     private breakpoint: BreakpointService,
     private router: Router,
+    private formService: FormService,
   ) {}
 
+  setFormTitle(mode: string) {
+    switch (mode) {
+      case 'register':
+        this.title = 'Register';
+        break;
+      case 'sign-in':
+        this.title = 'Sign In';
+        break;
+      case 'edit':
+        this.title = 'Edit User';
+        break;
+      default:
+        this.title = 'User Form';
+        break;
+    }
+  }
 
   ngOnInit(): void {
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
 
+    const mode = this.formService.getMode();
+    this.setFormTitle(mode);
     this.createForm();
   }
 
