@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgIf, NgFor } from '@angular/common';
 import { Router } from '@angular/router';
-import { BreakpointService } from '../../../app/core/services/breakpoint.service';
-import { UserAuthenticationService } from '../../../app/core/services/api/user-authentication.service';
+import { BreakpointService } from '../../../core/services/breakpoint.service';
+import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -45,7 +45,9 @@ export class AdminDashboardComponent implements OnInit {
     this.router.navigate(['register'], { queryParams: { isAdmin: true } });
   }
   
-  manageUsers() {}
+  manageUsers() {
+    this.router.navigate(['manage']);
+  }
 
   logout() {
     this.userAuth.logoutUser();

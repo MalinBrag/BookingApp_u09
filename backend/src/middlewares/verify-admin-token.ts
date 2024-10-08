@@ -16,7 +16,6 @@ export const verifyAdminToken = (req: Request, res: Response, next: NextFunction
             res.status(401).json({ message: 'Unauthorized: Not an admin' });
             return;
         }
-        console.log('decoded', decoded);
         (req as any).user = decoded;
         next();
     } catch (error) {

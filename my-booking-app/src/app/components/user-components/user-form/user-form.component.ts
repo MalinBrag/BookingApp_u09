@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, React
 import { NgIf, CommonModule, NgFor } from '@angular/common';
 import { DialogFrameService } from '../../../core/services/dialogframe.service';
 import { BreakpointService } from '../../../core/services/breakpoint.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -28,6 +29,7 @@ export class UserFormComponent implements OnInit {
     private builder: FormBuilder,
     @Optional() private dialog: DialogFrameService,
     private breakpoint: BreakpointService,
+    private router: Router,
   ) {}
 
 
@@ -76,6 +78,11 @@ export class UserFormComponent implements OnInit {
   closeDialog() {
     this.dialog.closeDialogFrame();
   }
+
+ /* closeForm() {
+    this.form.reset();
+    this.router.navigate(['']);
+  }*/
 
 
 
