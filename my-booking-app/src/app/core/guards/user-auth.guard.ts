@@ -23,7 +23,7 @@ export class UserAuthGuard implements CanActivate {
             }),
             tap(isLoggedIn => {
                 if (!isLoggedIn) {
-                    console.log('You are not logged in');
+                    window.alert('You are not logged in');
                 }
             })
         );

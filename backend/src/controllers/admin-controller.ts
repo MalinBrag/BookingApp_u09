@@ -22,7 +22,6 @@ export const adminController = {
     },
 
     getUser: async (req: Request, res: Response): Promise<void> => {
-        console.log(req.params);
         try {
             const { userId } = req.params;
             const db = client.db(dbName);
@@ -55,7 +54,7 @@ export const adminController = {
                 { returnDocument: 'after' }
             );
 
-            if (!updatedUser || !updatedUser.value) {
+            if (!updatedUser) {
                 res.status(404).json({ message: 'User not found' });
                 return;
             }
@@ -76,7 +75,7 @@ export const adminController = {
 
             const deletedUser = await collection.findOneAndDelete({ _id: new ObjectId(userId) });
 
-            if (!deletedUser || !deletedUser.deletedCount) {
+            if (!deletedUser?.value) {
                 res.status(404).json({ message: 'User not found' });
                 return;
             }

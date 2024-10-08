@@ -44,7 +44,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmitRegister(data: any) {
-    console.log(data);
     this.userAuth.registerUser(data).subscribe(
       (response: any) => {
         if (response.error) {

@@ -50,11 +50,9 @@ export class ManageUsersComponent implements OnInit {
     this.adminAuth.getAllUsers().subscribe({
       next: (users: User[]) => {
         this.users = users;
-        console.log(users);
         this.isLoading = false;
       },
       error: (error: any) => {
-        console.log(error);
         window.alert('Error loading users');
         this.isLoading = false;
       },
