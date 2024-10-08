@@ -1,3 +1,9 @@
 <section class="register">
-    <app-user-form [fields]="fields" (formSubmit)="onSubmitRegister($event)"></app-user-form>
+    <app-user-form class="form" [fields]="fields" (formSubmit)="onSubmitRegister($event)">
+    </app-user-form>
+
+    <div *ngIf="!isMobile" class="image-container">
+        <img class="img" src="assets/images/walking.jpg" alt="glasses" />
+    </div>
+
 </section>
