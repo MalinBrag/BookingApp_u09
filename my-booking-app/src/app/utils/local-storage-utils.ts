@@ -8,7 +8,7 @@ export class LocalStorageUtils {
 
     static setItem(key: string, value: any): void {
         if (typeof window !== 'undefined') {
-            const stringValue = JSON.stringify(value);
+            const stringValue = typeof value === 'string' ? value : JSON.stringify(value);
             localStorage.setItem(key, stringValue);
         } 
     }
@@ -16,11 +16,16 @@ export class LocalStorageUtils {
     static getItem<T>(key: string): T | null {
         if (typeof window !== 'undefined') {
             const storedValue = localStorage.getItem(key);
-            try {
-                return storedValue ? JSON.parse(storedValue) as T : null;
-            } catch (error) {
-                console.error('Error parsing item from local storage:', error);
-                return null;
+            if (storedValue) {
+                try {
+                    if (storedValue.startsWith('{') || storedValue.startsWith('[')) {
+                        return JSON.parse(storedValue) as T;
+                    }
+                    return storedValue as unknown as T;
+                } catch (error) {
+                    console.error('Error parsing item from local storage:', error);
+                    return null;
+                }
             }
         }
         return null;
