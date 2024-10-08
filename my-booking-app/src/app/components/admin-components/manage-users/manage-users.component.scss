@@ -26,17 +26,16 @@ mat-progress-bar {
 .users-table {
     display: flex;
     flex-direction: column;
-    width: 100%;
     background-color: #ccc;
     font-family: $font1;
     font-weight: 500;
+    margin-bottom: 2rem;
 
     h3 {
         text-align: center;
     }
 
     table {
-        padding: 1rem;
         border-collapse: collapse;
         margin: 1.5rem;
         line-height: 1.4;

@@ -1,0 +1,19 @@
+<main class="delete">
+    <div class="header-container">
+        <h3 class="title">Are you sure you want to delete user?</h3>
+        <div class="user">
+            <label for="name">Name:</label>
+            <p>{{ user?.name }}</p>
+            <label for="email">Email:</label>
+            <p>{{ user?.email }}</p>
+            <label for="role">Role:</label>
+            <p>{{ user?.role }}</p>
+        </div>
+    </div>
+
+    <div class="btn-container">
+        <button class="delete-btn" (click)="onDeleteUser()">Yes, delete</button>
+        <button class="return-btn" [routerLink]="['/manage']">No, return</button>
+    </div>
+    
+</main>

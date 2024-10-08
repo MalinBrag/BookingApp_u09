@@ -45,14 +45,6 @@ export class EditComponent implements OnInit {
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     })
-
-    /*this.user = {
-      id: '',
-      role: '',
-      name: '',
-      email: '',
-      password: '',
-    }*/
   }
 
   fetchUser(userId: string) {
@@ -73,9 +65,10 @@ export class EditComponent implements OnInit {
         if (response.error) {
           window.alert(response.error);
         } else {
-          this.router.navigate(['']);
+          this.router.navigate(['/manage']);
         }     
-      });
+      }
+    );
   }
 
 }

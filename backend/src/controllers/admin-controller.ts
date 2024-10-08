@@ -75,7 +75,7 @@ export const adminController = {
 
             const deletedUser = await collection.findOneAndDelete({ _id: new ObjectId(userId) });
 
-            if (!deletedUser?.value) {
+            if (!deletedUser) {
                 res.status(404).json({ message: 'User not found' });
                 return;
             }
@@ -86,9 +86,6 @@ export const adminController = {
             res.status(500).json({ message: 'Server error during deleting user' });
         }
     },
-
-
-
 
 
 
