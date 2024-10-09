@@ -42,21 +42,26 @@ export class FlightListComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     if (this.searchData) {
-      this.loadFlights();
+      this.loadFlights(this.searchData);
     }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['searchData'] && changes['searchData'].currentValue) {
-      this.loadFlights();
+      //this.loadFlights();
     }
   }
 
-  loadFlights(): void {
-    this.loadDepartureFlights();
+  loadFlights(data: any): void {
+    this.apiService.getFlights(data).subscribe((data: any) => {
+      this.departureFlights = data as DepartureFlight[];
+    }
+    );
+
+    /*this.loadDepartureFlights();
     if (this.searchData.tripType === 'round-trip' && this.searchData.returnFlight.returnDate) {
       this.loadReturnFlights();
-    }
+    }*/
   }
 
   loadDepartureFlights(): void {

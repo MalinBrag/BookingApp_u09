@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { connect_db } from './config/db';
 import userRouter from './routes/user-routes';
 import adminRouter from './routes/admin-routes';
+import flightRouter from './routes/flight-routes';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ connect_db().then(() => {
     //routes
     app.use('/api/user', userRouter);
     app.use('/api/admin', adminRouter);
+    app.use('/api/flights', flightRouter);
 
     //start server
     app.listen(port, () => {
