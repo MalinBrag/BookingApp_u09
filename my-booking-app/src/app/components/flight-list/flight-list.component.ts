@@ -54,6 +54,7 @@ export class FlightListComponent implements OnInit, OnChanges {
 
   loadFlights(data: any): void {
     this.apiService.getFlights(data).subscribe((data: any) => {
+      console.log(data);
       this.departureFlights = data as DepartureFlight[];
     }
     );

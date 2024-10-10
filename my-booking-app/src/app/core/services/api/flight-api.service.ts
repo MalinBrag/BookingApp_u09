@@ -17,6 +17,7 @@ export class FlightApiService {
 
   getFlights(searchData: any): Observable<any> {
     const queryString = this.queryBuilder.queryBuilder(searchData);
+    console.log(queryString);
 
     return this.http.get(`${this.apiUrl}/results`, {
       params: new HttpParams({ fromString: queryString })
