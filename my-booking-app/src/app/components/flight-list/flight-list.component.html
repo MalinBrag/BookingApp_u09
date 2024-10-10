@@ -9,7 +9,6 @@
                 <li class="date-span"><span>{{ searchData.departureFlight.departureDate }}</span>&nbsp;</li>
                 <li>from <span>{{ searchData.departureFlight.locationFrom }}</span>&nbsp;</li>
                 <li>to <span>{{ searchData.departureFlight.locationTo }}</span></li>
-                <li>&nbsp;<span>{{ searchData.departureFlight.passengers }}</span>&nbsp;passengers</li>
             </ul>
 
         </div>
@@ -21,8 +20,8 @@
                         <th>Time</th>
                         <th>Duration</th>
                         <th>Price</th>
-                        <th>Airports</th>
-                        <th>Seats Available</th>
+                        <th>Passengers</th>
+                        <th>Direct</th>
                         <th>Book</th>
                     </tr>
                 </thead>
@@ -31,8 +30,8 @@
                         <td>{{ flight.departureTime | date:'HH:mm' }}</td>
                         <td>{{ flight.duration }}</td>
                         <td>{{ flight.priceTotal }} SEK</td>
-                        <td>{{ flight.departureAirport }} to {{ flight.arrivalAirport }}</td>
-                        <td>{{ flight.availableSeats }}</td>
+                        <td>{{ searchData.returnFlight.passengers }}</td>
+                        <td>&#10004;</td>
                         <td><button class="book-btn">Book</button></td>
                     </tr>
                 </tbody>
@@ -52,7 +51,6 @@
                     <li class="date-span"><span>{{ searchData.returnFlight.returnDate }}</span>&nbsp;</li>
                     <li>from <span>{{ searchData.departureFlight.locationTo }}</span>&nbsp;</li>
                     <li>to <span>{{ searchData.departureFlight.locationFrom }}</span></li>
-                    <li>&nbsp;<span>{{ searchData.returnFlight.passengers }}</span>&nbsp;passengers</li>
                 </ul>
 
             </div>
@@ -64,8 +62,8 @@
                         <th>Time</th>
                         <th>Duration</th>
                         <th>Price</th>
-                        <th>Airports</th>
-                        <th>Seats Available</th>
+                        <th>Passengers</th>
+                        <th>Direct</th>
                         <th>Book</th>
                     </tr>
                 </thead>
@@ -74,8 +72,8 @@
                         <td>{{ flight.departureTime | date:'HH:mm' }}</td>
                         <td>{{ flight.duration }}</td>
                         <td>{{ flight.priceTotal }} SEK</td>
-                        <td>{{ flight.departureAirport }} to {{ flight.arrivalAirport }}</td>
-                        <td>{{ flight.availableSeats }}</td>
+                        <td>{{ searchData.departureFlight.passengers }}</td>
+                        <td>&#10004;</td>
                         <td><button class="book-btn">Book</button></td>
                     </tr>
                 </tbody>
