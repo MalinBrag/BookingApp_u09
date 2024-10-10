@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { QueryBuilder } from '../query-builder';
+import { ExtractDataService } from '../extract-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,46 +15,23 @@ export class FlightApiService {
   constructor(
     private http: HttpClient,
     private queryBuilder: QueryBuilder,
+    private extractData: ExtractDataService
   ) { }
 
   getFlights(searchData: any): Observable<any> {
     const queryString = this.queryBuilder.queryBuilder(searchData);
-    console.log(queryString);
+
+    const hasReturnFlight = !!searchData.returnFlight?.returnDate;
 
     return this.http.get(`${this.apiUrl}/results`, {
       params: new HttpParams({ fromString: queryString })
-    });
+    }).pipe(
+      map((response: any) => this.extractData.flightOfferData(response, hasReturnFlight))
+    );
   }
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  /*private mockDataUrl = 'assets/mockdata.json';
-
-  constructor(
-    private http: HttpClient
-  ) { }
-
-  getFlights(params: any): Observable<any[]> {
-    return this.http.get<any[]>(this.mockDataUrl, {
-      params: {
-        date: params.date,
-        from: params.from,
-        to: params.to,
-        passengers: params.passengers
-      }
-    });
-  }*/
 }
