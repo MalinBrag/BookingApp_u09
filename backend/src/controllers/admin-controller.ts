@@ -1,9 +1,6 @@
 import { Request, Response } from "express";
-import { MongoClient, ObjectId } from "mongodb";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import { ObjectId } from "mongodb";
 import { client } from "../config/db";
-import { sign } from "crypto";
 
 const dbName = "u09";
 

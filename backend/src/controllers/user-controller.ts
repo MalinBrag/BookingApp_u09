@@ -1,11 +1,9 @@
 import { Request, Response } from 'express';
-import { MongoClient, ObjectId } from 'mongodb';
+import { ObjectId } from 'mongodb';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { client } from '../config/db';
-import { sign } from 'crypto';
 
-//const client = new MongoClient(process.env.MONGO_URI || '');
 const dbName = 'u09';
 
 export const userController = {

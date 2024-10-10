@@ -1,6 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { formatDate } from '@angular/common';
 import { NgFor, NgIf } from '@angular/common';
 
 @Component({
@@ -15,6 +14,9 @@ import { NgFor, NgIf } from '@angular/common';
   styleUrl: './search-form.component.scss'
 })
 export class SearchFormComponent {
+
+  constructor() { }
+
   searchData = {
     tripType: 'one-way',
     departureFlight: {
@@ -33,18 +35,10 @@ export class SearchFormComponent {
 
   @Output() formSubmit = new EventEmitter<any>();
 
-  locations = ['Paris', 'Rome', 'Berlin', 'New York'];
+  locations = ['Paris', 'Rome', 'Berlin', 'New York', 'London', 'Frankfurt', 'Amsterdam', 'Tokyo', 'Dubai'];
 
   onSubmit() {
-    if (this.searchData.tripType === 'round-trip') {
-      this.searchData.returnFlight.locationFrom = this.searchData.departureFlight.locationTo;
-      this.searchData.returnFlight.locationTo = this.searchData.departureFlight.locationFrom;
-      this.searchData.returnFlight.passengers = this.searchData.departureFlight.passengers;
-    }
     this.formSubmit.emit(this.searchData);
   }
-
-
-
 
 }
