@@ -1,11 +1,18 @@
 declare module "amadeus" {
 
     export default class Amadeus {
-        constructor(options: { clientId: string; clientSecret: string; hostname?: string });
+
+        constructor(
+            options: { 
+                clientId: string; 
+                clientSecret: string; 
+                hostname?: string 
+            }
+        );
 
         shopping: {
+
             flightOffersSearch: {
-                
                 get(params: {
                     originLocationCode: string;
                     destinationLocationCode: string;
@@ -16,6 +23,11 @@ declare module "amadeus" {
                     currencyCode?: string;
                     max?: string;
                 }): Promise<{ data: any }>;
+            };
+            flightOffers: {
+                pricing: {
+                    post(data: string): Promise<{ data: any }>;
+                };
             };
         };
     }

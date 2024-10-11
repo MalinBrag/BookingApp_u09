@@ -29,7 +29,7 @@ export class UserFormComponent implements OnInit, OnChanges {
   roles = ['Admin', 'User'];
  
   constructor(
-    private builder: FormBuilder,
+    private fb: FormBuilder,
     @Optional() private dialog: DialogFrameService,
     private breakpoint: BreakpointService,
     private router: Router,
@@ -60,7 +60,7 @@ export class UserFormComponent implements OnInit, OnChanges {
 
     const mode = this.formUtils.getMode();
     this.setFormTitle(mode);
-    this.createForm();
+    this.initializeForm();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -75,12 +75,12 @@ export class UserFormComponent implements OnInit, OnChanges {
     }
   }
 
-  createForm(): void {
+  initializeForm(): void {
     const formFields: { [key : string]: any } = {};
     this.fields.forEach(field => {
       formFields[field] = ['', Validators.required];
     });
-    this.form = this.builder.group(formFields);
+    this.form = this.fb.group(formFields);
     
     if (this.fields.includes('password') && this.fields.includes('password_confirmation')) {
       this.form.setValidators(this.passwordMatchValidator());

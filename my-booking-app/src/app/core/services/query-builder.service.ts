@@ -4,7 +4,7 @@ import { AirportService } from "./airport.service";
 @Injectable({
   providedIn: 'root'
 })
-export class QueryBuilder {
+export class QueryBuilderService {
 
     constructor(
         private airportService: AirportService,
@@ -18,7 +18,7 @@ export class QueryBuilder {
             adults: searchData.departureFlight.passengers,
             nonStop: 'true',
             currencyCode: 'SEK',
-            max: 1,
+            max: 2,
         };
 
         if (searchData.returnFlight && searchData.returnFlight.returnDate) {
