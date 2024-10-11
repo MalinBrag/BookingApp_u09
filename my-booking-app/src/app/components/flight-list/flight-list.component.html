@@ -12,79 +12,87 @@
             </ul>
 
         </div>
-    
-        <div class="flights-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Duration</th>
-                        <th>Price</th>
-                        <th>Passengers</th>
-                        <th>Direct</th>
-                        <th>Book</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let flight of departureFlights">
-                        <td>{{ flight.departureTime | date:'HH:mm' }}</td>
-                        <td>{{ flight.duration }}</td>
-                        <td>{{ flight.priceTotal }} SEK</td>
-                        <td>{{ searchData.returnFlight.passengers }}</td>
-                        <td>&#10004;</td>
-                        <td><button class="book-btn">Book</button></td>
-                    </tr>
-                </tbody>
-            </table>
 
-        </div>
+        <form [formGroup]="flightSelectionForm">
+        
+            <div class="flights-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dep Time</th>
+                            <th>Duration</th>
+                            <th>Price</th>
+                            <th>Passengers</th>
+                            <th>Direct</th>
+                            <th>Seats left</th>
+                            <th>Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let flight of departureFlights; let i = index">
+                            <td>{{ flight.departureTime | date:'HH:mm' }}</td>
+                            <td>{{ flight.duration }}</td>
+                            <td>{{ flight.priceTotal }} SEK</td>
+                            <td>{{ searchData.returnFlight.passengers }}</td>
+                            <td>&#10004;</td>
+                            <td>{{ flight.availableSeats }}</td>
+                            <td><input type="radio" [value]="i" formControlName="departureFlightIndex"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </form>
 
     </div>
 
    
     <!-- ROUND TRIP -->
-        <div class="round-trip-section" *ngIf="searchData.tripType === 'round-trip' && returnFlights.length > 0">
-            <h3>Return</h3>
-            <div class="search-data">
+    <div class="round-trip-section" *ngIf="searchData.tripType === 'round-trip' && returnFlights.length > 0">
+        <h3>Return - not implemented</h3>
+        <div class="search-data">
             
-                <ul>
-                    <li class="date-span"><span>{{ searchData.returnFlight.returnDate }}</span>&nbsp;</li>
-                    <li>from <span>{{ searchData.departureFlight.locationTo }}</span>&nbsp;</li>
-                    <li>to <span>{{ searchData.departureFlight.locationFrom }}</span></li>
-                </ul>
-
-            </div>
-
-        <div class="flights-table" >
-            <table>
-                <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Duration</th>
-                        <th>Price</th>
-                        <th>Passengers</th>
-                        <th>Direct</th>
-                        <th>Book</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let flight of returnFlights">
-                        <td>{{ flight.departureTime | date:'HH:mm' }}</td>
-                        <td>{{ flight.duration }}</td>
-                        <td>{{ flight.priceTotal }} SEK</td>
-                        <td>{{ searchData.departureFlight.passengers }}</td>
-                        <td>&#10004;</td>
-                        <td><button class="book-btn">Book</button></td>
-                    </tr>
-                </tbody>
-            </table>
-
+            <ul>
+                <li class="date-span"><span>{{ searchData.returnFlight.returnDate }}</span>&nbsp;</li>
+                <li>from <span>{{ searchData.departureFlight.locationTo }}</span>&nbsp;</li>
+                <li>to <span>{{ searchData.departureFlight.locationFrom }}</span></li>
+            </ul>
         </div>
+
+        <form [formGroup]="flightSelectionForm">
+            <div class="flights-table" >
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dep Time</th>
+                            <th>Duration</th>
+                            <th>Price</th>
+                            <th>Passengers</th>
+                            <th>Direct</th>
+                            <th>Seats left</th>
+                            <th>Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let flight of returnFlights; let i = index">
+                            <td>{{ flight.departureTime | date:'HH:mm' }}</td>
+                            <td>{{ flight.duration }}</td>
+                            <td>{{ flight.priceTotal }} SEK</td>
+                            <td>{{ searchData.departureFlight.passengers }}</td>
+                            <td>&#10004;</td>
+                            <td>{{ flight.availableSeats }}</td>
+                            <!-- not implemented -->
+                            <td><input type="radio" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
         
     </div>
 
-
-
-
+    <div class="confirm-btn-section">
+        <button type="btn" (click)="confirmSelection()">Confirm</button>
+    </div>
 </div>
 

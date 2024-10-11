@@ -26,6 +26,32 @@ export const flightController = {
             console.error('Error fetching flights:', error);
             res.status(500).json({ message: 'Server error during fetching flights' });
         }
+    },
+
+    confirmPricing: async (req: Request, res: Response): Promise<void> => {
+        try {
+            const flightOffers = req.body;
+           
+            if (!flightOffers || flightOffers.length === 0) {
+                res.status(400).json({ message: 'No flight offers provided' });
+                return;
+            } 
+
+            const response = await amadeus.shopping.flightOffers.pricing.post(
+                JSON.stringify({ 
+                    data: { 
+                        type: 'flight-offers-pricing', 
+                        flightOffers: flightOffers 
+                    }
+                }) as any
+            );
+            
+            console.log('Pricing confirmed:', response.data);
+            res.status(200).json(response.data);
+        } catch (error) {
+            console.error('Error confirming pricing:', error);
+            res.status(500).json({ message: 'Server error during confirming pricing' });
+        }
     }
 
 

@@ -3,8 +3,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
-import { QueryBuilder } from '../query-builder';
+import { QueryBuilderService } from '../query-builder.service';
 import { ExtractDataService } from '../extract-data.service';
+import { Flight, FlightOfferResponse } from '../../../shared/interfaces/flight.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,24 +15,24 @@ export class FlightApiService {
   
   constructor(
     private http: HttpClient,
-    private queryBuilder: QueryBuilder,
+    private queryBuilder: QueryBuilderService,
     private extractData: ExtractDataService
   ) { }
 
-  getFlights(searchData: any): Observable<any> {
+  getFlights(searchData: any): Observable<{ rawResponse: any[], extractedData: { departureFlights: Flight[] } }> {
     const queryString = this.queryBuilder.queryBuilder(searchData);
-
-    const hasReturnFlight = !!searchData.returnFlight?.returnDate;
-
-    return this.http.get(`${this.apiUrl}/results`, {
+    return this.http.get<any[]>(`${this.apiUrl}/results`, {
       params: new HttpParams({ fromString: queryString })
     }).pipe(
-      map((response: any) => this.extractData.flightOfferData(response, hasReturnFlight))
+      map((response: any[]) => ({
+        rawResponse: response,
+        extractedData: {  departureFlights: this.extractData.flightOfferData(response)}
+      }))
     );
   }
 
-
-
-
+  confirmOffer(selectedOffer: any[]): Observable<any> {
+    return this.http.post(`${this.apiUrl}/confirm-offer`, selectedOffer);
+  }
 
 }

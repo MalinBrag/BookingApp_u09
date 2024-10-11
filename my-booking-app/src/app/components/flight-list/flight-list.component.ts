@@ -2,9 +2,10 @@ import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { LandingPageComponent } from '../landing-page/landing-page.component';
 import { FlightApiService } from '../../core/services/api/flight-api.service';
-import { ReturnFlight } from '../../shared/interfaces/return-flight.model';
-import { Flight } from '../../shared/interfaces/flight.model';
-//import { ExtendedDatesService } from '../../core/services/extended-dates.service';
+import { Flight, FlightSearchData } from '../../shared/interfaces/flight.model';
+// ta bort denna --- import { ExtendedDatesService } from '../../core/services/extended-dates.service';
+import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
+import { ExtractDataService } from '../../core/services/extract-data.service';
 
 @Component({
   selector: 'app-flight-list',
@@ -12,38 +13,29 @@ import { Flight } from '../../shared/interfaces/flight.model';
   imports: [
     CommonModule,
     LandingPageComponent,
+    ReactiveFormsModule
   ],
   templateUrl: './flight-list.component.html',
   styleUrl: './flight-list.component.scss'
 })
 export class FlightListComponent implements OnInit, OnChanges {
-  @Input() searchData!: { 
-    tripType: string; 
-    departureFlight: {
-      departureDate: string; 
-      locationFrom: string; 
-      locationTo: string; 
-      passengers: string;
-    };
-    returnFlight: {
-      returnDate: string; 
-      locationFrom: string; 
-      locationTo: string; 
-      passengers: string;
-    };
-  }
+  @Input() searchData!: FlightSearchData;
   
   departureFlights: Flight[] = [];
-  returnFlights: Flight[] = [];  
+  returnFlights: Flight[] = [];
+  rawResponse: any;
+
+  flightSelectionForm!: FormGroup;
 
   constructor(
     private apiService: FlightApiService,
+    private fb: FormBuilder,
+    private extractData:  ExtractDataService
   ) { }
 
   ngOnInit(): void {
-    if (this.searchData) {
-      this.loadFlights(this.searchData);
-    }
+    this.initializeForm();
+    this.loadFlights(this.searchData);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -52,13 +44,35 @@ export class FlightListComponent implements OnInit, OnChanges {
     }
   }
 
-  loadFlights(data: any): void {
-    this.apiService.getFlights(data).subscribe((flights: any) => {
-      console.log('extracted data', flights);
-      this.departureFlights = flights.departureFlights as Flight[];
-      this.returnFlights = flights.returnFlights as Flight[] || [];
+  initializeForm(): void {
+    this.flightSelectionForm = this.fb.group({
+      departureFlightIndex: [null]
     });
   }
-  
+
+  loadFlights(data: FlightSearchData): void {
+    this.apiService.getFlights(data).subscribe(
+      (flights: { rawResponse: any[], extractedData: { departureFlights: Flight[] } }) => {
+      this.departureFlights = flights.extractedData.departureFlights;
+      this.rawResponse = flights.rawResponse;
+    });
+    
+  }
+
+  confirmSelection(): void {
+    const departureFlightIndex = this.flightSelectionForm.get('departureFlightIndex')?.value;
+    const selectedRawFlights = this.extractData.getSelectedFlightsByIndex(departureFlightIndex, this.rawResponse);
+
+    if (selectedRawFlights.length === 0) {
+      console.log('No flights selected');
+      return;
+    }
+   console.log('Selected flights:', selectedRawFlights);
+    this.apiService.confirmOffer(selectedRawFlights).subscribe({
+      next: (response: any) => console.log('Offer confirmed:', response),
+      error: (error) => console.error('Error confirming offer:', error)
+    });
+  }
+
 
 }
