@@ -18,7 +18,7 @@ import { User } from '../../../shared/interfaces/user.model';
   styleUrl: './edit.component.scss'
 })
 export class EditComponent implements OnInit {
-  fields: string[] = ['role', 'name', 'email', 'password'];
+  fields: string[] = ['role', 'name', 'email', 'phone', 'password'];
   user: User | null = null;
   isMobile: boolean = false;
   mode : string = 'edit';

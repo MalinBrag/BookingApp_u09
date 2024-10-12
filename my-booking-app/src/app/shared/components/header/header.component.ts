@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
   registerUser() {
     if (this.isMobile) {
       this.dialog.openDialogFrame(RegisterComponent, {
-        fields: ['name', 'email', 'password', 'password_confirmation'],
+        fields: ['name', 'email', 'phone', 'password', 'password_confirmation'],
       });
       this.dropdownOpen = false;
     } else {

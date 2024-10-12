@@ -18,7 +18,7 @@ import { BreakpointService } from '../../../core/services/breakpoint.service';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent implements OnInit {
-  fields: string[] = ['name', 'email', 'password', 'password_confirmation'];
+  fields: string[] = ['name', 'email', 'phone', 'password', 'password_confirmation'];
   mode : string = 'register';
   isMobile: boolean = false;
 
