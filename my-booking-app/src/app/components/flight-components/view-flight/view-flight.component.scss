@@ -1,0 +1,93 @@
+@use "../../../../assets/styles/variables.scss";
+@import "../../../../assets/styles/styles.scss";
+@import "../../../../assets/styles/mixins.scss";
+
+.view-flight {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 3rem;
+    
+    @media (min-width: $md) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+.page-content {
+    display: flex;
+    flex-direction: column;
+
+    .book-btn {
+        align-self: center;
+        @include button;
+    }
+    
+}
+
+.title-container {
+    width: 80%;
+}
+
+.title,
+.description {
+    text-align: center;
+    font-family: $font2;
+}
+
+.description {
+    margin: 2rem 0;
+    font-style: italic;
+}
+
+.horizontal-table {
+    width: 100%;
+    margin: 1rem 0;
+
+    table {
+        padding: 1rem;
+        border-collapse: collapse;
+        margin: 1.5rem;
+        line-height: 2;
+        
+        th {
+            text-align: initial;
+            border-bottom: 1px solid #ccc;
+            padding: 0 1rem;
+        }
+
+        td {
+           border-bottom: 1px solid #ccc;
+        }
+    }
+
+    @media (min-width: $md) {
+        //width: 50%; 
+    }
+}
+
+.book-btn {
+    //@include button;
+}
+
+.image-container {
+    display: none;
+
+    @media (min-width: $md) {
+        display: block;
+        width: 50%;
+
+        .img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    }
+}
+
+
+
+
+

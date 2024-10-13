@@ -27,6 +27,17 @@ export class AirportService {
     return matchingAirport.code;
   }
 
+  getAirportByCode(code: string): { city: string, airport: string } {
+    const matchingAirport = this.airport
+      .find(airport => airport.code.toLowerCase() === code.toLowerCase());
+
+      if (!matchingAirport) {
+        throw new Error('No airports found for code: ${code}');
+      }
+
+      return { city: matchingAirport.city, airport: matchingAirport.airport };
+  }
+
 }
 
 

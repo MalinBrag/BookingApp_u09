@@ -2,7 +2,7 @@ import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { LandingPageComponent } from '../../landing-page/landing-page.component';
 import { FlightApiService } from '../../../core/services/api/flight-api.service';
-import { Flight, FlightSearchData } from '../../../shared/interfaces/flight.model';
+import { Flight, FlightOfferResponse, FlightSearchData } from '../../../shared/interfaces/flight.model';
 // ta bort denna --- import { ExtendedDatesService } from '../../core/services/extended-dates.service';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { ExtractDataService } from '../../../core/services/extract-data.service';
@@ -44,9 +44,6 @@ export class FlightListComponent implements OnInit, OnChanges {
     this.userAuth.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedin = isLoggedIn;
     });
-    if (!this.isLoggedin) {
-      window.alert('Please log in to book a flight');
-    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -72,23 +69,18 @@ export class FlightListComponent implements OnInit, OnChanges {
 
   confirmSelection(): void {
     const departureFlightIndex = this.flightSelectionForm.get('departureFlightIndex')?.value;
-    const selectedRawFlights = this.extractData.getSelectedFlightsByIndex(departureFlightIndex, this.rawResponse);
-
-    if (selectedRawFlights.length === 0) {
-      console.log('No flights selected');
-      return;
-    }
-   console.log('Selected flights:', selectedRawFlights);
-    this.apiService.confirmOffer(selectedRawFlights).subscribe({
+    const selectedRawFlight = this.extractData.getSelectedFlightByIndex(departureFlightIndex, this.rawResponse);
+console.log('Selected flight:', selectedRawFlight);
+   console.log('Selected flight:', selectedRawFlight);
+    this.apiService.confirmOffer(selectedRawFlight).subscribe({
       next: (response: any) => console.log('Offer confirmed:', response),
       error: (error) => console.error('Error confirming offer:', error)
     });
-    if (!this.isLoggedin) {
-      window.alert('Please log in to proceed with the booking');
-    } else {
-      this.router.navigate(['/booking']);
-    }
+    this.onFlightSelect(selectedRawFlight);
   }
 
+  onFlightSelect(selectedFlight: FlightOfferResponse[]): void {
+    this.router.navigate(['/view-flight'], { state: { flight: selectedFlight } });
+  }
 
 }
