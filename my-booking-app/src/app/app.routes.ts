@@ -8,7 +8,7 @@ import { ManageUsersComponent } from './components/admin-components/manage-users
 import { EditComponent } from './components/user-components/edit/edit.component';
 import { DeleteComponent } from './components/user-components/delete/delete.component';
 import { ViewFlightComponent } from './components/flight-components/view-flight/view-flight.component';
-//import { BookingComponent } from './components/flight-components/booking/booking.component';
+import { BookingComponent } from './components/flight-components/booking/booking.component';
 
 import { UserAuthGuard } from './core/guards/user-auth.guard';
 import { AdminAuthGuard } from './core/guards/admin-auth.guard';
@@ -23,5 +23,5 @@ export const routes: Routes = [
     { path: 'edit/:id', component: EditComponent, canActivate: [AdminAuthGuard] },
     { path: 'delete/:id', component: DeleteComponent, canActivate: [AdminAuthGuard] },
     { path: 'view-flight', component: ViewFlightComponent },
-    //{ path: 'booking', component: BookingComponent, canActivate: [UserAuthGuard] }
+    { path: 'booking', component: BookingComponent, canActivate: [UserAuthGuard] }
 ];

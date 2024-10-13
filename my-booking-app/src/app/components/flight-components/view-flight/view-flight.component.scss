@@ -24,7 +24,6 @@
         align-self: center;
         @include button;
     }
-    
 }
 
 .title-container {
@@ -62,14 +61,6 @@
            border-bottom: 1px solid #ccc;
         }
     }
-
-    @media (min-width: $md) {
-        //width: 50%; 
-    }
-}
-
-.book-btn {
-    //@include button;
 }
 
 .image-container {

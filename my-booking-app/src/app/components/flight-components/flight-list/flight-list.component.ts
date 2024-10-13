@@ -70,17 +70,27 @@ export class FlightListComponent implements OnInit, OnChanges {
   confirmSelection(): void {
     const departureFlightIndex = this.flightSelectionForm.get('departureFlightIndex')?.value;
     const selectedRawFlight = this.extractData.getSelectedFlightByIndex(departureFlightIndex, this.rawResponse);
-console.log('Selected flight:', selectedRawFlight);
-   console.log('Selected flight:', selectedRawFlight);
+   
+    console.log('Selected flight:', selectedRawFlight);
+    
     this.apiService.confirmOffer(selectedRawFlight).subscribe({
-      next: (response: any) => console.log('Offer confirmed:', response),
-      error: (error) => console.error('Error confirming offer:', error)
+      next: (response: any) => {
+        console.log('Offer confirmed');
+        this.onFlightSelect(selectedRawFlight);
+      },
+      error: (error) => {
+        console.error('Error confirming offer:', error) 
+      }
     });
     this.onFlightSelect(selectedRawFlight);
   }
 
   onFlightSelect(selectedFlight: FlightOfferResponse[]): void {
-    this.router.navigate(['/view-flight'], { state: { flight: selectedFlight } });
+    if (!selectedFlight) {
+      return;
+  }
+  const flightData = JSON.stringify(selectedFlight);
+    this.router.navigate(['/view-flight'], { queryParams: { flight: encodeURIComponent(flightData) } });
   }
 
 }

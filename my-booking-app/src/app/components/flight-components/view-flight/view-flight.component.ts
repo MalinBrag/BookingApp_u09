@@ -16,7 +16,7 @@ import { CommonModule, NgIf } from '@angular/common';
   ],
   templateUrl: './view-flight.component.html',
   styleUrl: './view-flight.component.scss',
-  host: {ngSkipHydration: 'true'}
+  host: { ngSkipHydration: 'true' }
 })
 export class ViewFlightComponent implements OnInit {
   title = 'Flight Details';
@@ -41,30 +41,49 @@ export class ViewFlightComponent implements OnInit {
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
-    const navigation = this.router.getCurrentNavigation();
-    const state = navigation?.extras.state as { flight: FlightOfferResponse };
-    if (state && state.flight) {
-      this.flight = this.extractData.flightOfferData([state.flight])[0];
-    } else {
-      const mockFlight = this.extractData.generateMockFlight();
-      this.flight = this.extractData.flightOfferData([mockFlight])[0];
-    }
-    this.initializeTable();
+
+    this.route.queryParams.subscribe(params => {
+      const flightData = params['flight'];
+      if (flightData) {
+        const flight = JSON.parse(decodeURIComponent(flightData));
+        this.flight = this.extractData.flightOfferData(flight)[0];
+      } else {
+        console.error('No flight data found');
+      }
+      });
+      this.initializeTable();
   }
 
-  initializeTable(): void {
+  initializeTable(): void {  
+    if (!this.flight || !this.flight.flightNumber) {
+      console.error('flight or flightnumber is missing');
+    }
     if (this.flight.departureAirport) {
-      this.departureAirport = this.airportService.getAirportByCode(this.flight.departureAirport);
+      try {
+        this.departureAirport = this.airportService.getAirportByCode(this.flight.departureAirport);
+      } catch (error) {
+        console.error('Error getting departure airport:', error);
+      }
+      
     }
     if (this.flight.arrivalAirport) {
-      this.arrivalAirport = this.airportService.getAirportByCode(this.flight.arrivalAirport);
+       try {
+        this.arrivalAirport = this.airportService.getAirportByCode(this.flight.arrivalAirport);
+       } catch (error) {
+        console.error('Error getting arrival airport:', error);
+       }  
     }
-    this.airlineName = this.airlineService.getAirlineByCode(this.flight.flightNumber.split(' ')[0]);
+    try {
+     this.airlineName = this.airlineService.getAirlineByCode(this.flight.flightNumber.split(' ')[0]);
+    } catch (error) {
+      console.error('Error getting airline name:', error);
+    }
+   
     
     
   }
 
-  onBookFlight(): void {}
+  onConfirmBooking(): void {}
 
 
 
