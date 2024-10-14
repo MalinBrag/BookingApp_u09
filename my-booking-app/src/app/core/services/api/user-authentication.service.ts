@@ -5,7 +5,7 @@ import { environment } from '../../../../environments/environment';
 import { LoginResponse } from '../../../shared/interfaces/login-response.model';
 import { User } from '../../../shared/interfaces/user.model';
 import { AdminAuthenticationService } from './admin-authentication.service';
-import { LocalStorageUtils } from '../../../utils/local-storage-utils';
+import { LocalStorageUtils } from '../utilities/local-storage-utils';
 
 @Injectable({
   providedIn: 'root'
@@ -77,7 +77,7 @@ export class UserAuthenticationService {
     const token = LocalStorageUtils.getItem<string>('token');
     return this.http.get(`${this.api}/user/profile`).pipe(
       tap((response: any) => {
-        console.log(response);
+        console.log('profile response', response);
       })
     );
   }

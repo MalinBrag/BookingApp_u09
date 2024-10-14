@@ -5,7 +5,7 @@ import { FlightApiService } from '../../../core/services/api/flight-api.service'
 import { Flight, FlightOfferResponse, FlightSearchData } from '../../../shared/interfaces/flight.model';
 // ta bort denna --- import { ExtendedDatesService } from '../../core/services/extended-dates.service';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
-import { ExtractDataService } from '../../../core/services/extract-data.service';
+import { ExtractDataService } from '../../../core/services/data-extraction/extract-data.service';
 import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service';
 import { Router } from '@angular/router';
 

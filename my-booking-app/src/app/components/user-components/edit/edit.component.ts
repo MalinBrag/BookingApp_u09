@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { UserFormComponent } from '../user-form/user-form.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AdminAuthenticationService } from '../../../core/services/api/admin-authentication.service';
-import { FormUtils } from '../../../utils/form-utils';
-import { BreakpointService } from '../../../core/services/breakpoint.service';
+import { FormUtils } from '../../../core/services/utilities/form-utils';
+import { BreakpointService } from '../../../core/services/utilities/breakpoint.service';
 import { User } from '../../../shared/interfaces/user.model';
 
 @Component({

@@ -1,19 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Flight, FlightOfferResponse } from '../../../shared/interfaces/flight.model';
-import { ExtractDataService } from '../../../core/services/extract-data.service';
+import { ExtractDataService } from '../../../core/services/data-extraction/extract-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AirportService } from '../../../core/services/airport.service';
-import { AirlineService } from '../../../core/services/airline.service';
-import { BreakpointService } from '../../../core/services/breakpoint.service';
+import { AirportService } from '../../../core/services/lookup-data/airport.service';
+import { AirlineService } from '../../../core/services/lookup-data/airline.service';
+import { BreakpointService } from '../../../core/services/utilities/breakpoint.service';
 import { CommonModule, NgIf } from '@angular/common';
+import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service';
+import { FlightApiService } from '../../../core/services/api/flight-api.service';
+import { BookingComponent } from "../booking/booking.component";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-view-flight',
   standalone: true,
   imports: [
     CommonModule,
-    NgIf
-  ],
+    NgIf,
+    BookingComponent
+],
   templateUrl: './view-flight.component.html',
   styleUrl: './view-flight.component.scss',
   host: { ngSkipHydration: 'true' }
@@ -21,12 +26,15 @@ import { CommonModule, NgIf } from '@angular/common';
 export class ViewFlightComponent implements OnInit {
   title = 'Flight Details';
   isMobile: boolean = false;
+  isLoggedIn: boolean = false;
   flight!: Flight;
   departureAirport!: { city: string, airport: string };
   arrivalAirport!: { city: string, airport: string };
   airlineName!: string;
   departureTime!: Date;
   arrivalTime!: Date;
+  bookingSuccessful: boolean = false;
+  userCredentials: any;
 
   constructor(
     private extractData: ExtractDataService,
@@ -34,7 +42,9 @@ export class ViewFlightComponent implements OnInit {
     private router: Router,
     private airportService: AirportService,
     private airlineService: AirlineService,
-    private breakpoint: BreakpointService
+    private breakpoint: BreakpointService,
+    private userAuth: UserAuthenticationService,
+    private apiService: FlightApiService,
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +52,9 @@ export class ViewFlightComponent implements OnInit {
       this.isMobile = isMobile;
     });
 
+    this.userAuth.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+  });
     this.route.queryParams.subscribe(params => {
       const flightData = params['flight'];
       if (flightData) {
@@ -52,6 +65,7 @@ export class ViewFlightComponent implements OnInit {
       }
       });
       this.initializeTable();
+      this.getUserCredentials();
   }
 
   initializeTable(): void {  
@@ -78,15 +92,31 @@ export class ViewFlightComponent implements OnInit {
     } catch (error) {
       console.error('Error getting airline name:', error);
     }
-   
-    
-    
   }
 
-  onConfirmBooking(): void {}
+  onConfirmBooking() {
+    return this.apiService.createBooking(this.flight, this.userCredentials).subscribe({
+      next: (response) => {
+        this.bookingSuccessful = true;
+        console.log('response', response);
+      }
+    });
+  }
 
+  getUserCredentials() {
+    if (!this.isLoggedIn) {  //kan jag redirecta tillbaks hit efter inlogg/register?
+      window.alert('Please log in to proceed');
+    }
 
-
-
+    this.userAuth.getProfile().subscribe({
+      next: (response) => {
+        this.userCredentials = response;
+      },
+      error: (error) => {
+        console.error('Error getting user credentials:', error);
+      }
+    });
+  }
+ 
 
 }

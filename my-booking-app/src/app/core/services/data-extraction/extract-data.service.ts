@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Flight, FlightOfferResponse } from '../../shared/interfaces/flight.model';
+import { Flight, FlightOfferResponse } from '../../../shared/interfaces/flight.model';
 
 @Injectable({
   providedIn: 'root'
@@ -61,72 +61,5 @@ export class ExtractDataService {
 
     return selectedFlight;
   }
-
-  generateMockFlight(): FlightOfferResponse {
-    return {
-      type: 'flight-offer',
-      id: '1',
-      source: 'GDS',
-      instantTicketingRequired: false,
-      nonHomogeneous: false,
-      oneWay: false,
-      lastTicketingDate: '2024-10-16',
-      numberOfBookableSeats: 9,
-      itineraries: [{
-        duration: 'PT2H15M',
-        segments: [{
-          departure: {
-            iataCode: 'FCO',
-            terminal: '1',
-            at: '2024-10-31T11:00:00'
-          },
-          arrival: {
-            iataCode: 'CDG',
-            terminal: '2B',
-            at: '2024-10-31T13:15:00'
-          },
-          carrierCode: 'AZ',
-          number: '318',
-          aircraft: { code: '32S' },
-          operating: { carrierCode: 'AZ' },
-          duration: 'PT2H15M',
-          id: '1',
-          numberOfStops: 0
-        }]
-      }],
-      price: {
-        additionalServices: ['796'], //[{ amount: '796', type: 'CHECKED_BAGS' }],
-        currency: 'SEK',
-        total: '1621.00',
-        base: '614.00',
-        fees: [
-          { amount: '0.00', type: 'SUPPLIER' },
-          { amount: '0.00', type: 'TICKETING' }
-        ],
-        grandTotal: '1621.00'
-      },
-      pricingOptions: { fareType: ['ECONOMY'], includedCheckedBagsOnly: false },
-      validatingAirlineCodes: ['AZ'],
-      travelerPricings: [{
-        travelerId: '1',
-        fareOption: 'STANDARD',
-        travelerType: 'ADULT',
-        price: { currency: 'SEK', total: '1621.00', base: '614.00' },
-        fareDetailsBySegment: [{
-          amenities: [],
-          segmentId: '1',
-          cabin: 'ECONOMY',
-          fareBasis: 'Y',
-          brandedFare: 'ECONOMY',
-          brandedFareLabel: 'Economy',
-          class: 'Y',
-          includedCheckedBags: { quantity: 1 }
-        }]
-      }]
-    };
-  }
-
-
-
 
 }

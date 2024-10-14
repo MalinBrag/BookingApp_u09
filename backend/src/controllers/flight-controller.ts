@@ -52,6 +52,30 @@ export const flightController = {
             console.error('Error confirming pricing:', error);
             res.status(500).json({ message: 'Server error during confirming pricing' });
         }
+    },
+
+    createBooking: async (req: Request, res: Response): Promise<void> => {
+        try {
+            const bookingData = req.body.bookingData;
+            const userData = req.body.userData;
+
+            if (!bookingData || !userData) {
+                res.status(400).json({ message: 'Booking data or user data missing' });
+                return;
+            }
+
+            const response = await amadeus.booking.flightOrders.post({
+                type: 'flight-order',
+                flightOffers: bookingData,
+                travelers: userData
+            });
+
+            console.log('Booking created:', response.data);
+            res.status(200).json(response.data);
+        } catch (error) {
+            console.error('Error creating booking:', error);
+            res.status(500).json({ message: 'Server error during creating booking' });
+        }
     }
 
 

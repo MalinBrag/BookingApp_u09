@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgIf, NgFor } from '@angular/common';
 import { Router } from '@angular/router';
-import { BreakpointService } from '../../../core/services/breakpoint.service';
+import { BreakpointService } from '../../../core/services/utilities/breakpoint.service';
 import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service';
 
 @Component({

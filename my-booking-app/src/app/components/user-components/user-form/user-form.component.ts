@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter, Optional, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { NgIf, CommonModule, NgFor } from '@angular/common';
-import { DialogFrameService } from '../../../core/services/dialogframe.service';
-import { BreakpointService } from '../../../core/services/breakpoint.service';
+import { DialogFrameService } from '../../../core/services/utilities/dialogframe.service';
+import { BreakpointService } from '../../../core/services/utilities/breakpoint.service';
 import { Router } from '@angular/router';
-import { FormUtils } from '../../../utils/form-utils';
+import { FormUtils } from '../../../core/services/utilities/form-utils';
 import { User } from '../../../shared/interfaces/user.model';
 
 @Component({
