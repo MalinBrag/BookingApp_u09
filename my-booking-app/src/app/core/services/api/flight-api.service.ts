@@ -7,6 +7,7 @@ import { QueryBuilderOfferService } from '../query-builders/querybuilder-flighto
 import { ExtractDataService } from '../data-extraction/extract-data.service';
 import { QueryBuilderCreateService } from '../query-builders/querybuilder-createbooking.service';
 import { Flight } from '../../../shared/interfaces/flight.model';
+import { LocalStorageUtils } from '../utilities/local-storage-utils';
 
 @Injectable({
   providedIn: 'root'
@@ -38,17 +39,38 @@ export class FlightApiService {
   }
 
   createBooking(bookingData: any, userData: any): Observable<any> {
+    const userId = userData.id;
     const numberOfPassengers = bookingData.travelerPricings.length;
     const travelers = this.queryBuilderCreate.queryBuilderUser(userData, numberOfPassengers);
     
-    return this.http.post(`${this.apiUrl}/create-booking`, { 
-      bookingData: bookingData,
-      travelers: travelers, 
-    }).pipe(
-      map((response: any) => ({
-        response: response,
-      }))
-    );
+    if (this.userValidation(userData) === false) {
+      window.alert('User validation failed, please log in again');
+      throw new Error('User validation failed, please log in again');
+    } else {
+      return this.http.post(`${this.apiUrl}/create-booking`, { 
+        userId: userId,
+        bookingData: bookingData,
+        travelers: travelers, 
+      }).pipe(
+        map((response: any) => ({
+          response: response,
+        }))
+      );
+    }
+  }
+
+  userValidation(userData: any): boolean {
+    const storedUserId = LocalStorageUtils.getItem('userId');
+    const userId = userData.id;
+
+    console.log('Stored user ID:', storedUserId);
+    console.log('User ID:', userId);
+    
+    if (storedUserId === userId) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

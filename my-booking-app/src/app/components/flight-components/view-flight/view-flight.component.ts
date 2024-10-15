@@ -79,7 +79,7 @@ export class ViewFlightComponent implements OnInit {
     });
   }
 
-  initializeTable(): void {  
+  initializeTable(): void {  //sätt dessa under extractdata?
     if (!this.flight || !this.flight.flightNumber) {
       console.error('flight or flightnumber is missing');
     }
@@ -108,17 +108,19 @@ export class ViewFlightComponent implements OnInit {
   onConfirmBooking() {
     return this.apiService.createBooking(this.rawFlightData[0], this.userCredentials).subscribe({
       next: (response: any) => {
-        this.bookingSuccessful = true;
-        console.log('response', response);
+        if (response && response.bookingId) {
+          this.bookingSuccessful = true;
+          window.alert('Booking successful!');
+          console.log('response', response);
+        } else {
+          this.bookingSuccessful = false;
+          window.alert('Booking failed. Please try again.');
+        }
       }
     });
   }
 
   getUserCredentials() {
-    if (!this.isLoggedIn) {  //kan jag redirecta tillbaks hit efter inlogg/register?
-      window.alert('Please log in to proceed');
-    }
-
     this.userAuth.getProfile().subscribe({
       next: (response) => {
         this.userCredentials = response;

@@ -15,5 +15,3 @@ export const saveBooking = async (userId: string, bookingData: object) => {
     }
 };
 
-
-

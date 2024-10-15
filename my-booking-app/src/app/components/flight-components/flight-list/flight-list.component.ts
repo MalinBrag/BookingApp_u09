@@ -21,7 +21,7 @@ import { Router } from '@angular/router';
   styleUrl: './flight-list.component.scss'
 })
 export class FlightListComponent implements OnInit, OnChanges {
-  isLoggedin: boolean = false;
+  isLoggedIn: boolean = false;
   @Input() searchData!: FlightSearchData;
   
   departureFlights: Flight[] = [];
@@ -41,8 +41,9 @@ export class FlightListComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.initializeForm();
     this.loadFlights(this.searchData);
+
     this.userAuth.isLoggedIn$.subscribe(isLoggedIn => {
-      this.isLoggedin = isLoggedIn;
+      this.isLoggedIn = isLoggedIn;
     });
   }
 
@@ -71,16 +72,20 @@ export class FlightListComponent implements OnInit, OnChanges {
     const departureFlightIndex = this.flightSelectionForm.get('departureFlightIndex')?.value;
     const selectedRawFlight = this.extractData.getSelectedFlightByIndex(departureFlightIndex, this.rawResponse);
     
-    this.apiService.confirmOffer(selectedRawFlight).subscribe({
-      next: (response: any) => {
-        console.log('Offer confirmed');
-        this.onFlightSelect(selectedRawFlight);
-      },
-      error: (error) => {
-        console.error('Error confirming offer:', error) 
-      }
-    });
-    this.onFlightSelect(selectedRawFlight);
+    if (!this.isLoggedIn) {  //kan jag redirecta tillbaks hit efter inlogg/register?
+      window.alert('Please log in to proceed');
+    } else {
+      this.apiService.confirmOffer(selectedRawFlight).subscribe({
+        next: (response: any) => {
+          console.log('Offer confirmed');
+          this.onFlightSelect(selectedRawFlight);
+        },
+        error: (error) => {
+          console.error('Error confirming offer:', error) 
+        }
+      });
+      this.onFlightSelect(selectedRawFlight);
+    }
   }
 
   onFlightSelect(selectedFlight: FlightOfferResponse[]): void {
