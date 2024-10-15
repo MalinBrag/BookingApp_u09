@@ -19,6 +19,19 @@ export interface Flight {
     passengers: string;
 }
 
+export interface BookedFlight {
+    bookingId: string;
+    flightNo: string;
+    depLocation: string;
+    depTerminal: string;
+    arrLocation: string;
+    arrTerminal: string;
+    depTime: string;
+    duration: string;
+    priceTotal: string;
+    passengers: string[];
+}
+
 export interface FlightSearchData {
     tripType: string;
     departureFlight: FlightDetails;
@@ -33,14 +46,9 @@ export interface FlightDetails {
     passengers: string;
 }
 
-export interface FlightOfferResponse {
+export interface FlightOffers {
+    bookingId: string;
     type: string;
-    id: string;
-    source: string;
-    instantTicketingRequired: boolean;
-    nonHomogeneous: boolean;
-    oneWay: boolean;
-    lastTicketingDate: string;
     numberOfBookableSeats: number;
     itineraries: Itinerary[];
     price: Price;

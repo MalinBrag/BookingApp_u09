@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Flight, FlightOfferResponse } from '../../../shared/interfaces/flight.model';
+import { Flight, FlightOffers, BookedFlight } from '../../../shared/interfaces/flight.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +8,8 @@ export class ExtractDataService {
 
   constructor() { }
 
-  flightOfferData(response: FlightOfferResponse[]): Flight[] {
-    return response.map((flight: FlightOfferResponse) => ({
+  flightOfferData(response: FlightOffers[]): Flight[] {
+    return response.map((flight: FlightOffers) => ({
       flightNumber: `${flight.itineraries[0].segments[0].carrierCode} ${flight.itineraries[0].segments[0].number}`,
       departureTime: flight.itineraries[0].segments[0].departure.at,
       arrivalTime: flight.itineraries[0].segments[0].arrival.at,
@@ -33,6 +33,38 @@ export class ExtractDataService {
     }));
   }
 
+  bookedFlightData(response: any): BookedFlight[] {
+    return response.map((booking: any) => {
+      const flight = booking.bookingData.flightOffers[0];
+      const segment = flight.itineraries[0].segments[0];
+
+      return {
+      bookingId: decodeURIComponent(booking.bookingData.id),
+      flightNo: `${segment.carrierCode} ${segment.number}`,
+      depLocation: segment.departure.iataCode,
+      depTerminal: segment.departure.terminal,
+      arrLocation: segment.arrival.iataCode,
+      arrTerminal: segment.arrival.terminal,
+      depTime: segment.departure.at,
+      duration: this.formatDuration(segment.duration),
+      priceTotal: this.trimPrice(flight.price.grandTotal),
+      passengers: `${flight.travelerPricings[0].travelerId} ${flight.travelerPricings[0].travelerType.toLowerCase()}`,
+      }
+    });
+  }
+
+  bookedPassengerData(response: any): BookedFlight[] {
+    return response.map((booking: any) => {
+      const traveller = booking.bookingData.travelers[0];
+
+      return {
+        id: traveller.id,
+        name: traveller.name,
+        birthDate: traveller.birthDate,
+      }
+    });
+  }
+
   formatDuration(duration: string): string {
     const match = duration.match(/PT(\d+H)?(\d+M)?/);
     if (!match) {
@@ -53,8 +85,8 @@ export class ExtractDataService {
     }
   }
 
-  getSelectedFlightByIndex(departureIndex: number, rawResponse: FlightOfferResponse[]) {
-    const selectedFlight: FlightOfferResponse[] = [];
+  getSelectedFlightByIndex(departureIndex: number, rawResponse: FlightOffers[]) {
+    const selectedFlight: FlightOffers[] = [];
     
     if (departureIndex !== null) {
         selectedFlight.push(rawResponse[departureIndex]);

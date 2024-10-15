@@ -2,7 +2,7 @@ import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { LandingPageComponent } from '../../landing-page/landing-page.component';
 import { FlightApiService } from '../../../core/services/api/flight-api.service';
-import { Flight, FlightOfferResponse, FlightSearchData } from '../../../shared/interfaces/flight.model';
+import { Flight, FlightOffers, FlightSearchData } from '../../../shared/interfaces/flight.model';
 // ta bort denna --- import { ExtendedDatesService } from '../../core/services/extended-dates.service';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { ExtractDataService } from '../../../core/services/data-extraction/extract-data.service';
@@ -88,7 +88,7 @@ export class FlightListComponent implements OnInit, OnChanges {
     }
   }
 
-  onFlightSelect(selectedFlight: FlightOfferResponse[]): void {
+  onFlightSelect(selectedFlight: FlightOffers[]): void {
     if (!selectedFlight) {
       return;
   }

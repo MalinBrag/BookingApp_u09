@@ -63,14 +63,18 @@ export class FlightApiService {
     const storedUserId = LocalStorageUtils.getItem('userId');
     const userId = userData.id;
 
-    console.log('Stored user ID:', storedUserId);
-    console.log('User ID:', userId);
-    
     if (storedUserId === userId) {
       return true;
     } else {
       return false;
     }
+  }
+
+  getBookings(): Observable<any> {
+    const userId = LocalStorageUtils.getItem('userId');
+    const result = this.http.get(`${this.apiUrl}/bookings/${userId}`);
+    console.log('Result:', result);
+    return result;
   }
 
 }

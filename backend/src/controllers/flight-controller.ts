@@ -1,7 +1,6 @@
 import Amadeus from "amadeus";
 import { Request, Response } from "express";
 import { client } from "../config/db";
-import { saveBooking } from "../services/booking-service";
 
 const dbName = 'u09';
 
@@ -105,6 +104,22 @@ export const flightController = {
         } catch (error) {
             console.error('Error saving booking to database:', error);
             throw new Error('Error saving booking to database');
+        }
+    },
+
+    getBookings: async (req: Request, res: Response): Promise<void> => {
+        console.log('Fetching bookings for user:', req.params.userId);
+        try {
+            const userId = req.params.userId;
+            const db = client.db(dbName);
+            const collection = db.collection('Bookings');
+            const bookings = await collection.find({ userId: userId }).toArray();
+
+            console.log('Bookings:', bookings);
+            res.status(200).json(bookings);
+        } catch (error) {
+            console.error('Error fetching bookings:', error);
+            res.status(500).json({ message: 'Server error during fetching bookings' }); 
         }
     }
 
