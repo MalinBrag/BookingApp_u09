@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserFormComponent } from '../user-form/user-form.component';
 import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service'; 
-import { FormUtils } from '../../../utils/form-utils';
+import { FormUtils } from '../../../core/services/utilities/form-utils';
 import { CommonModule, NgIf } from '@angular/common';
-import { BreakpointService } from '../../../core/services/breakpoint.service';
+import { BreakpointService } from '../../../core/services/utilities/breakpoint.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +18,7 @@ import { BreakpointService } from '../../../core/services/breakpoint.service';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent implements OnInit {
-  fields: string[] = ['name', 'email', 'password', 'password_confirmation'];
+  fields: string[] = ['name', 'email', 'phone', 'password', 'password_confirmation'];
   mode : string = 'register';
   isMobile: boolean = false;
 

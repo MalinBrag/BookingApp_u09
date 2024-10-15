@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
-import { AirportService } from "./airport.service";
+import { AirportService } from "../lookup-data/airport.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class QueryBuilderService {
+export class QueryBuilderOfferService {
 
     constructor(
         private airportService: AirportService,
@@ -18,7 +18,7 @@ export class QueryBuilderService {
             adults: searchData.departureFlight.passengers,
             nonStop: 'true',
             currencyCode: 'SEK',
-            max: 2,
+            max: 1,
         };
 
         if (searchData.returnFlight && searchData.returnFlight.returnDate) {

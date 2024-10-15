@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, NavigationEnd } from '@angular/router';
 import { CommonModule, NgIf, NgClass } from '@angular/common';
-import { BreakpointService } from './../../../core/services/breakpoint.service';
-import { DialogFrameService } from '../../../core/services/dialogframe.service';
+import { BreakpointService } from '../../../core/services/utilities/breakpoint.service';
+import { DialogFrameService } from '../../../core/services/utilities/dialogframe.service';
 import { RegisterComponent } from '../../../components/user-components/register/register.component';
 import { SignInComponent } from '../../../components/user-components/sign-in/sign-in.component';
 import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service';
@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
   registerUser() {
     if (this.isMobile) {
       this.dialog.openDialogFrame(RegisterComponent, {
-        fields: ['name', 'email', 'password', 'password_confirmation'],
+        fields: ['name', 'email', 'phone', 'password', 'password_confirmation'],
       });
       this.dropdownOpen = false;
     } else {

@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { User } from '../../../shared/interfaces/user.model';
-import { LocalStorageUtils } from '../../../utils/local-storage-utils';
-import { ErrorHandlingUtils } from '../../../utils/error-handling-utils';
+import { LocalStorageUtils } from '../utilities/local-storage-utils';
+import { ErrorHandlingUtils } from '../utilities/error-handling-utils';
 import { map } from 'rxjs/operators';
 
 @Injectable({

@@ -1,0 +1,73 @@
+<main class="view-flight">
+    <div class="page-content">
+        <div title-container>
+            <h2 class="title">{{ title }}</h2>
+            <p class="description">Details for flight {{ flight.flightNumber }} on {{ flight.departureDate }}</p>
+        </div>
+
+        <div class="horizontal-table">   
+            <table>
+
+                <tr>
+                    <th>Flight Number</th>
+                    <td>{{ flight.flightNumber }}</td>
+                </tr>
+                <tr>
+                    <th>Airline</th>
+                    <td>{{ airlineName }}</td>
+                </tr>
+                <tr>
+                    <th>Passengers</th>
+                    <td>{{ flight.passengers }}</td>
+                </tr>
+                <tr>
+                    <th>Departure Date</th>
+                    <td>{{ flight.departureDate }}</td>
+                </tr>
+                <tr>
+                    <th>Departure Time</th>
+                    <td>{{ flight.departureTime }}</td>
+                </tr>
+                <tr>
+                    <th>Arrival Date</th>
+                    <td>{{ flight.arrivalDate }}</td>
+                </tr>
+                <tr>
+                    <th>Arrival Time</th>
+                    <td>{{ flight.arrivalTime }}</td>
+                </tr>
+                <tr>
+                    <th>Departure Airport</th>
+                    <td>{{ departureAirport.city }} - {{ departureAirport.airport }}, {{ flight.departureAirport }}</td>
+                </tr>
+                <tr>
+                    <th>Arrival Airport</th>
+                    <td>{{ arrivalAirport.city }} - {{ arrivalAirport.airport }}, {{ flight.arrivalAirport }}</td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td>{{ flight.priceTotal }} {{ flight.priceCurrency }}</td>
+                </tr>
+                <tr>
+                    <th>Seats Available</th>
+                    <td>{{ flight.availableSeats }}</td>
+                </tr>
+                <tr>
+                    <th>Flight Class</th>
+                    <td>{{ flight.class }}</td>
+                </tr>
+
+            </table>
+        </div>
+        <button class="book-btn" (click)="onConfirmBooking()">Confirm booking</button>
+    </div>
+
+    <div *ngIf="!isMobile" class="image-container">
+        <img class="img" src="assets/images/airport-inside.jpg" alt="inside airport" />
+    </div>
+
+    <div *ngIf="bookingSuccessful">
+        <app-booking></app-booking>
+    </div>
+
+</main>

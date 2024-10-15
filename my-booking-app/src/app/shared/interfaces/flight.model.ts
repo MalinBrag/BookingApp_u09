@@ -2,12 +2,21 @@ export interface Flight {
     flightNumber: string;
     departureTime: string;
     arrivalTime: string;
-    priceTotal: string;
-    priceCurrency: string;
-    duration: string;
+    departureDate: string;
+    arrivalDate: string;
     departureAirport: string;    
     arrivalAirport: string;
+    departureTerminal: string;
+    arrivalTerminal: string;
+    duration: string;
+    priceTotal: string;
+    priceBase: string;
+    priceForBag: string;
+    class: string;
+    priceCurrency: string;
     availableSeats: number;
+    numberOfPassengers: number;
+    passengers: string;
 }
 
 export interface FlightSearchData {
@@ -18,7 +27,7 @@ export interface FlightSearchData {
 
 export interface FlightDetails {
     departureDate: string;
-    returnDate?: string;
+    returnDate: string;
     locationFrom: string;
     locationTo: string;
     passengers: string;
@@ -59,7 +68,7 @@ export interface Segment {
   
 export interface LocationInfo {
     iataCode: string;
-    terminal?: string;
+    terminal: string;
     at: string;
 }
   
@@ -72,6 +81,7 @@ export interface OperatingCarrier {
 }
   
 export interface Price {
+    additionalServices: string[];
     currency: string;
     total: string;
     base: string;
@@ -104,6 +114,7 @@ export interface TravelerPrice {
 }
 
 export interface FareDetailsBySegment {
+    amenities: Amenity[];
     segmentId: string;
     cabin: string;
     fareBasis: string;
@@ -111,6 +122,12 @@ export interface FareDetailsBySegment {
     brandedFareLabel: string;
     class: string;
     includedCheckedBags: CheckedBags;
+}
+
+export interface Amenity {
+    amenityType: string;
+    description: string;
+    isChargeable: boolean;
 }
   
 export interface CheckedBags {

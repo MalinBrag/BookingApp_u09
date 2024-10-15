@@ -3,9 +3,10 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
-import { QueryBuilderService } from '../query-builder.service';
-import { ExtractDataService } from '../extract-data.service';
-import { Flight, FlightOfferResponse } from '../../../shared/interfaces/flight.model';
+import { QueryBuilderOfferService } from '../query-builders/querybuilder-flightoffer.service';
+import { ExtractDataService } from '../data-extraction/extract-data.service';
+import { QueryBuilderCreateService } from '../query-builders/querybuilder-createbooking.service';
+import { Flight } from '../../../shared/interfaces/flight.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,13 @@ export class FlightApiService {
   
   constructor(
     private http: HttpClient,
-    private queryBuilder: QueryBuilderService,
-    private extractData: ExtractDataService
+    private queryBuilderOffer: QueryBuilderOfferService,
+    private extractData: ExtractDataService,
+    private queryBuilderCreate: QueryBuilderCreateService,
   ) { }
 
   getFlights(searchData: any): Observable<{ rawResponse: any[], extractedData: { departureFlights: Flight[] } }> {
-    const queryString = this.queryBuilder.queryBuilder(searchData);
+    const queryString = this.queryBuilderOffer.queryBuilder(searchData);
     return this.http.get<any[]>(`${this.apiUrl}/results`, {
       params: new HttpParams({ fromString: queryString })
     }).pipe(
@@ -33,6 +35,20 @@ export class FlightApiService {
 
   confirmOffer(selectedOffer: any[]): Observable<any> {
     return this.http.post(`${this.apiUrl}/confirm-offer`, selectedOffer);
+  }
+
+  createBooking(bookingData: any, userData: any): Observable<any> {
+    const numberOfPassengers = bookingData.travelerPricings.length;
+    const travelers = this.queryBuilderCreate.queryBuilderUser(userData, numberOfPassengers);
+    
+    return this.http.post(`${this.apiUrl}/create-booking`, { 
+      bookingData: bookingData,
+      travelers: travelers, 
+    }).pipe(
+      map((response: any) => ({
+        response: response,
+      }))
+    );
   }
 
 }

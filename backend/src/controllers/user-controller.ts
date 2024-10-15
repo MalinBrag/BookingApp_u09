@@ -9,7 +9,7 @@ const dbName = 'u09';
 export const userController = {
 
     registerUser: async (req: Request, res: Response): Promise<void> => {
-        const { name, email, password, role = 'User' } = req.body;
+        const { name, email, phone, password, role = 'User' } = req.body;
 
         try {
             const hashedPassword = await bcrypt.hash(password, 10);
@@ -26,6 +26,7 @@ export const userController = {
                 { 
                     name, 
                     email, 
+                    phone,
                     password: hashedPassword, 
                     role: role || 'user'
                 });
@@ -112,6 +113,7 @@ export const userController = {
             res.json({
                 email: user.email,
                 name: user.name,
+                phone: user.phone,
                 role: user.role,
                 id: user._id,
             });

@@ -19,7 +19,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   styleUrl: './manage-users.component.scss'
 })
 export class ManageUsersComponent implements OnInit {
-  fields: string[] = ['role', 'name', 'email', 'password'];
+  fields: string[] = ['role', 'name', 'email', 'phone', 'password'];
   isMobile: boolean = false;
   title = 'Manage Users';
   users: User[] = [];

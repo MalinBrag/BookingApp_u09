@@ -36,6 +36,11 @@
                 <input type="email" id="email" formControlName="email" required/>
             </div>
 
+            <div class="form-item" *ngIf="fields.includes('phone')">
+                <label for="phone">Mobile number: </label>
+                <input type="tel" id="phone" formControlName="phone" pattern="^[0-9]+$" inputmode="numeric" required />
+            </div>
+
             <div class="form-item" *ngIf="fields.includes('password')">
                 <label for="password">Password: </label>
                 <input type="password" id="password" formControlName="password" required/>

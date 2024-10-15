@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { BreakpointService } from '../../../core/services/breakpoint.service';
+import { BreakpointService } from '../../../core/services/utilities/breakpoint.service';
 import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service';
 
 @Component({
@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   title = 'My Pages';
   isMobile: boolean = false;
   isLoggedIn: boolean = false;
+  userCredentials: any;
   
   constructor(
     private router: Router,
@@ -39,9 +40,6 @@ export class ProfileComponent implements OnInit {
     this.isLoggedIn = false;
     this.router.navigate(['']);
   }
-
-
-
 
 
 
