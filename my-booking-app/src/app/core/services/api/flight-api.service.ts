@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { QueryBuilderOfferService } from '../query-builders/querybuilder-flightoffer.service';
 import { ExtractDataService } from '../data-extraction/extract-data.service';
+import { QueryBuilderCreateService } from '../query-builders/querybuilder-createbooking.service';
 import { Flight } from '../../../shared/interfaces/flight.model';
 
 @Injectable({
@@ -15,12 +16,13 @@ export class FlightApiService {
   
   constructor(
     private http: HttpClient,
-    private queryBuilder: QueryBuilderOfferService,
-    private extractData: ExtractDataService
+    private queryBuilderOffer: QueryBuilderOfferService,
+    private extractData: ExtractDataService,
+    private queryBuilderCreate: QueryBuilderCreateService,
   ) { }
 
   getFlights(searchData: any): Observable<{ rawResponse: any[], extractedData: { departureFlights: Flight[] } }> {
-    const queryString = this.queryBuilder.queryBuilder(searchData);
+    const queryString = this.queryBuilderOffer.queryBuilder(searchData);
     return this.http.get<any[]>(`${this.apiUrl}/results`, {
       params: new HttpParams({ fromString: queryString })
     }).pipe(
@@ -36,11 +38,17 @@ export class FlightApiService {
   }
 
   createBooking(bookingData: any, userData: any): Observable<any> {
-    console.log('Booking data:', bookingData);
-    console.log('User data:', userData);
-    const result = this.http.post(`${this.apiUrl}/create-booking`, { bookingData, userData });
-console.log('Result:', result);
-    return result;
+    const numberOfPassengers = bookingData.travelerPricings.length;
+    const travelers = this.queryBuilderCreate.queryBuilderUser(userData, numberOfPassengers);
+    
+    return this.http.post(`${this.apiUrl}/create-booking`, { 
+      bookingData: bookingData,
+      travelers: travelers, 
+    }).pipe(
+      map((response: any) => ({
+        response: response,
+      }))
+    );
   }
 
 }

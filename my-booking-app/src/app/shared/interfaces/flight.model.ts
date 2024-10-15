@@ -15,6 +15,7 @@ export interface Flight {
     class: string;
     priceCurrency: string;
     availableSeats: number;
+    numberOfPassengers: number;
     passengers: string;
 }
 

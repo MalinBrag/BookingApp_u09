@@ -77,7 +77,9 @@ export class UserAuthenticationService {
     const token = LocalStorageUtils.getItem<string>('token');
     return this.http.get(`${this.api}/user/profile`).pipe(
       tap((response: any) => {
-        console.log('profile response', response);
+        if (response) {
+          return response;
+        }
       })
     );
   }

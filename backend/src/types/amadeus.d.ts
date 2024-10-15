@@ -34,8 +34,7 @@ declare module "amadeus" {
 
         booking: {
             flightOrders: {
-                post(
-                    data: {
+                post(data: {
                         type: string;
                         flightOffers: any[];
                         travelers: [{
@@ -67,8 +66,7 @@ declare module "amadeus" {
                                 holder: boolean;
                             }]
                         }]
-                    }
-                ): Promise<{ data: any }>;
+                }): Promise<{ data: any }>;
                 
             };
         }

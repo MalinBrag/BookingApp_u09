@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   title = 'My Pages';
   isMobile: boolean = false;
   isLoggedIn: boolean = false;
+  userCredentials: any;
   
   constructor(
     private router: Router,
@@ -39,9 +40,6 @@ export class ProfileComponent implements OnInit {
     this.isLoggedIn = false;
     this.router.navigate(['']);
   }
-
-
-
 
 
 

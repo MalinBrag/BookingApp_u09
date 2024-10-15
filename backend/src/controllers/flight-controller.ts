@@ -56,21 +56,25 @@ export const flightController = {
 
     createBooking: async (req: Request, res: Response): Promise<void> => {
         try {
-            const bookingData = req.body.bookingData;
-            const userData = req.body.userData;
-
-            if (!bookingData || !userData) {
-                res.status(400).json({ message: 'Booking data or user data missing' });
+            const flight = req.body.bookingData;
+            const travelers = req.body.travelers;
+              
+            if (!flight) {
+                res.status(400).json({ message: 'Booking data is missing' });
                 return;
             }
+            const flightOffers = [flight];
 
-            const response = await amadeus.booking.flightOrders.post({
-                type: 'flight-order',
-                flightOffers: bookingData,
-                travelers: userData
-            });
+            const payload = {
+                data: {
+                    type: 'flight-order',
+                    flightOffers: flightOffers,
+                    travelers: travelers
+                }
+            };
 
-            console.log('Booking created:', response.data);
+            const response = await amadeus.booking.flightOrders.post(JSON.stringify(payload) as any);
+
             res.status(200).json(response.data);
         } catch (error) {
             console.error('Error creating booking:', error);

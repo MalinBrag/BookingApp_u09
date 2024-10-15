@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Flight, FlightOfferResponse } from '../../../shared/interfaces/flight.model';
+import { Flight } from '../../../shared/interfaces/flight.model';
 import { ExtractDataService } from '../../../core/services/data-extraction/extract-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AirportService } from '../../../core/services/lookup-data/airport.service';
@@ -9,7 +9,7 @@ import { CommonModule, NgIf } from '@angular/common';
 import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service';
 import { FlightApiService } from '../../../core/services/api/flight-api.service';
 import { BookingComponent } from "../booking/booking.component";
-import { Observable } from 'rxjs';
+import { QueryBuilderCreateService } from '../../../core/services/query-builders/querybuilder-createbooking.service';
 
 @Component({
   selector: 'app-view-flight',
@@ -27,7 +27,10 @@ export class ViewFlightComponent implements OnInit {
   title = 'Flight Details';
   isMobile: boolean = false;
   isLoggedIn: boolean = false;
+
+  //for flight data
   flight!: Flight;
+  rawFlightData: any;
   departureAirport!: { city: string, airport: string };
   arrivalAirport!: { city: string, airport: string };
   airlineName!: string;
@@ -45,6 +48,7 @@ export class ViewFlightComponent implements OnInit {
     private breakpoint: BreakpointService,
     private userAuth: UserAuthenticationService,
     private apiService: FlightApiService,
+    private queryBuilderCreate: QueryBuilderCreateService,
   ) {}
 
   ngOnInit(): void {
@@ -55,17 +59,24 @@ export class ViewFlightComponent implements OnInit {
     this.userAuth.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
   });
+
+    this.extractToLoadFlightData();
+    this.initializeTable();
+    this.getUserCredentials();
+  }
+
+  extractToLoadFlightData(): void {
     this.route.queryParams.subscribe(params => {
       const flightData = params['flight'];
+
       if (flightData) {
-        const flight = JSON.parse(decodeURIComponent(flightData));
-        this.flight = this.extractData.flightOfferData(flight)[0];
+        const flightRaw = JSON.parse(decodeURIComponent(flightData));
+        this.rawFlightData = flightRaw;
+        this.flight = this.extractData.flightOfferData(flightRaw)[0];
       } else {
         console.error('No flight data found');
       }
-      });
-      this.initializeTable();
-      this.getUserCredentials();
+    });
   }
 
   initializeTable(): void {  
@@ -95,8 +106,8 @@ export class ViewFlightComponent implements OnInit {
   }
 
   onConfirmBooking() {
-    return this.apiService.createBooking(this.flight, this.userCredentials).subscribe({
-      next: (response) => {
+    return this.apiService.createBooking(this.rawFlightData[0], this.userCredentials).subscribe({
+      next: (response: any) => {
         this.bookingSuccessful = true;
         console.log('response', response);
       }

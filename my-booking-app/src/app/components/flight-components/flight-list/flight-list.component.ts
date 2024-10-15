@@ -70,8 +70,6 @@ export class FlightListComponent implements OnInit, OnChanges {
   confirmSelection(): void {
     const departureFlightIndex = this.flightSelectionForm.get('departureFlightIndex')?.value;
     const selectedRawFlight = this.extractData.getSelectedFlightByIndex(departureFlightIndex, this.rawResponse);
-   
-    console.log('Selected flight:', selectedRawFlight);
     
     this.apiService.confirmOffer(selectedRawFlight).subscribe({
       next: (response: any) => {

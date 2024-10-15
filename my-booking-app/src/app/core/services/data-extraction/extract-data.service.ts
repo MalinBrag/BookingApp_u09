@@ -26,6 +26,7 @@ export class ExtractDataService {
       class: flight.travelerPricings[0].fareDetailsBySegment[0].brandedFareLabel,
       priceCurrency: flight.price.currency.toLowerCase(),
       availableSeats: flight.numberOfBookableSeats,
+      numberOfPassengers: flight.travelerPricings[0].travelerId.length,
       passengers: `${flight.travelerPricings[0].travelerId} ${flight.travelerPricings[0].travelerType.toLowerCase()}`,
       
 
