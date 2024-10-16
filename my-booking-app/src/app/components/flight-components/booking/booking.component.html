@@ -1,1 +1,101 @@
-<p>booking works!</p>
+<main class="my-bookings">
+    <div class="bookings-table">
+        <table *ngFor="let booking of bookings" class="flight">
+            
+            <tr>
+                <th>Booking number</th>
+                <td>{{ booking.bookingId }}</td>
+            </tr>
+            <tr>
+                <th>Departure date and time</th>
+                <td>{{ booking.depDateTime }}</td>
+            </tr>
+            <tr>
+                <th>Departure city</th>
+                <td>{{ booking.depCity }}</td>
+            </tr>
+            <tr>
+                <th>Departure ariport and terminal</th>
+                <td>{{ booking.depAirport }} {{ booking.depTerminal }}</td>
+            </tr>
+            <tr>
+                <th>Arrival city</th>
+                <td>{{ booking.arrCity }}</td>
+            </tr>
+            <tr>
+                <th>Arrival ariport and terminal</th>
+                <td>{{ booking.arrAirport }} {{ booking.arrTerminal }}</td>
+            </tr>
+            <tr>
+                <th>Flight number</th>
+                <td>{{ booking.flightNo }}</td>
+            </tr>
+            <tr>
+                <th>Flight duration</th>
+                <td>{{ booking.duration }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ booking.priceTotal }} SEK</td>
+            </tr>
+            <tr>
+                <th>Passengers</th>
+                <td>{{ booking.passengersTotal }}</td>
+            </tr>
+            <tr>
+                <th>Booking created on</th>
+                <td>{{ booking.createdOn }}</td>
+            </tr>
+
+            <!--<table class="passengers">
+                <thead>
+                    <tr>
+                        <th>Passenger ID</th>
+                        <th>Name</th>
+                        <th>Birthdate</th>
+                        <th>Document type</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let passenger of booking.passengers">
+                        <td>{{ passenger.id }}</td>
+                        <td>{{ passenger.name }}</td>
+                        <td>{{ passenger.birthDate }}</td>
+                        <td>{{ passenger.documents }}</td>
+                    </tr>
+                </tbody>
+            </table>-->
+            <tr>
+                <td colspan="2">
+                    <table class="passengers">
+                        <thead>
+                            <tr>
+                                <th>Passenger ID</th>
+                                <th>Name</th>
+                                <th>Birthdate</th>
+                                <th>Document type</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let passenger of booking.passengers">
+                                <td>{{ passenger.id }}</td>
+                                <td>{{ passenger.name }}</td>
+                                <td>{{ passenger.birthDate }}</td>
+                                <td>{{ passenger.documents }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+
+
+
+
+        </table>
+        
+
+        <p *ngIf="bookings.length === 0">No bookings found.</p>
+    </div>
+
+
+
+</main>
+

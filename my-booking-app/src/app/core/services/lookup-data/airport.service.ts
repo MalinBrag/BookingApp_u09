@@ -27,7 +27,7 @@ export class AirportService {
     return matchingAirport.code;
   }
 
-  getAirportByCode(code: string): { city: string, airport: string } {
+  getCityAirportByCode(code: string): { city: string, airport: string } {
     const matchingAirport = this.airport
       .find(airport => airport.code.toLowerCase() === code.toLowerCase());
 

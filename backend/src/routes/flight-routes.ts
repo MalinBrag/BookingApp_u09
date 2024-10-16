@@ -8,6 +8,7 @@ flightRouter.get('/results', flightController.getFlights);
 flightRouter.post('/confirm-offer', flightController.confirmPricing);
 
 flightRouter.post('/create-booking', verifyUserToken, flightController.createBooking);
+flightRouter.get('/bookings/:userId', verifyUserToken, flightController.getBookings);
 
 export default flightRouter;
 

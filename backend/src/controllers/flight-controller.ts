@@ -1,5 +1,8 @@
 import Amadeus from "amadeus";
 import { Request, Response } from "express";
+import { client } from "../config/db";
+
+const dbName = 'u09';
 
 const amadeus = new Amadeus({
     clientId: process.env.API_KEY as string,
@@ -46,7 +49,6 @@ export const flightController = {
                 }) as any
             );
             
-            console.log('Pricing confirmed:', response.data);
             res.status(200).json(response.data);
         } catch (error) {
             console.error('Error confirming pricing:', error);
@@ -56,15 +58,16 @@ export const flightController = {
 
     createBooking: async (req: Request, res: Response): Promise<void> => {
         try {
+            const userId = req.body.userId;
             const flight = req.body.bookingData;
             const travelers = req.body.travelers;
-              
-            if (!flight) {
+            
+            if (!flight || !userId) {
                 res.status(400).json({ message: 'Booking data is missing' });
                 return;
             }
-            const flightOffers = [flight];
 
+            const flightOffers = [flight];
             const payload = {
                 data: {
                     type: 'flight-order',
@@ -74,14 +77,51 @@ export const flightController = {
             };
 
             const response = await amadeus.booking.flightOrders.post(JSON.stringify(payload) as any);
-
-            res.status(200).json(response.data);
+            const saveResult = await flightController.saveBookingToDb(userId, response.data);
+            res.status(200).json({
+                message: 'Booking created and saved successfully',
+                bookingData: response.data,
+                bookingId: saveResult.insertedId
+            });
         } catch (error) {
             console.error('Error creating booking:', error);
             res.status(500).json({ message: 'Server error during creating booking' });
         }
-    }
+    },
 
+    saveBookingToDb: async (userId: string, bookingData: object) => {
+        try {
+            const db = client.db(dbName);
+            const collection = db.collection('Bookings');
+            const newBooking = {
+                userId: userId,
+                bookingData: bookingData,
+                createdAt: new Date(),
+            };
+
+            const result = await collection.insertOne(newBooking);
+            return result;
+        } catch (error) {
+            console.error('Error saving booking to database:', error);
+            throw new Error('Error saving booking to database');
+        }
+    },
+
+    getBookings: async (req: Request, res: Response): Promise<void> => {
+        console.log('Fetching bookings for user:', req.params.userId);
+        try {
+            const userId = req.params.userId;
+            const db = client.db(dbName);
+            const collection = db.collection('Bookings');
+            const bookings = await collection.find({ userId: userId }).toArray();
+
+            console.log('Bookings:', bookings);
+            res.status(200).json(bookings);
+        } catch (error) {
+            console.error('Error fetching bookings:', error);
+            res.status(500).json({ message: 'Server error during fetching bookings' }); 
+        }
+    }
 
 }
 

@@ -2,7 +2,7 @@ import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { LandingPageComponent } from '../../landing-page/landing-page.component';
 import { FlightApiService } from '../../../core/services/api/flight-api.service';
-import { Flight, FlightOfferResponse, FlightSearchData } from '../../../shared/interfaces/flight.model';
+import { Flight, FlightOffers, FlightSearchData } from '../../../shared/interfaces/flight.model';
 // ta bort denna --- import { ExtendedDatesService } from '../../core/services/extended-dates.service';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { ExtractDataService } from '../../../core/services/data-extraction/extract-data.service';
@@ -21,7 +21,7 @@ import { Router } from '@angular/router';
   styleUrl: './flight-list.component.scss'
 })
 export class FlightListComponent implements OnInit, OnChanges {
-  isLoggedin: boolean = false;
+  isLoggedIn: boolean = false;
   @Input() searchData!: FlightSearchData;
   
   departureFlights: Flight[] = [];
@@ -41,8 +41,9 @@ export class FlightListComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.initializeForm();
     this.loadFlights(this.searchData);
+
     this.userAuth.isLoggedIn$.subscribe(isLoggedIn => {
-      this.isLoggedin = isLoggedIn;
+      this.isLoggedIn = isLoggedIn;
     });
   }
 
@@ -71,19 +72,23 @@ export class FlightListComponent implements OnInit, OnChanges {
     const departureFlightIndex = this.flightSelectionForm.get('departureFlightIndex')?.value;
     const selectedRawFlight = this.extractData.getSelectedFlightByIndex(departureFlightIndex, this.rawResponse);
     
-    this.apiService.confirmOffer(selectedRawFlight).subscribe({
-      next: (response: any) => {
-        console.log('Offer confirmed');
-        this.onFlightSelect(selectedRawFlight);
-      },
-      error: (error) => {
-        console.error('Error confirming offer:', error) 
-      }
-    });
-    this.onFlightSelect(selectedRawFlight);
+    if (!this.isLoggedIn) {  //kan jag redirecta tillbaks hit efter inlogg/register?
+      window.alert('Please log in to proceed');
+    } else {
+      this.apiService.confirmOffer(selectedRawFlight).subscribe({
+        next: (response: any) => {
+          console.log('Offer confirmed');
+          this.onFlightSelect(selectedRawFlight);
+        },
+        error: (error) => {
+          console.error('Error confirming offer:', error) 
+        }
+      });
+      this.onFlightSelect(selectedRawFlight);
+    }
   }
 
-  onFlightSelect(selectedFlight: FlightOfferResponse[]): void {
+  onFlightSelect(selectedFlight: FlightOffers[]): void {
     if (!selectedFlight) {
       return;
   }

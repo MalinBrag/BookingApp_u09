@@ -22,6 +22,6 @@ export const routes: Routes = [
     { path: 'manage', component: ManageUsersComponent, canActivate: [AdminAuthGuard] },
     { path: 'edit/:id', component: EditComponent, canActivate: [AdminAuthGuard] },
     { path: 'delete/:id', component: DeleteComponent, canActivate: [AdminAuthGuard] },
-    { path: 'view-flight', component: ViewFlightComponent },
-    { path: 'booking', component: BookingComponent, canActivate: [UserAuthGuard] }
+    { path: 'view-flight', component: ViewFlightComponent, canActivate: [UserAuthGuard] },
+    { path: 'bookings', component: BookingComponent, canActivate: [UserAuthGuard] }
 ];

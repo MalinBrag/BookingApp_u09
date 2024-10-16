@@ -1,3 +1,5 @@
+import { PassengerData } from "./user.model";
+
 export interface Flight {
     flightNumber: string;
     departureTime: string;
@@ -19,6 +21,34 @@ export interface Flight {
     passengers: string;
 }
 
+export interface BookedFlight {
+    bookingId: string;
+    flightNo: string;
+    depCity: string;
+    depAirport: string;
+    depTerminal: string;
+    arrCity: string;
+    arrAirport: string;
+    arrTerminal: string;
+    depDateTime: string;
+    duration: string;
+    priceTotal: string;
+    passengersTotal: string;
+    passengers: PassengerData[];
+    createdOn: string;
+    passengerId: string;
+    passengerName: string[];
+    passengerBirthDate: string;
+    documentType: string;
+}
+
+export interface Passenger {
+    passengerId: string;
+    passengerName: string;
+    passengerBirthDate: string;
+    documentType: string;
+}
+
 export interface FlightSearchData {
     tripType: string;
     departureFlight: FlightDetails;
@@ -33,14 +63,9 @@ export interface FlightDetails {
     passengers: string;
 }
 
-export interface FlightOfferResponse {
+export interface FlightOffers {
+    bookingId: string;
     type: string;
-    id: string;
-    source: string;
-    instantTicketingRequired: boolean;
-    nonHomogeneous: boolean;
-    oneWay: boolean;
-    lastTicketingDate: string;
     numberOfBookableSeats: number;
     itineraries: Itinerary[];
     price: Price;

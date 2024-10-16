@@ -8,11 +8,13 @@ export interface User {
     role?: string;
 }
 
-export interface UserData {
+export interface PassengerData {
     id: string;
-    dateOfBirth: string;
-    firstName: string;
-    lastName: string;
+    birthDate: string;
+    name: [{
+        firstName: string,
+        lastName: string
+    }];
     gender: string;
     contact: {
         emailAddress: string;
