@@ -8,9 +8,9 @@ export class QueryBuilderCreateService {
   constructor() {}
 
   queryBuilderUser(userData: any, numberOfPassengers: any): any {
-    const travellers = [];
+    const travelers = [];
     for (let i = 1; i <= numberOfPassengers; i++) {
-      travellers.push({
+      travelers.push({
         id: i.toString(),
         dateOfBirth: '1990-01-01',
         name: {
@@ -40,7 +40,7 @@ export class QueryBuilderCreateService {
         }]
       });
     }
-    return travellers;
+    return travelers;
   } 
 
 

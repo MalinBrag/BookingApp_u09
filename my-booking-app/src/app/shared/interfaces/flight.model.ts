@@ -1,3 +1,5 @@
+import { PassengerData } from "./user.model";
+
 export interface Flight {
     flightNumber: string;
     departureTime: string;
@@ -31,8 +33,20 @@ export interface BookedFlight {
     depDateTime: string;
     duration: string;
     priceTotal: string;
-    passengers: string[];
+    passengersTotal: string;
+    passengers: PassengerData[];
     createdOn: string;
+    passengerId: string;
+    passengerName: string[];
+    passengerBirthDate: string;
+    documentType: string;
+}
+
+export interface Passenger {
+    passengerId: string;
+    passengerName: string;
+    passengerBirthDate: string;
+    documentType: string;
 }
 
 export interface FlightSearchData {

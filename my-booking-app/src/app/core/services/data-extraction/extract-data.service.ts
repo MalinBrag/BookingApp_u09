@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Flight, FlightOffers, BookedFlight } from '../../../shared/interfaces/flight.model';
 import { AirportService } from '../lookup-data/airport.service';
+import { PassengerData } from '../../../shared/interfaces/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -54,20 +55,19 @@ export class ExtractDataService {
         depDateTime: this.formatDateTime(segment.departure.at),
         duration: this.formatDuration(segment.duration),
         priceTotal: this.trimPrice(flight.price.grandTotal),
-        passengers: `${flight.travelerPricings[0].travelerId} ${flight.travelerPricings[0].travelerType.toLowerCase()}`,
+        passengersTotal: `${flight.travelerPricings.length} ${flight.travelerPricings[0].travelerType.toLowerCase()}`,
       }
     });
   }
 
   bookedPassengerData(response: any): BookedFlight[] {
     return response.map((booking: any) => {
-      const traveller = booking.bookingData.travelers[0];
-
-      return {
-        id: traveller.id,
-        name: traveller.name,
-        birthDate: traveller.birthDate,
-      }
+      return booking.bookingData.travelers.map((passenger: PassengerData) => ({
+        passengerId: passenger.id,
+        passengerName: passenger.name,
+        passengerBirthDate: passenger.birthDate,
+        documentType: passenger.documents[0].documentType,
+      }));
     });
   }
 
