@@ -72,9 +72,7 @@ export class FlightApiService {
 
   getBookings(): Observable<any> {
     const userId = LocalStorageUtils.getItem('userId');
-    const result = this.http.get(`${this.apiUrl}/bookings/${userId}`);
-    console.log('Result:', result);
-    return result;
+    return this.http.get(`${this.apiUrl}/bookings/${userId}`);
   }
 
 }

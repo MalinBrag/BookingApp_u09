@@ -22,14 +22,17 @@ export interface Flight {
 export interface BookedFlight {
     bookingId: string;
     flightNo: string;
-    depLocation: string;
+    depCity: string;
+    depAirport: string;
     depTerminal: string;
-    arrLocation: string;
+    arrCity: string;
+    arrAirport: string;
     arrTerminal: string;
-    depTime: string;
+    depDateTime: string;
     duration: string;
     priceTotal: string;
     passengers: string[];
+    createdOn: string;
 }
 
 export interface FlightSearchData {

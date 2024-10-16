@@ -85,7 +85,7 @@ export class ViewFlightComponent implements OnInit {
     }
     if (this.flight.departureAirport) {
       try {
-        this.departureAirport = this.airportService.getAirportByCode(this.flight.departureAirport);
+        this.departureAirport = this.airportService.getCityAirportByCode(this.flight.departureAirport);
       } catch (error) {
         console.error('Error getting departure airport:', error);
       }
@@ -93,7 +93,7 @@ export class ViewFlightComponent implements OnInit {
     }
     if (this.flight.arrivalAirport) {
        try {
-        this.arrivalAirport = this.airportService.getAirportByCode(this.flight.arrivalAirport);
+        this.arrivalAirport = this.airportService.getCityAirportByCode(this.flight.arrivalAirport);
        } catch (error) {
         console.error('Error getting arrival airport:', error);
        }  

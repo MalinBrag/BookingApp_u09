@@ -29,7 +29,6 @@ export class BookingComponent implements OnInit {
     this.apiService.getBookings().subscribe({
       next: (response: any) => {
         this.bookings = this.extractData.bookedFlightData(response);
-        console.log(response);
       },
       error: (error: any) => {
         console.error('Error loading bookings', error);

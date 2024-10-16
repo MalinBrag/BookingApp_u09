@@ -1,34 +1,52 @@
 <main class="my-bookings">
     <div class="bookings-table">
-        <table>
-            <thead>
-                <tr>
-                    <th>Booking ID</th>
-                    <th>Flight no</th>
-                    <th>Dep</th>
-                    <th>Terminal</th>
-                    <th>Arr</th>
-                    <th>Terminal</th>
-                    <th>Dep On</th>
-                    <th>Duration</th>
-                    <th>Price</th>
-                    <th>Passengers</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let booking of bookings">
-                    <td>{{ booking.bookingId }}</td>
-                    <td>{{ booking.flightNo }}</td>
-                    <td>{{ booking.depLocation }}</td>
-                    <td>{{ booking.depTerminal }}</td>
-                    <td>{{ booking.arrLocation }}</td>
-                    <td>{{ booking.arrTerminal }}</td>
-                    <td>{{ booking.depTime }}</td>
-                    <td>{{ booking.duration }}</td>
-                    <td>{{ booking.priceTotal }} SEK</td>
-                    <td>{{ booking.passengers }}</td>
-                </tr>
-            </tbody>
+        <table *ngFor="let booking of bookings">
+            
+            <tr>
+                <th>Booking number</th>
+                <td>{{ booking.bookingId }}</td>
+            </tr>
+            <tr>
+                <th>Departure date and time</th>
+                <td>{{ booking.depDateTime }}</td>
+            </tr>
+            <tr>
+                <th>Departure city</th>
+                <td>{{ booking.depCity }}</td>
+            </tr>
+            <tr>
+                <th>Departure ariport and terminal</th>
+                <td>{{ booking.depAirport }} {{ booking.depTerminal }}</td>
+            </tr>
+            <tr>
+                <th>Arrival city</th>
+                <td>{{ booking.arrCity }}</td>
+            </tr>
+            <tr>
+                <th>Arrival ariport and terminal</th>
+                <td>{{ booking.arrAirport }} {{ booking.arrTerminal }}</td>
+            </tr>
+            <tr>
+                <th>Flight number</th>
+                <td>{{ booking.flightNo }}</td>
+            </tr>
+            <tr>
+                <th>Flight duration</th>
+                <td>{{ booking.duration }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ booking.priceTotal }} SEK</td>
+            </tr>
+            <tr>
+                <th>Passengers</th>
+                <td>{{ booking.passengers }}</td>
+            </tr>
+            <tr>
+                <th>Booking created on</th>
+                <td>{{ booking.createdOn }}</td>
+            </tr>
+
         </table>
 
         <p *ngIf="bookings.length === 0">No bookings found.</p>
