@@ -1,83 +1,80 @@
-<main class="my-bookings">
-    <div class="bookings-table">
-        <table *ngFor="let booking of bookings" class="flight">
-            
-            <tr>
-                <th>Booking number</th>
-                <td>{{ booking.bookingId }}</td>
-            </tr>
-            <tr>
-                <th>Departure date and time</th>
-                <td>{{ booking.depDateTime }}</td>
-            </tr>
-            <tr>
-                <th>Departure city</th>
-                <td>{{ booking.depCity }}</td>
-            </tr>
-            <tr>
-                <th>Departure ariport and terminal</th>
-                <td>{{ booking.depAirport }} {{ booking.depTerminal }}</td>
-            </tr>
-            <tr>
-                <th>Arrival city</th>
-                <td>{{ booking.arrCity }}</td>
-            </tr>
-            <tr>
-                <th>Arrival ariport and terminal</th>
-                <td>{{ booking.arrAirport }} {{ booking.arrTerminal }}</td>
-            </tr>
-            <tr>
-                <th>Flight number</th>
-                <td>{{ booking.flightNo }}</td>
-            </tr>
-            <tr>
-                <th>Flight duration</th>
-                <td>{{ booking.duration }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ booking.priceTotal }} SEK</td>
-            </tr>
-            <tr>
-                <th>Passengers</th>
-                <td>{{ booking.passengersTotal }}</td>
-            </tr>
-            <tr>
-                <th>Booking created on</th>
-                <td>{{ booking.createdOn }}</td>
-            </tr>
-
-<!--nested table-->
-            <tr>
-                <td colspan="2">
-                    <table class="passengers">
-                        <thead>
+<main class="my-bookings-page">
+    <div class="flight-table-wrapper">
+        <table *ngFor="let booking of bookings; let i = index" class="flight-table">
+            <thead>
+                <tr class="tr-booking-id" (click)="toggleDetails(i)">
+                    <th class="th-booking-id">Booking ID</th>
+                    <td class="td-booking-id" *ngIf="showDetails[i]">{{ booking.bookingId }}</td>
+                </tr>
+            </thead>
+            <tbody *ngIf="showDetails[i]">
+                <tr>
+                    <th>Departure</th>
+                    <td>{{ booking.depDateTime }}</td>
+                </tr>
+                <tr>
+                    <th>From</th>
+                    <td>{{ booking.depCity }}</td>
+                </tr>
+                <tr>
+                    <th>Airport and terminal</th>
+                    <td>{{ booking.depAirport }} {{ booking.depTerminal }}</td>
+                </tr>
+                <tr>
+                    <th>Destination</th>
+                    <td>{{ booking.arrCity }}</td>
+                </tr>
+                <tr>
+                    <th>Airport and terminal</th>
+                    <td>{{ booking.arrAirport }} {{ booking.arrTerminal }}</td>
+                </tr>
+                <tr>
+                    <th>Flight number</th>
+                    <td>{{ booking.flightNo }}</td>
+                </tr>
+                <tr>
+                    <th>Duration</th>
+                    <td>{{ booking.duration }}</td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td>{{ booking.priceTotal }} SEK</td>
+                </tr>
+                <tr>
+                    <th>Passengers</th>
+                    <td>{{ booking.passengersTotal }}</td>
+                </tr>
+                <tr>
+                    <th>Booked on</th>
+                    <td>{{ booking.createdOn }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="passengers-table-wrapper">
+                        <!--nested table below-->
+                        <table class="passengers-table" *ngFor="let passenger of booking.passengers">
+                            <tr >
+                                <th class="passenger-id">Passenger ID {{ passenger.id }}</th>
+                                <td></td>
+                            </tr>
                             <tr>
-                                <th>Passenger ID</th>
                                 <th>Name</th>
-                                <th>Birthdate</th>
-                                <th>Document type</th>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let passenger of booking.passengers">
-                                <td>{{ passenger.id }}</td>
                                 <td>{{ passenger.name.firstName }} {{ passenger.name.lastName }}</td>
+                            </tr>
+                            <tr>
+                                <th>Birthdate</th>
                                 <td>{{ passenger.dateOfBirth }}</td>
+                            </tr>
+                            <tr>
+                                <th>Document</th>
                                 <td>{{ passenger.documents }}</td>
                             </tr>
-                        </tbody>
-                    </table>
-
-<!--end-->
-                </td>
-            </tr>
-
-
-
-
+                        </table>
+                        <!--end of nested table-->
+                    </td>
+                </tr>
+            </tbody>
         </table>
         
-
         <p *ngIf="bookings.length === 0">No bookings found.</p>
     </div>
 

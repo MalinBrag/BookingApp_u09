@@ -1,0 +1,79 @@
+@use "../../../../assets/styles/variables.scss";
+@import "../../../../assets/styles/styles.scss";
+@import "../../../../assets/styles/mixins.scss";
+
+.my-bookings-page {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 0.8rem;
+    min-height: 60vh;
+    
+    @media (min-width: $sm) {
+        font-size: $size1;
+    }
+}
+
+.flight-table-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 1rem 1rem 4rem 1rem;
+
+    @media (min-width: $sm) {
+        margin-top: 3rem;
+    }
+    
+    .flight-table {
+        width: 100%;
+        line-height: 2;
+        border-collapse: collapse;
+        text-align: initial;
+
+        .th-booking-id {
+            cursor: pointer;
+            font-weight: 700;
+            font-size: $size2;
+
+            &:hover {
+                color: $color5;
+            }
+        }
+
+        .tr-booking-id {
+            padding-bottom: 1.5rem;
+        }
+        
+        th,
+        td {
+            width: 50%;
+            font-weight: 400;
+            text-align: initial;
+        }
+        
+        th {
+            font-style: italic;
+
+            @media (min-width: $sm) {
+                padding: 0 1rem;
+            }
+        }
+    }
+
+    .passengers-table-wrapper {
+        padding: 0;
+    
+        .passengers-table {
+            width: 100%;
+            line-height: 2;
+            border-collapse: collapse;
+        }
+    
+        .passenger-id {
+            font-weight: 700;
+        }
+    }
+}
