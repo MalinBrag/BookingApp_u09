@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgIf, NgFor } from '@angular/common';
-import { User } from '../../../shared/interfaces/user.model';
+import { User } from '../../../shared/models/user.model';
 import { AdminAuthenticationService } from '../../../core/services/api/admin-authentication.service';
 import { Router, RouterLink } from '@angular/router';
 import { MatProgressBarModule } from '@angular/material/progress-bar';

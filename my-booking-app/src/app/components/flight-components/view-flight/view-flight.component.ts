@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Flight } from '../../../shared/interfaces/flight.model';
+import { FlightOffer } from '../../../shared/models/displayed-flights.model';
 import { ExtractDataService } from '../../../core/services/data-extraction/extract-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AirportService } from '../../../core/services/lookup-data/airport.service';
@@ -29,7 +29,7 @@ export class ViewFlightComponent implements OnInit {
   isLoggedIn: boolean = false;
 
   //for flight data
-  flight!: Flight;
+  flight!: FlightOffer;
   rawFlightData: any;
   departureAirport!: { city: string, airport: string };
   arrivalAirport!: { city: string, airport: string };
@@ -111,7 +111,6 @@ export class ViewFlightComponent implements OnInit {
         if (response && response.bookingId) {
           this.bookingSuccessful = true;
           window.alert('Booking successful!');
-          console.log('response', response);
         } else {
           this.bookingSuccessful = false;
           window.alert('Booking failed. Please try again.');

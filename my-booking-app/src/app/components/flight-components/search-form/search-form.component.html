@@ -13,16 +13,18 @@
         </div>
     </div>
 
-
     <div class="date-section">
         <div class="date-from">
             <label for="departureDate">Departure date:</label>
             <input type="date" id="departureDate" name="departureDate" [(ngModel)]="searchData.departureFlight.departureDate" required>
         </div>
+         <!-- inte implementerad -->
+     <!--
         <div class="date-to" *ngIf="searchData.tripType === 'round-trip'">
             <label for="returnDate">Return date:</label>
             <input type="date" id="returnDate" name="returnDate" [(ngModel)]="searchData.returnFlight.returnDate">
         </div>
+        -->
     </div>
 
     <!-- inte aktiv -->

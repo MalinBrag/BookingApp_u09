@@ -47,23 +47,7 @@
                 <td>{{ booking.createdOn }}</td>
             </tr>
 
-            <!--<table class="passengers">
-                <thead>
-                    <tr>
-                        <th>Passenger ID</th>
-                        <th>Name</th>
-                        <th>Birthdate</th>
-                        <th>Document type</th>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let passenger of booking.passengers">
-                        <td>{{ passenger.id }}</td>
-                        <td>{{ passenger.name }}</td>
-                        <td>{{ passenger.birthDate }}</td>
-                        <td>{{ passenger.documents }}</td>
-                    </tr>
-                </tbody>
-            </table>-->
+<!--nested table-->
             <tr>
                 <td colspan="2">
                     <table class="passengers">
@@ -77,12 +61,14 @@
                         <tbody>
                             <tr *ngFor="let passenger of booking.passengers">
                                 <td>{{ passenger.id }}</td>
-                                <td>{{ passenger.name }}</td>
-                                <td>{{ passenger.birthDate }}</td>
+                                <td>{{ passenger.name.firstName }} {{ passenger.name.lastName }}</td>
+                                <td>{{ passenger.dateOfBirth }}</td>
                                 <td>{{ passenger.documents }}</td>
                             </tr>
                         </tbody>
                     </table>
+
+<!--end-->
                 </td>
             </tr>
 

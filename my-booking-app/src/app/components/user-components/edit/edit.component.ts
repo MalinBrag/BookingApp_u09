@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AdminAuthenticationService } from '../../../core/services/api/admin-authentication.service';
 import { FormUtils } from '../../../core/services/utilities/form-utils';
 import { BreakpointService } from '../../../core/services/utilities/breakpoint.service';
-import { User } from '../../../shared/interfaces/user.model';
+import { User } from '../../../shared/models/user.model';
 
 @Component({
   selector: 'app-edit',

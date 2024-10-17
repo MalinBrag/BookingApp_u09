@@ -5,7 +5,7 @@ import { DialogFrameService } from '../../../core/services/utilities/dialogframe
 import { BreakpointService } from '../../../core/services/utilities/breakpoint.service';
 import { Router } from '@angular/router';
 import { FormUtils } from '../../../core/services/utilities/form-utils';
-import { User } from '../../../shared/interfaces/user.model';
+import { User } from '../../../shared/models/user.model';
 
 @Component({
   selector: 'app-user-form',

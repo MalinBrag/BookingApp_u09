@@ -2,12 +2,13 @@ import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { LandingPageComponent } from '../../landing-page/landing-page.component';
 import { FlightApiService } from '../../../core/services/api/flight-api.service';
-import { Flight, FlightOffers, FlightSearchData } from '../../../shared/interfaces/flight.model';
+import { FlightOffer } from '../../../shared/models/displayed-flights.model';
 // ta bort denna --- import { ExtendedDatesService } from '../../core/services/extended-dates.service';
-import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ExtractDataService } from '../../../core/services/data-extraction/extract-data.service';
 import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service';
 import { Router } from '@angular/router';
+import { FlightOfferRequest, FlightOffers } from '../../../shared/models/flight-offer.model';
 
 @Component({
   selector: 'app-flight-list',
@@ -22,10 +23,10 @@ import { Router } from '@angular/router';
 })
 export class FlightListComponent implements OnInit, OnChanges {
   isLoggedIn: boolean = false;
-  @Input() searchData!: FlightSearchData;
+  @Input() searchData!: FlightOfferRequest;
   
-  departureFlights: Flight[] = [];
-  returnFlights: Flight[] = [];
+  departureFlights: FlightOffer[] = [];
+ //returnFlights: Flight[] = [];
   rawResponse: any;
 
   flightSelectionForm!: FormGroup;
@@ -55,13 +56,13 @@ export class FlightListComponent implements OnInit, OnChanges {
 
   initializeForm(): void {
     this.flightSelectionForm = this.fb.group({
-      departureFlightIndex: [null]
+      departureFlightIndex: [null, Validators.required],
     });
   }
 
-  loadFlights(data: FlightSearchData): void {
+  loadFlights(data: FlightOfferRequest): void {
     this.apiService.getFlights(data).subscribe(
-      (flights: { rawResponse: any[], extractedData: { departureFlights: Flight[] } }) => {
+      (flights: { rawResponse: any[], extractedData: { departureFlights: FlightOffer[] } }) => {
       this.departureFlights = flights.extractedData.departureFlights;
       this.rawResponse = flights.rawResponse;
     });
@@ -69,6 +70,11 @@ export class FlightListComponent implements OnInit, OnChanges {
   }
 
   confirmSelection(): void {
+    if (this.flightSelectionForm.invalid) {
+      window.alert('Please select a flight to proceed');
+      return;
+    }
+
     const departureFlightIndex = this.flightSelectionForm.get('departureFlightIndex')?.value;
     const selectedRawFlight = this.extractData.getSelectedFlightByIndex(departureFlightIndex, this.rawResponse);
     
@@ -78,7 +84,6 @@ export class FlightListComponent implements OnInit, OnChanges {
       this.apiService.confirmOffer(selectedRawFlight).subscribe({
         next: (response: any) => {
           console.log('Offer confirmed');
-          this.onFlightSelect(selectedRawFlight);
         },
         error: (error) => {
           console.error('Error confirming offer:', error) 
