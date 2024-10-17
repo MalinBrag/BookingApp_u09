@@ -5,7 +5,7 @@
             <p class="description">Details for flight {{ flight.flightNumber }} on {{ flight.departureDate }}</p>
         </div>
 
-        <div class="horizontal-table">   
+        <div class="table-wrapper">   
             <table>
 
                 <tr>
@@ -18,7 +18,7 @@
                 </tr>
                 <tr>
                     <th>Passengers</th>
-                    <td>{{ flight.passengers }}</td>
+                    <td>{{ flight.numberOfPassengers }}</td>
                 </tr>
                 <tr>
                     <th>Departure</th>
@@ -51,7 +51,7 @@
 
             </table>
         </div>
-        <button class="book-btn" (click)="onConfirmBooking()">Confirm booking</button>
+        <button *ngIf="!bookingSuccessful" class="book-btn" (click)="onConfirmBooking()">Confirm booking</button>
     </div>
 
     <div *ngIf="!isMobile" class="image-container">

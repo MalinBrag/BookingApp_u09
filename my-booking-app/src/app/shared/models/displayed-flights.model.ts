@@ -14,7 +14,6 @@ export interface FlightOffer {
     priceCurrency: string;
     availableSeats: number;
     numberOfPassengers: number;
-    passengers: string;
 }
 
 export interface BookedFlight {

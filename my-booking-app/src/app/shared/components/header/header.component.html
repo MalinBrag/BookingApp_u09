@@ -63,7 +63,7 @@
         <a class="desk-menu-item"
         *ngIf="isLoggedIn && isAdmin"
         [ngClass]="{ 'user-item': isLoggedIn && isAdmin }"
-        [routerLink]="['/dashboard']">Dashboard Admin</a>
+        (click)="getAdminDashboard()">Dashboard Admin</a>
 
         <a class="desk-menu-item"
         *ngIf="isLoggedIn"
