@@ -4,11 +4,11 @@ import { Passenger } from "../../../shared/models/passenger.class";
 @Injectable({
   providedIn: 'root'
 })
-export class QueryBuilderCreateService {
+export class passengerObjectService {
 
   constructor() {}
 
-  queryBuilderUser(userData: any, numberOfPassengers: any): any {
+  createPassengers(userData: any, numberOfPassengers: any): any {
     const travelers: Passenger[] = [];
 
     for (let i = 1; i <= numberOfPassengers; i++) {

@@ -3,9 +3,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
-import { QueryBuilderOfferService } from '../query-builders/querybuilder-flightoffer.service';
+import { OfferQueryService } from '../query-builders/flightOffer-queryBuilder.service';
 import { ExtractDataService } from '../data-extraction/extract-data.service';
-import { QueryBuilderCreateService } from '../query-builders/querybuilder-createbooking.service';
+import { passengerObjectService } from '../query-builders/passenger-object.service';
 import { BookedFlight, FlightOffer } from '../../../shared/models/displayed-flights.model';
 import { LocalStorageUtils } from '../utilities/local-storage-utils';
 import { ConfirmOfferResponse, FlightOfferRequest, FlightOffers } from '../../../shared/models/flight-offer.model';
@@ -21,13 +21,13 @@ export class FlightApiService {
   
   constructor(
     private http: HttpClient,
-    private queryBuilderOffer: QueryBuilderOfferService,
+    private offerQuery: OfferQueryService,
     private extractData: ExtractDataService,
-    private queryBuilderCreate: QueryBuilderCreateService,
+    private passengerService: passengerObjectService,
   ) { }
 
   getFlights(searchData: FlightOfferRequest): Observable<{ rawResponse: any[], extractedData: { departureFlights: FlightOffer[] } }> {
-    const queryString = this.queryBuilderOffer.queryBuilder(searchData);
+    const queryString = this.offerQuery.queryBuilder(searchData);
     return this.http.get<any[]>(`${this.apiUrl}/results`, {
       params: new HttpParams({ fromString: queryString })
     }).pipe(
@@ -48,7 +48,7 @@ export class FlightApiService {
   createBooking(bookingData: FlightOffers, userData: User): Observable<BookingResponse> {
     const userId = userData.id;
     const numberOfPassengers = bookingData.travelerPricings.length;
-    const travelers = this.queryBuilderCreate.queryBuilderUser(userData, numberOfPassengers);
+    const travelers = this.passengerService.createPassengers(userData, numberOfPassengers);
     
     if (this.userValidation(userData) === false) {
       window.alert('User validation failed, please log in again');

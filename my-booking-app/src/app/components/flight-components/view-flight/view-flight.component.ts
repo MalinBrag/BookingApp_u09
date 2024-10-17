@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FlightOffer } from '../../../shared/models/displayed-flights.model';
 import { ExtractDataService } from '../../../core/services/data-extraction/extract-data.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AirportService } from '../../../core/services/lookup-data/airport.service';
 import { AirlineService } from '../../../core/services/lookup-data/airline.service';
 import { BreakpointService } from '../../../core/services/utilities/breakpoint.service';
@@ -9,7 +9,6 @@ import { CommonModule, NgIf } from '@angular/common';
 import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service';
 import { FlightApiService } from '../../../core/services/api/flight-api.service';
 import { BookingComponent } from "../booking/booking.component";
-import { QueryBuilderCreateService } from '../../../core/services/query-builders/querybuilder-createbooking.service';
 
 @Component({
   selector: 'app-view-flight',
@@ -42,13 +41,11 @@ export class ViewFlightComponent implements OnInit {
   constructor(
     private extractData: ExtractDataService,
     private route: ActivatedRoute,
-    private router: Router,
     private airportService: AirportService,
     private airlineService: AirlineService,
     private breakpoint: BreakpointService,
     private userAuth: UserAuthenticationService,
     private apiService: FlightApiService,
-    private queryBuilderCreate: QueryBuilderCreateService,
   ) {}
 
   ngOnInit(): void {

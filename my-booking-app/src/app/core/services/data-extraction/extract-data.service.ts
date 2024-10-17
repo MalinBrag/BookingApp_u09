@@ -96,16 +96,6 @@ export class ExtractDataService {
     }
   }
 
-  getSelectedFlightByIndex(departureIndex: number, rawResponse: FlightOffers[]) {
-    const selectedFlight: FlightOffers[] = [];
-    
-    if (departureIndex !== null) {
-        selectedFlight.push(rawResponse[departureIndex]);
-    }
-
-    return selectedFlight;
-  }
-
 
 
 }
