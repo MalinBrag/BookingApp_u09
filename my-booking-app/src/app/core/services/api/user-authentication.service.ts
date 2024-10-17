@@ -5,6 +5,7 @@ import { environment } from '../../../../environments/environment';
 import { User, RegisterUser, LoginUser, LoginResponse } from '../../../shared/models/user.model';
 import { LocalStorageUtils } from '../utilities/local-storage-utils';
 import { ErrorHandlingUtils } from '../utilities/error-handling-utils';
+import { TokenExpirationService } from '../utilities/token-expiration.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +14,14 @@ export class UserAuthenticationService {
   private api = environment.api;
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   private isAdminSubject = new BehaviorSubject<boolean>(false);
+  private tokenExpirationTimer: any;
 
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
   isAdmin$ = this.isAdminSubject.asObservable();
 
   constructor(
     private http: HttpClient,
+    private tokenService: TokenExpirationService
   ) { 
     this.checkLoginStatus();
     this.checkAdminStatus();
@@ -57,6 +60,8 @@ export class UserAuthenticationService {
     if (role === 'Admin') {
       this.isAdminSubject.next(true);
     }
+
+    this.tokenService.setTokenExpirationTimer(token);
   }
 
   logoutUser(): void {
@@ -68,6 +73,10 @@ export class UserAuthenticationService {
 
         this.isLoggedInSubject.next(false);
         localStorage.clear();
+
+        if (this.tokenExpirationTimer) {
+          clearTimeout(this.tokenExpirationTimer);
+        }
       }),
       catchError(ErrorHandlingUtils.handleError<void>('logoutUser'))
     ).subscribe();

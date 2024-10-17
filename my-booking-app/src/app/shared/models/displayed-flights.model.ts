@@ -3,11 +3,16 @@ import { Passenger } from './passenger.class';
 
 export interface FlightOffer {
     flightNumber: string;
+    airlineName: string;
     departureDate: string;
     departureDateTime: string;
     arrivalDateTime: string;
-    departureAirport: string;    
+    departureCity: string;
+    departureAirport: string;
+    departureAirportCode: string;
+    arrivalCity: string;    
     arrivalAirport: string;
+    arrivalAirportCode: string;
     duration: string;
     priceTotal: string;
     class: string;
@@ -20,6 +25,7 @@ export interface BookedFlight {
     createdOn: string;
     bookingId: string;
     flightNo: string;
+    airlineName: string;
     depCity: string;
     depAirport: string;
     depTerminal: string;

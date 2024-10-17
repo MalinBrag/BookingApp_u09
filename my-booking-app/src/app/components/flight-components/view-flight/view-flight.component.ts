@@ -57,12 +57,11 @@ export class ViewFlightComponent implements OnInit {
       this.isLoggedIn = isLoggedIn;
   });
 
-    this.extractToLoadFlightData();
-    this.initializeTable();
+    this.extractAndLoadFlightData();
     this.getUserCredentials();
   }
 
-  extractToLoadFlightData(): void {
+  extractAndLoadFlightData(): void {
     this.route.queryParams.subscribe(params => {
       const flightData = params['flight'];
 
@@ -74,32 +73,6 @@ export class ViewFlightComponent implements OnInit {
         console.error('No flight data found');
       }
     });
-  }
-
-  initializeTable(): void {  //sätt dessa under extractdata?
-    if (!this.flight || !this.flight.flightNumber) {
-      console.error('flight or flightnumber is missing');
-    }
-    if (this.flight.departureAirport) {
-      try {
-        this.departureAirport = this.airportService.getCityAirportByCode(this.flight.departureAirport);
-      } catch (error) {
-        console.error('Error getting departure airport:', error);
-      }
-      
-    }
-    if (this.flight.arrivalAirport) {
-       try {
-        this.arrivalAirport = this.airportService.getCityAirportByCode(this.flight.arrivalAirport);
-       } catch (error) {
-        console.error('Error getting arrival airport:', error);
-       }  
-    }
-    try {
-     this.airlineName = this.airlineService.getAirlineByCode(this.flight.flightNumber.split(' ')[0]);
-    } catch (error) {
-      console.error('Error getting airline name:', error);
-    }
   }
 
   onConfirmBooking() {

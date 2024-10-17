@@ -1,44 +1,44 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { NgFor, NgIf } from '@angular/common';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule ,NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-search-form',
   standalone: true,
   imports: [
+    CommonModule,
+    ReactiveFormsModule,
     NgFor,
-    NgIf,
-    FormsModule
+    NgIf
   ],
   templateUrl: './search-form.component.html',
   styleUrl: './search-form.component.scss'
 })
-export class SearchFormComponent {
-
-  constructor() { }
-
-  searchData = {
-    tripType: 'one-way',
-    departureFlight: {
-      departureDate: '',
-      locationFrom: '',
-      locationTo: '',
-      passengers: '1',
-    },
-   /* returnFlight: {
-      returnDate: '',
-      locationFrom: '',
-      locationTo: '',
-      passengers: '1',
-    }*/
-  };
-
+export class SearchFormComponent implements OnInit {
+  searchForm!: FormGroup;
   @Output() formSubmit = new EventEmitter<any>();
-
   locations = ['Paris', 'Rome', 'Berlin', 'New York', 'London', 'Frankfurt', 'Amsterdam', 'Tokyo', 'Dubai'];
 
+  constructor(
+    private fb: FormBuilder,
+  ) { }
+
+  ngOnInit(): void {
+    this.searchForm = this.fb.group({
+      tripType: ['one-way'],
+      departureFlight: this.fb.group({
+        departureDate: ['', Validators.required],
+        locationFrom: ['', Validators.required],
+        locationTo: ['', Validators.required],
+        passengers: ['1', Validators.required],
+      }),
+    });
+  }
+
   onSubmit() {
-    this.formSubmit.emit(this.searchData);
+    if (this.searchForm.valid) {
+      this.formSubmit.emit(this.searchForm.value);
+    }
   }
 
 }

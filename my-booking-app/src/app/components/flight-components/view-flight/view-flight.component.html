@@ -14,27 +14,27 @@
                 </tr>
                 <tr>
                     <th>Airline</th>
-                    <td>{{ airlineName }}</td>
+                    <td>{{ flight.airlineName }}</td>
                 </tr>
                 <tr>
                     <th>Passengers</th>
                     <td>{{ flight.numberOfPassengers }}</td>
                 </tr>
                 <tr>
-                    <th>Departure</th>
+                    <th>Departure On</th>
                     <td>{{ flight.departureDateTime }}</td>
                 </tr>
                 <tr>
-                    <th>Arrival</th>
+                    <th>Arrival On</th>
                     <td>{{ flight.arrivalDateTime }}</td>
                 </tr>
                 <tr>
-                    <th>Departure Airport</th>
-                    <td>{{ departureAirport.city }} - {{ departureAirport.airport }}, {{ flight.departureAirport }}</td>
+                    <th>Departure At</th>
+                    <td>{{ flight.departureCity }} - {{ flight.departureAirport }}, {{ flight.departureAirportCode }}</td>
                 </tr>
                 <tr>
-                    <th>Arrival Airport</th>
-                    <td>{{ arrivalAirport.city }} - {{ arrivalAirport.airport }}, {{ flight.arrivalAirport }}</td>
+                    <th>Arrival At</th>
+                    <td>{{ flight.arrivalCity }} - {{ flight.arrivalAirport }}, {{ flight.arrivalAirportCode }}</td>
                 </tr>
                 <tr>
                     <th>Price</th>
