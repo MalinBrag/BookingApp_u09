@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { QueryBuilderOfferService } from '../query-builders/querybuilder-flightoffer.service';
 import { ExtractDataService } from '../data-extraction/extract-data.service';
@@ -11,6 +11,7 @@ import { LocalStorageUtils } from '../utilities/local-storage-utils';
 import { ConfirmOfferResponse, FlightOfferRequest, FlightOffers } from '../../../shared/models/flight-offer.model';
 import { BookingResponse } from '../../../shared/models/booking.model';
 import { User } from '../../../shared/models/user.model';
+import { ErrorHandlingUtils } from '../utilities/error-handling-utils';
 
 @Injectable({
   providedIn: 'root'
@@ -33,12 +34,15 @@ export class FlightApiService {
       map((response: any[]) => ({
         rawResponse: response,
         extractedData: {  departureFlights: this.extractData.flightOfferData(response)}
-      }))
+      })),
+      catchError(ErrorHandlingUtils.handleError<{ rawResponse: any[], extractedData: { departureFlights: FlightOffer[] } }>('getFlights'))
     );
   }
 
   confirmOffer(selectedOffer: FlightOffers[]): Observable<ConfirmOfferResponse> {
-    return this.http.post<ConfirmOfferResponse>(`${this.apiUrl}/confirm-offer`, selectedOffer);
+    return this.http.post<ConfirmOfferResponse>(`${this.apiUrl}/confirm-offer`, selectedOffer).pipe(
+      catchError(ErrorHandlingUtils.handleError<ConfirmOfferResponse>('confirmOffer'))
+    )
   }
 
   createBooking(bookingData: FlightOffers, userData: User): Observable<BookingResponse> {
@@ -54,7 +58,9 @@ export class FlightApiService {
         userId: userId,
         bookingData: bookingData,
         travelers: travelers, 
-      }); //jag hade map här
+      }).pipe(
+        catchError(ErrorHandlingUtils.handleError<BookingResponse>('createBooking'))
+      );
     }
   }
 
@@ -71,7 +77,9 @@ export class FlightApiService {
 
   getBookings(): Observable<BookedFlight> {
     const userId = LocalStorageUtils.getItem('userId');
-    return this.http.get<BookedFlight>(`${this.apiUrl}/bookings/${userId}`);
+    return this.http.get<BookedFlight>(`${this.apiUrl}/bookings/${userId}`).pipe(
+      catchError(ErrorHandlingUtils.handleError<BookedFlight>('getBookings'))
+    );
   }
 
 }

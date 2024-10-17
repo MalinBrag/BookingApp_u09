@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap, BehaviorSubject } from 'rxjs';
+import { Observable, tap, BehaviorSubject, catchError } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { User, RegisterUser, LoginUser, LoginResponse } from '../../../shared/models/user.model';
 import { LocalStorageUtils } from '../utilities/local-storage-utils';
+import { ErrorHandlingUtils } from '../utilities/error-handling-utils';
 
 @Injectable({
   providedIn: 'root'
@@ -33,13 +34,15 @@ export class UserAuthenticationService {
         if (!this.isAdmin()) {
           this.handleLoginResponse(response);
         }
-      })
+      }),
+      catchError(ErrorHandlingUtils.handleError<LoginResponse>('registerUser'))
     );
   }
 
   signInUser(user: LoginUser): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.api}/user/sign-in`, user).pipe(
-      tap((response: LoginResponse) => this.handleLoginResponse(response))
+      tap((response: LoginResponse) => this.handleLoginResponse(response)),
+      catchError(ErrorHandlingUtils.handleError<LoginResponse>('signInUser'))
     );
   }
 
@@ -65,7 +68,8 @@ export class UserAuthenticationService {
 
         this.isLoggedInSubject.next(false);
         localStorage.clear();
-      })
+      }),
+      catchError(ErrorHandlingUtils.handleError<void>('logoutUser'))
     ).subscribe();
   }
 
@@ -76,7 +80,8 @@ export class UserAuthenticationService {
         if (response) {
           return response;
         }
-      })
+      }),
+      catchError(ErrorHandlingUtils.handleError<any>('getProfile'))
     );
   }
 
