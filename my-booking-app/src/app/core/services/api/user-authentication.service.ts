@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap, BehaviorSubject } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { LoginResponse } from '../../../shared/interfaces/login-response.model';
-import { User } from '../../../shared/interfaces/user.model';
-import { AdminAuthenticationService } from './admin-authentication.service';
+import { User, RegisterUser, LoginUser, LoginResponse } from '../../../shared/models/user.model';
 import { LocalStorageUtils } from '../utilities/local-storage-utils';
 
 @Injectable({
@@ -14,7 +12,6 @@ export class UserAuthenticationService {
   private api = environment.api;
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   private isAdminSubject = new BehaviorSubject<boolean>(false);
-  private isBrowser: boolean;
 
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
   isAdmin$ = this.isAdminSubject.asObservable();
@@ -22,7 +19,6 @@ export class UserAuthenticationService {
   constructor(
     private http: HttpClient,
   ) { 
-    this.isBrowser = typeof window !== 'undefined';
     this.checkLoginStatus();
     this.checkAdminStatus();
   }
@@ -31,8 +27,8 @@ export class UserAuthenticationService {
     return this.isAdminSubject.getValue();
   }
 
-  registerUser(data: User): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.api}/user/register`, data).pipe(
+  registerUser(user: RegisterUser): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.api}/user/register`, user).pipe(
       tap((response: LoginResponse) => {
         if (!this.isAdmin()) {
           this.handleLoginResponse(response);
@@ -41,8 +37,8 @@ export class UserAuthenticationService {
     );
   }
 
-  signInUser(data: User): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.api}/user/sign-in`, data).pipe(
+  signInUser(user: LoginUser): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.api}/user/sign-in`, user).pipe(
       tap((response: LoginResponse) => this.handleLoginResponse(response))
     );
   }
@@ -73,7 +69,7 @@ export class UserAuthenticationService {
     ).subscribe();
   }
 
-  getProfile(): Observable<any> {
+  getProfile(): Observable<User> {
     const token = LocalStorageUtils.getItem<string>('token');
     return this.http.get(`${this.api}/user/profile`).pipe(
       tap((response: any) => {

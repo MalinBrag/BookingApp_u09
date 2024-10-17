@@ -6,8 +6,11 @@ import { environment } from '../../../../environments/environment';
 import { QueryBuilderOfferService } from '../query-builders/querybuilder-flightoffer.service';
 import { ExtractDataService } from '../data-extraction/extract-data.service';
 import { QueryBuilderCreateService } from '../query-builders/querybuilder-createbooking.service';
-import { Flight } from '../../../shared/interfaces/flight.model';
+import { BookedFlight, FlightOffer } from '../../../shared/models/displayed-flights.model';
 import { LocalStorageUtils } from '../utilities/local-storage-utils';
+import { ConfirmOfferResponse, FlightOfferRequest, FlightOffers } from '../../../shared/models/flight-offer.model';
+import { BookingResponse } from '../../../shared/models/booking.model';
+import { User } from '../../../shared/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +25,7 @@ export class FlightApiService {
     private queryBuilderCreate: QueryBuilderCreateService,
   ) { }
 
-  getFlights(searchData: any): Observable<{ rawResponse: any[], extractedData: { departureFlights: Flight[] } }> {
+  getFlights(searchData: FlightOfferRequest): Observable<{ rawResponse: any[], extractedData: { departureFlights: FlightOffer[] } }> {
     const queryString = this.queryBuilderOffer.queryBuilder(searchData);
     return this.http.get<any[]>(`${this.apiUrl}/results`, {
       params: new HttpParams({ fromString: queryString })
@@ -34,11 +37,11 @@ export class FlightApiService {
     );
   }
 
-  confirmOffer(selectedOffer: any[]): Observable<any> {
-    return this.http.post(`${this.apiUrl}/confirm-offer`, selectedOffer);
+  confirmOffer(selectedOffer: FlightOffers[]): Observable<ConfirmOfferResponse> {
+    return this.http.post<ConfirmOfferResponse>(`${this.apiUrl}/confirm-offer`, selectedOffer);
   }
 
-  createBooking(bookingData: any, userData: any): Observable<any> {
+  createBooking(bookingData: FlightOffers, userData: User): Observable<BookingResponse> {
     const userId = userData.id;
     const numberOfPassengers = bookingData.travelerPricings.length;
     const travelers = this.queryBuilderCreate.queryBuilderUser(userData, numberOfPassengers);
@@ -47,19 +50,15 @@ export class FlightApiService {
       window.alert('User validation failed, please log in again');
       throw new Error('User validation failed, please log in again');
     } else {
-      return this.http.post(`${this.apiUrl}/create-booking`, { 
+      return this.http.post<BookingResponse>(`${this.apiUrl}/create-booking`, { 
         userId: userId,
         bookingData: bookingData,
         travelers: travelers, 
-      }).pipe(
-        map((response: any) => ({
-          response: response,
-        }))
-      );
+      }); //jag hade map här
     }
   }
 
-  userValidation(userData: any): boolean {
+  userValidation(userData: User): boolean {
     const storedUserId = LocalStorageUtils.getItem('userId');
     const userId = userData.id;
 
@@ -70,9 +69,9 @@ export class FlightApiService {
     }
   }
 
-  getBookings(): Observable<any> {
+  getBookings(): Observable<BookedFlight> {
     const userId = LocalStorageUtils.getItem('userId');
-    return this.http.get(`${this.apiUrl}/bookings/${userId}`);
+    return this.http.get<BookedFlight>(`${this.apiUrl}/bookings/${userId}`);
   }
 
 }

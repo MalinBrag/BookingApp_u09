@@ -30,10 +30,10 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let flight of departureFlights; let i = index">
-                            <td>{{ flight.departureTime | date:'HH:mm' }}</td>
+                            <td>{{ flight.departureDateTime }}</td>
                             <td>{{ flight.duration }}</td>
                             <td>{{ flight.priceTotal }} SEK</td>
-                            <td>{{ searchData.returnFlight.passengers }}</td>
+                            <td>{{ searchData.departureFlight.passengers }}</td>
                             <td>&#10004;</td>
                             <td>{{ flight.availableSeats }}</td>
                             <td><input type="radio" [value]="i" formControlName="departureFlightIndex"/></td>
@@ -47,7 +47,8 @@
     </div>
 
    
-    <!-- ROUND TRIP -->
+    <!-- ROUND TRIP  not implemented-->
+     <!--
     <div class="round-trip-section" *ngIf="searchData.tripType === 'round-trip' && returnFlights.length > 0">
         <h3>Return - not implemented</h3>
         <div class="search-data">
@@ -81,7 +82,7 @@
                             <td>{{ searchData.departureFlight.passengers }}</td>
                             <td>&#10004;</td>
                             <td>{{ flight.availableSeats }}</td>
-                            <!-- not implemented -->
+                           
                             <td><input type="radio" /></td>
                         </tr>
                     </tbody>
@@ -90,9 +91,10 @@
         </form>
         
     </div>
+     -->
 
     <div class="confirm-btn-section">
-        <button type="btn" (click)="confirmSelection()">Confirm</button>
+        <button type="btn" class="btn" (click)="confirmSelection()">Confirm</button>
     </div>
 </div>
 

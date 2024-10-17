@@ -93,15 +93,7 @@
         @include button;
         height: auto;
         width: auto;
-        padding: 0 0.3rem;
-        //border-color: $color1;
-        //background-color: $color4;
-        //color: $color2;
-    
-        &:hover {
-          //  color: $color3;
-            //cursor: pointer;
-        }
+        padding:  1rem 1.3rem;
     
         @media (min-width: $lg) {
             font-size: 1.2rem;

@@ -25,12 +25,12 @@ export class SearchFormComponent {
       locationTo: '',
       passengers: '1',
     },
-    returnFlight: {
+   /* returnFlight: {
       returnDate: '',
       locationFrom: '',
       locationTo: '',
       passengers: '1',
-    }
+    }*/
   };
 
   @Output() formSubmit = new EventEmitter<any>();

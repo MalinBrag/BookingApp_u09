@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Flight, FlightOffers, BookedFlight } from '../../../shared/interfaces/flight.model';
+import { FlightOffer, BookedFlight } from '../../../shared/models/displayed-flights.model';
 import { AirportService } from '../lookup-data/airport.service';
-import { PassengerData } from '../../../shared/interfaces/user.model';
+import { Passenger } from '../../../shared/models/passenger.class';
+import { FlightOffers } from '../../../shared/models/flight-offer.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,29 +13,27 @@ export class ExtractDataService {
     private airportService: AirportService,
   ) { }
 
-  flightOfferData(response: FlightOffers[]): Flight[] {
-    return response.map((flight: FlightOffers) => ({
-      flightNumber: `${flight.itineraries[0].segments[0].carrierCode} ${flight.itineraries[0].segments[0].number}`,
-      departureTime: flight.itineraries[0].segments[0].departure.at,
-      arrivalTime: flight.itineraries[0].segments[0].arrival.at,
-      departureDate: flight.itineraries[0].segments[0].departure.at.split('T')[0],
-      arrivalDate: flight.itineraries[0].segments[0].arrival.at.split('T')[0],
-      departureAirport: flight.itineraries[0].segments[0].departure.iataCode, 
-      arrivalAirport: flight.itineraries[0].segments[0].arrival.iataCode, 
-      departureTerminal: flight.itineraries[0].segments[0].departure.terminal,
-      arrivalTerminal: flight.itineraries[0].segments[0].arrival.terminal, 
-      duration: this.formatDuration(flight.itineraries[0].segments[0].duration),
-      priceTotal: this.trimPrice(flight.price.grandTotal),
-      priceBase: this.trimPrice(flight.price.base),
-      priceForBag: this.trimPrice(flight.price.additionalServices[1]),
-      class: flight.travelerPricings[0].fareDetailsBySegment[0].brandedFareLabel,
-      priceCurrency: flight.price.currency.toLowerCase(),
-      availableSeats: flight.numberOfBookableSeats,
-      numberOfPassengers: flight.travelerPricings[0].travelerId.length,
-      passengers: `${flight.travelerPricings[0].travelerId} ${flight.travelerPricings[0].travelerType.toLowerCase()}`,
-      
+  flightOfferData(response: FlightOffers[]): FlightOffer[] {
+    return response.map((flight: FlightOffers) => {
+      const segment = flight.itineraries[0].segments[0];
 
-    }));
+      return {
+        flightNumber: `${segment.carrierCode} ${segment.number}`,
+        departureDate: segment.departure.at.split('T')[0],
+        departureDateTime: this.formatDateTime(segment.departure.at),
+        arrivalDateTime: this.formatDateTime(segment.arrival.at),
+        departureAirport: segment.departure.iataCode, 
+        arrivalAirport: segment.arrival.iataCode, 
+        duration: this.formatDuration(segment.duration),
+        priceTotal: this.trimPrice(flight.price.grandTotal),
+        class: flight.travelerPricings[0].fareDetailsBySegment[0].brandedFareLabel,
+        priceCurrency: flight.price.currency.toLowerCase(),
+        availableSeats: flight.numberOfBookableSeats,
+        numberOfPassengers: flight.travelerPricings[0].travelerId.length,
+        passengers: `${flight.travelerPricings[0].travelerId} ${flight.travelerPricings[0].travelerType.toLowerCase()}`,
+      
+      };
+    });
   }
 
   bookedFlightData(response: any): BookedFlight[] {
@@ -56,18 +55,13 @@ export class ExtractDataService {
         duration: this.formatDuration(segment.duration),
         priceTotal: this.trimPrice(flight.price.grandTotal),
         passengersTotal: `${flight.travelerPricings.length} ${flight.travelerPricings[0].travelerType.toLowerCase()}`,
+        passengers: booking.bookingData.travelers.map((passenger: Passenger) => ({
+          id: passenger.id,
+          name: passenger.name,
+          dateOfBirth: passenger.dateOfBirth,
+          documents: passenger.documents[0].documentType.toLowerCase(),
+        })),
       }
-    });
-  }
-
-  bookedPassengerData(response: any): BookedFlight[] {
-    return response.map((booking: any) => {
-      return booking.bookingData.travelers.map((passenger: PassengerData) => ({
-        passengerId: passenger.id,
-        passengerName: passenger.name,
-        passengerBirthDate: passenger.birthDate,
-        documentType: passenger.documents[0].documentType,
-      }));
     });
   }
 

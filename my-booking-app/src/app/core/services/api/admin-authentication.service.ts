@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
-import { User } from '../../../shared/interfaces/user.model';
+import { User } from '../../../shared/models/user.model';
 import { LocalStorageUtils } from '../utilities/local-storage-utils';
 import { ErrorHandlingUtils } from '../utilities/error-handling-utils';
 import { map } from 'rxjs/operators';
@@ -28,7 +28,7 @@ export class AdminAuthenticationService {
   getUser(userId: string): Observable<User> {
     this.checkAdminStatus();
     return this.http.get<User>(`${this.api}/admin/users/${userId}`).pipe(
-      map((user: any) => ({ ...user, id: user._id })),
+      map((user: User) => ({ ...user, id: user._id })),
       catchError(ErrorHandlingUtils.handleError<User>('getUser'))
     );
   }
@@ -36,14 +36,14 @@ export class AdminAuthenticationService {
   getAllUsers(): Observable<User[]> {
     this.checkAdminStatus();
     return this.http.get<User[]>(`${this.api}/admin/users/all`).pipe(
-      map((users: any[]) => users.map(user => ({ ...user, id: user._id}))),
+      map((users: User[]) => users.map(user => ({ ...user, id: user._id}))),
       catchError(ErrorHandlingUtils.handleError<User[]>('getAllUsers', []))
     );
   }
 
-  updateUser(userId: string, updatedData: Partial<User>): Observable<any> {
+  updateUser(userId: string, updatedData: Partial<User>): Observable<User> {
     this.checkAdminStatus();
-    return this.http.put<any>(`${this.api}/admin/edit/${userId}`, updatedData).pipe(
+    return this.http.put<User>(`${this.api}/admin/edit/${userId}`, updatedData).pipe(
       tap(response => console.log(response)),
       catchError(ErrorHandlingUtils.handleError<any>('updateUser', null))
     );  
