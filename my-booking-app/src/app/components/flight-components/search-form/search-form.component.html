@@ -1,6 +1,6 @@
 <form [formGroup]="searchForm" class="form">
 
-    <div class="radio-btn-section">
+    <fieldset class="radio-btn-section" aria-label="Trip type">
 
         <div class="one-way">
             <input type="radio" id="one-way" formControlName="tripType" value="one-way" checked />
@@ -14,13 +14,13 @@
             <label for="round-trip">Round trip - not implemented</label>
         </div>
         
-    </div>
+    </fieldset>
 
     <div formGroupName="departureFlight" class="formgroup">
         <div class="date-section">
             <div class="date-from">
                 <label for="departureDate">Departure date:</label>
-                <input type="date" id="departureDate" formControlName="departureDate" required>
+                <input type="date" id="departureDate" formControlName="departureDate" required aria-required="true">
             </div>
             <!-- NOT IMPLEMENTED-->
             <!--
@@ -42,7 +42,7 @@
 
             <div class="location-from">
                 <label for="locationFrom">From destination</label>
-                <select id="locationFrom" formControlName="locationFrom" required>
+                <select id="locationFrom" formControlName="locationFrom" required aria-required="true">
                     <option value="" disabled>Select</option> 
                     <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
                 </select>
@@ -50,7 +50,7 @@
 
             <div class="location-to">
                 <label for="locationTo">To destination</label>
-                <select id="locationTo" formControlName="locationTo">
+                <select id="locationTo" formControlName="locationTo" required aria-required="true">
                     <option value="" disabled>Select</option> 
                     <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
                 </select>
@@ -59,10 +59,11 @@
 
         <div class="passenger-section">
             <label for="passengers">Passengers</label>
-            <input type="number" id="passengers" formControlName="passengers" required min="1" max="10">
+            <input type="number" id="passengers" formControlName="passengers" required min="1" max="10" aria-required="true" aria-describedby="passengerHelp">
+            <small id="passengerHelp">Enter the number of passengers (1-10)</small>
         </div>
     </div>
 
-    <button type="button" class="submit-btn" (click)="onSubmit()">Check availability</button>
+    <button type="submit" class="submit-btn" (click)="onSubmit()">Check availability</button>
 
 </form>

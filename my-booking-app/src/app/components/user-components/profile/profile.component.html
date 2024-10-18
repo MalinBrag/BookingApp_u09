@@ -6,15 +6,15 @@
         </div>
 
         <div class="buttons">
-            <button class="dashboard-btn" [routerLink]="['/bookings']">My bookings</button>
-            <button class="dashboard-btn">Edit my info</button>
-            <button class="dashboard-btn">My messages</button>
-            <button class="dashboard-btn" (click)="logout()">Log out</button>
+            <button class="dashboard-btn" [routerLink]="['/bookings']" aria-label="View my bookings">My bookings</button>
+            <button class="dashboard-btn" aria-label="Edit my profile information">Edit my info</button>
+            <button class="dashboard-btn" aria-label="View my messages">My messages</button>
+            <button class="dashboard-btn" (click)="logout()" aria-label="Log out">Log out</button>
         </div>
     </div>
 
     <div class="image-container" *ngIf="!isMobile">
-        <img class="img" src="assets/images/inside_plane.jpg" alt="glasses" />
+        <img class="img" src="assets/images/inside_plane.jpg" alt="View from inside a plane showing passengers" />
     </div>
 
 </main>

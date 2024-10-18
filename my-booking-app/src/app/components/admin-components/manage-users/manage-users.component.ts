@@ -25,23 +25,26 @@ export class ManageUsersComponent implements OnInit {
   users: User[] = [];
   userToEdit: User | null = null;
   editUserId: string | null = null;
-  //progress bar
-  isLoading: boolean = true;
+  
+  /**
+   * progress bar not active
+   */
+  /*isLoading: boolean = true;
   progress: number = 0;
-  bufferProgress: number = 100;
+  bufferProgress: number = 100;*/
 
   constructor(
     private adminAuth: AdminAuthenticationService,
   ) { }
 
   ngOnInit(): void {
-    const interval = setInterval(() => {
+  /* const interval = setInterval(() => {
       this.progress += 10;
       if (this.progress >= 100) {
         this.isLoading = false;
         clearInterval(interval);
       }
-    }, 500);
+    }, 500);*/
 
     this.loadUsers();
   }
@@ -50,11 +53,11 @@ export class ManageUsersComponent implements OnInit {
     this.adminAuth.getAllUsers().subscribe({
       next: (users: User[]) => {
         this.users = users;
-        this.isLoading = false;
+        //this.isLoading = false;
       },
       error: (error: any) => {
         window.alert('Error loading users');
-        this.isLoading = false;
+        //this.isLoading = false;
       },
     });
   }

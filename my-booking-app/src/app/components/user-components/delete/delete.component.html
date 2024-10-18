@@ -12,8 +12,8 @@
     </div>
 
     <div class="btn-container">
-        <button class="delete-btn" (click)="onDeleteUser()">Yes, delete</button>
-        <button class="return-btn" [routerLink]="['/manage']">No, return</button>
+        <button class="delete-btn" (click)="onDeleteUser()" [attr.aria-label]="'Delete user ' + (user?.name || '')">Yes, delete</button>
+        <button class="return-btn" [routerLink]="['/manage']" aria-label="Return to manage users page">No, return</button>
     </div>
     
 </main>

@@ -6,56 +6,56 @@
         </div>
 
         <div class="table-wrapper">   
-            <table>
+            <table aria-label="Flight details for selected flight">
 
                 <tr>
-                    <th>Flight Number</th>
+                    <th scope="row">Flight Number</th>
                     <td>{{ flight.flightNumber }}</td>
                 </tr>
                 <tr>
-                    <th>Airline</th>
+                    <th scope="row">Airline</th>
                     <td>{{ flight.airlineName }}</td>
                 </tr>
                 <tr>
-                    <th>Passengers</th>
+                    <th scope="row">Passengers</th>
                     <td>{{ flight.numberOfPassengers }}</td>
                 </tr>
                 <tr>
-                    <th>Departure On</th>
+                    <th scope="row">Departure On</th>
                     <td>{{ flight.departureDateTime }}</td>
                 </tr>
                 <tr>
-                    <th>Arrival On</th>
+                    <th scope="row">Arrival On</th>
                     <td>{{ flight.arrivalDateTime }}</td>
                 </tr>
                 <tr>
-                    <th>Departure At</th>
+                    <th scope="row">Departure At</th>
                     <td>{{ flight.departureCity }} - {{ flight.departureAirport }}, {{ flight.departureAirportCode }}</td>
                 </tr>
                 <tr>
-                    <th>Arrival At</th>
+                    <th scope="row">Arrival At</th>
                     <td>{{ flight.arrivalCity }} - {{ flight.arrivalAirport }}, {{ flight.arrivalAirportCode }}</td>
                 </tr>
                 <tr>
-                    <th>Price</th>
+                    <th scope="row">Price</th>
                     <td>{{ flight.priceTotal }} {{ flight.priceCurrency }}</td>
                 </tr>
                 <tr>
-                    <th>Seats Available</th>
+                    <th scope="row">Seats Available</th>
                     <td>{{ flight.availableSeats }}</td>
                 </tr>
                 <tr>
-                    <th>Flight Class</th>
+                    <th scope="row">Flight Class</th>
                     <td>{{ flight.class }}</td>
                 </tr>
 
             </table>
         </div>
-        <button *ngIf="!bookingSuccessful" class="book-btn" (click)="onConfirmBooking()">Confirm booking</button>
+        <button *ngIf="!bookingSuccessful" type="button" class="book-btn" (click)="onConfirmBooking()" aria-label="Confirm flight booking">Confirm booking</button>
     </div>
 
     <div *ngIf="!isMobile" class="image-container">
-        <img class="img" src="assets/images/airport-inside.jpg" alt="inside airport" />
+        <img class="img" src="assets/images/airport-inside.jpg" alt="Inside an airport terminal with passengers" />
     </div>
 
     <div *ngIf="bookingSuccessful">

@@ -5,7 +5,7 @@ import { environment } from '../../../../environments/environment';
 import { User, RegisterUser, LoginUser, LoginResponse } from '../../../shared/models/user.model';
 import { LocalStorageUtils } from '../utilities/local-storage-utils';
 import { ErrorHandlingUtils } from '../utilities/error-handling-utils';
-import { TokenExpirationService } from '../utilities/token-expiration.service';
+import { TokenExpirationService } from './token-expiration.service';
 
 @Injectable({
   providedIn: 'root'

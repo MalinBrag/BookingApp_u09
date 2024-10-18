@@ -10,6 +10,10 @@
     padding: 0 3rem 1rem 3rem;
     font-weight: 700;
 
+    fieldset {
+        border: none;
+    }
+
     @media (min-width: $lg) {
         font-size: 1.2rem;
         font-weight: 500;
@@ -61,6 +65,11 @@
 .submit-btn {
     align-self: center;
     margin: 1rem 0.5rem;
+
+    small {
+        font-weight: 400; 
+        font-style: italic;
+    }
 }
 
 .submit-btn {
