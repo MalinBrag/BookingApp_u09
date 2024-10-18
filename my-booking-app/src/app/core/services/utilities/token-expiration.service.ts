@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
-import { UserAuthenticationService } from '../api/user-authentication.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TokenExpirationService {
     private tokenExpirationTimer: any;
+    private tokenExpiredSubject = new BehaviorSubject<boolean>(false);
 
-    constructor(
-        private userAuth: UserAuthenticationService
-    ) { }
+    tokenExpired$ = this.tokenExpiredSubject.asObservable();
 
     isTokenExpired(token: string): boolean {
         const decodedToken: any = jwtDecode(token);
@@ -31,7 +30,7 @@ export class TokenExpirationService {
         if (alertTime > 0) {
             this.tokenExpirationTimer = setTimeout(() => {
                 alert('Your session will expire in 5 minutes.');
-                this.userAuth.logoutUser();
+               this.tokenExpiredSubject.next(true);
             }, alertTime);
         }
     }

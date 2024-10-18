@@ -14,7 +14,6 @@ export class UserAuthenticationService {
   private api = environment.api;
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   private isAdminSubject = new BehaviorSubject<boolean>(false);
-  private tokenExpirationTimer: any;
 
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
   isAdmin$ = this.isAdminSubject.asObservable();
@@ -25,6 +24,11 @@ export class UserAuthenticationService {
   ) { 
     this.checkLoginStatus();
     this.checkAdminStatus();
+    this.tokenService.tokenExpired$.subscribe(expired => {
+      if (expired) {
+        this.logoutUser();
+      }
+    });
   }
 
   isAdmin(): boolean {
@@ -73,10 +77,6 @@ export class UserAuthenticationService {
 
         this.isLoggedInSubject.next(false);
         localStorage.clear();
-
-        if (this.tokenExpirationTimer) {
-          clearTimeout(this.tokenExpirationTimer);
-        }
       }),
       catchError(ErrorHandlingUtils.handleError<void>('logoutUser'))
     ).subscribe();
