@@ -1,71 +1,79 @@
 <main class="my-bookings-page">
     <div class="flight-table-wrapper">
-        <table *ngFor="let booking of bookings; let i = index" class="flight-table">
+        <table *ngFor="let booking of bookings; let i = index" class="flight-table" aria-label="Booking details table">
             <thead>
-                <tr class="tr-booking-id" (click)="toggleDetails(i)">
-                    <th class="th-booking-id">Booking ID</th>
+                <tr class="tr-booking-id">
+                    
+                    <th class="th-booking-id">
+                        <button (click)="toggleDetails(i)" [attr.aria-expanded]="showDetails[i]" [attr.aria-controls]="'booking-details-' + i">Booking ID</button>
+                    </th>
+                    
                     <td class="td-booking-id" *ngIf="showDetails[i]">{{ booking.bookingId }}</td>
                 </tr>
             </thead>
-            <tbody *ngIf="showDetails[i]">
+            <tbody *ngIf="showDetails[i]" id="booking-details-{{ i }}">
                 <tr>
-                    <th>Departure</th>
+                    <th scope="row">Departure</th>
                     <td>{{ booking.depDateTime }}</td>
                 </tr>
                 <tr>
-                    <th>From</th>
+                    <th scope="row">From</th>
                     <td>{{ booking.depCity }}</td>
                 </tr>
                 <tr>
-                    <th>Airport and terminal</th>
+                    <th scope="row">Airport and terminal</th>
                     <td>{{ booking.depAirport }} {{ booking.depTerminal }}</td>
                 </tr>
                 <tr>
-                    <th>Destination</th>
+                    <th scope="row">Destination</th>
                     <td>{{ booking.arrCity }}</td>
                 </tr>
                 <tr>
-                    <th>Airport and terminal</th>
+                    <th scope="row">Airport and terminal</th>
                     <td>{{ booking.arrAirport }} {{ booking.arrTerminal }}</td>
                 </tr>
                 <tr>
-                    <th>Flight number</th>
+                    <th scope="row">Flight number</th>
                     <td>{{ booking.flightNo }}</td>
                 </tr>
                 <tr>
-                    <th>Duration</th>
+                    <th scope="row">Airline</th>
+                    <td>{{ booking.airlineName }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Duration</th>
                     <td>{{ booking.duration }}</td>
                 </tr>
                 <tr>
-                    <th>Price</th>
+                    <th scope="row">Price</th>
                     <td>{{ booking.priceTotal }} SEK</td>
                 </tr>
                 <tr>
-                    <th>Passengers</th>
+                    <th scope="row">Passengers</th>
                     <td>{{ booking.passengersTotal }}</td>
                 </tr>
                 <tr>
-                    <th>Booked on</th>
+                    <th scope="row">Booked on</th>
                     <td>{{ booking.createdOn }}</td>
                 </tr>
                 <tr>
                     <td colspan="2" class="passengers-table-wrapper">
                         <!--nested table below-->
-                        <table class="passengers-table" *ngFor="let passenger of booking.passengers">
+                        <table class="passengers-table" *ngFor="let passenger of booking.passengers" [attr.aria-label]="'Passenger details for booking ' + booking.bookingId">
                             <tr >
-                                <th class="passenger-id">Passenger ID {{ passenger.id }}</th>
+                                <th scope="row" class="passenger-id">Passenger ID {{ passenger.id }}</th>
                                 <td></td>
                             </tr>
                             <tr>
-                                <th>Name</th>
+                                <th scope="row">Name</th>
                                 <td>{{ passenger.name.firstName }} {{ passenger.name.lastName }}</td>
                             </tr>
                             <tr>
-                                <th>Birthdate</th>
+                                <th scope="row">Birthdate</th>
                                 <td>{{ passenger.dateOfBirth }}</td>
                             </tr>
                             <tr>
-                                <th>Document</th>
+                                <th scope="row">Document</th>
                                 <td>{{ passenger.documents }}</td>
                             </tr>
                         </table>

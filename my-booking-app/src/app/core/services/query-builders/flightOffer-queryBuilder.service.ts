@@ -4,7 +4,7 @@ import { AirportService } from "../lookup-data/airport.service";
 @Injectable({
   providedIn: 'root'
 })
-export class QueryBuilderOfferService {
+export class OfferQueryService {
 
     constructor(
         private airportService: AirportService,

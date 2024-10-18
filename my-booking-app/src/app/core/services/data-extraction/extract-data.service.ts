@@ -3,6 +3,7 @@ import { FlightOffer, BookedFlight } from '../../../shared/models/displayed-flig
 import { AirportService } from '../lookup-data/airport.service';
 import { Passenger } from '../../../shared/models/passenger.class';
 import { FlightOffers } from '../../../shared/models/flight-offer.model';
+import { AirlineService } from '../lookup-data/airline.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class ExtractDataService {
 
   constructor(
     private airportService: AirportService,
+    private airlineService: AirlineService,
   ) { }
 
   flightOfferData(response: FlightOffers[]): FlightOffer[] {
@@ -19,19 +21,22 @@ export class ExtractDataService {
 
       return {
         flightNumber: `${segment.carrierCode} ${segment.number}`,
+        airlineName: this.airlineService.getAirlineByCode(segment.carrierCode),
         departureDate: segment.departure.at.split('T')[0],
         departureDateTime: this.formatDateTime(segment.departure.at),
         arrivalDateTime: this.formatDateTime(segment.arrival.at),
-        departureAirport: segment.departure.iataCode, 
-        arrivalAirport: segment.arrival.iataCode, 
+        departureCity: this.airportService.getCityAirportByCode(segment.departure.iataCode).city, 
+        departureAirport: this.airportService.getCityAirportByCode(segment.departure.iataCode).airport,
+        departureAirportCode: segment.departure.iataCode,
+        arrivalCity: this.airportService.getCityAirportByCode(segment.arrival.iataCode).city,
+        arrivalAirport: this.airportService.getCityAirportByCode(segment.arrival.iataCode).airport,
+        arrivalAirportCode: segment.arrival.iataCode, 
         duration: this.formatDuration(segment.duration),
         priceTotal: this.trimPrice(flight.price.grandTotal),
-        class: flight.travelerPricings[0].fareDetailsBySegment[0].brandedFareLabel,
-        priceCurrency: flight.price.currency.toLowerCase(),
+        class: flight.travelerPricings[0].fareDetailsBySegment[0].brandedFareLabel.toLowerCase(),
+        priceCurrency: flight.price.currency,
         availableSeats: flight.numberOfBookableSeats,
-        numberOfPassengers: flight.travelerPricings[0].travelerId.length,
-        passengers: `${flight.travelerPricings[0].travelerId} ${flight.travelerPricings[0].travelerType.toLowerCase()}`,
-      
+        numberOfPassengers: flight.travelerPricings.length,
       };
     });
   }
@@ -45,6 +50,7 @@ export class ExtractDataService {
         createdOn: this.formatDateTime(booking.createdAt),
         bookingId: this.formatBookingId(booking.bookingData.id),
         flightNo: `${segment.carrierCode} ${segment.number}`,
+        airlineName: this.airlineService.getAirlineByCode(segment.carrierCode),
         depCity: this.airportService.getCityAirportByCode(segment.departure.iataCode).city,
         depAirport: this.airportService.getCityAirportByCode(segment.departure.iataCode).airport,
         depTerminal: segment.departure.terminal,
@@ -94,16 +100,6 @@ export class ExtractDataService {
     } else {
       return parsedPrice.toFixed(2).replace('.', ',');
     }
-  }
-
-  getSelectedFlightByIndex(departureIndex: number, rawResponse: FlightOffers[]) {
-    const selectedFlight: FlightOffers[] = [];
-    
-    if (departureIndex !== null) {
-        selectedFlight.push(rawResponse[departureIndex]);
-    }
-
-    return selectedFlight;
   }
 
 

@@ -24,7 +24,9 @@ export class AirlineService {
         { name: 'Cathay Pacific', code: 'CX' },
         { name: 'Qantas', code: 'QF' },
         { name: 'Aeroflot', code: 'SU' },
-        { name: 'Finnair', code: 'AY' }
+        { name: 'Finnair', code: 'AY' },
+        { name: 'Alaska Airlines Inc', code: 'AS' },
+        { name: 'JetBlue Airways', code: 'B6' },
     ];
 
     getAirlineByCode(code: string): string {

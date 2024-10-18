@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LandingPageComponent } from '../../landing-page/landing-page.component';
 import { FlightApiService } from '../../../core/services/api/flight-api.service';
 import { FlightOffer } from '../../../shared/models/displayed-flights.model';
-// ta bort denna --- import { ExtendedDatesService } from '../../core/services/extended-dates.service';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ExtractDataService } from '../../../core/services/data-extraction/extract-data.service';
 import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service';
 import { Router } from '@angular/router';
 import { FlightOfferRequest, FlightOffers } from '../../../shared/models/flight-offer.model';
@@ -26,7 +24,6 @@ export class FlightListComponent implements OnInit, OnChanges {
   @Input() searchData!: FlightOfferRequest;
   
   departureFlights: FlightOffer[] = [];
- //returnFlights: Flight[] = [];
   rawResponse: any;
 
   flightSelectionForm!: FormGroup;
@@ -34,7 +31,6 @@ export class FlightListComponent implements OnInit, OnChanges {
   constructor(
     private apiService: FlightApiService,
     private fb: FormBuilder,
-    private extractData:  ExtractDataService,
     private userAuth: UserAuthenticationService,
     private router: Router
   ) { }
@@ -76,7 +72,7 @@ export class FlightListComponent implements OnInit, OnChanges {
     }
 
     const departureFlightIndex = this.flightSelectionForm.get('departureFlightIndex')?.value;
-    const selectedRawFlight = this.extractData.getSelectedFlightByIndex(departureFlightIndex, this.rawResponse);
+    const selectedRawFlight = this.getSelectedFlightByIndex(departureFlightIndex, this.rawResponse);
     
     if (!this.isLoggedIn) {  //kan jag redirecta tillbaks hit efter inlogg/register?
       window.alert('Please log in to proceed');
@@ -99,6 +95,16 @@ export class FlightListComponent implements OnInit, OnChanges {
   }
   const flightData = JSON.stringify(selectedFlight);
     this.router.navigate(['/view-flight'], { queryParams: { flight: encodeURIComponent(flightData) } });
+  }
+
+  getSelectedFlightByIndex(departureIndex: number, rawResponse: FlightOffers[]) {
+    const selectedFlight: FlightOffers[] = [];
+    
+    if (departureIndex !== null) {
+        selectedFlight.push(rawResponse[departureIndex]);
+    }
+
+    return selectedFlight;
   }
 
 }

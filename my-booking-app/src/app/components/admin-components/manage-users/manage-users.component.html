@@ -3,10 +3,6 @@
         <h1 class="title">{{ title }}</h1>
     </div>
 
-    <div *ngIf="isLoading" class="loading">
-        <mat-progress-bar mode="buffer" [value]="progress" [bufferValue]="bufferProgress"></mat-progress-bar>
-    </div>
-
     <div class="users-table">
         <table>
             <thead>
@@ -25,8 +21,8 @@
                     <td>{{ user.email }}</td>
                     <td>{{ user.phone }}</td>
                     <td>{{ user.role }}</td>
-                    <td><button class="edit-btn" [routerLink]="['/edit', user.id]">Edit</button></td>
-                    <td><button class="delete-btn" [routerLink]="['/delete', user.id]">Delete</button></td>
+                    <td><button class="edit-btn" [routerLink]="['/edit', user.id]" aria-label="Edit user">Edit</button></td>
+                    <td><button class="delete-btn" [routerLink]="['/delete', user.id]" aria-label="Delete user">Delete</button></td>
                 </tr>
             </tbody>
         </table>

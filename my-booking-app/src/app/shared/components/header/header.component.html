@@ -1,74 +1,74 @@
 <header class="header">
     <div class="mob-menu" *ngIf="isMobile">
-        <button class="btn-icon">
-            <i class="fa-solid fa-bars" (click)="toggleDropdown()"></i>
+        <button class="btn-icon" aria-label="Toggle menu" (click)="toggleDropdown()">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
         </button>
 
-        <div class="dropdown-menu" *ngIf="dropdownOpen">
+        <div class="dropdown-menu" *ngIf="dropdownOpen" role="menu" aria-expanded="true">
 
             <a class="mob-menu-item"
             *ngIf="!isLoggedIn"
             [ngClass]="{ 'guest-item': !isLoggedIn }"
-            (click)="signInUser()">Sign In</a>
+            (click)="signInUser()" role="menuitem" aria-label="Sign in">Sign In</a>
 
             <a class="mob-menu-item"
             *ngIf="!isLoggedIn"
             [ngClass]="{ 'guest-item': !isLoggedIn }"
-            (click)="registerUser()">Register</a>
+            (click)="registerUser()" role="menuitem" aria-label="Register as user">Register</a>
 
             <a class="mob-menu-item"
             *ngIf="isLoggedIn"
             [ngClass]="{ 'user-item': isLoggedIn }"
-            (click)="getMyPages()">My Pages</a>
+            (click)="getMyPages()" role="menuitem" aria-label="View my pages">My Pages</a>
 
             <a class="mob-menu-item"
             *ngIf="isLoggedIn && isAdmin"
             [ngClass]="{ 'user-item': isLoggedIn && isAdmin }"
-            (click)="getAdminDashboard()">Dashboard Admin</a>
+            (click)="getAdminDashboard()" role="menuitem" aria-label="View admin dashboard">Dashboard Admin</a>
 
             <a class="mob-menu-item"
             *ngIf="isLoggedIn"
             [ngClass]="{ 'user-item': isLoggedIn }"
-            (click)="logoutUser()">Log Out</a>
+            (click)="logoutUser()" role="menuitem" aria-label="Log out">Log Out</a>
 
-            <a class="mob-menu-item" href="#">FAQ</a>
+            <a class="mob-menu-item" href="#" role="menuitem">FAQ</a>
             <!--lägg till funktion (click)-->
 
         </div>
     </div>
 
     <div class="title-container">
-        <a [routerLink]="['']">
+        <a [routerLink]="['']" aria-label="Return to front page">
             <h1 class="main-title">{{ title }}</h1>
         </a>
     </div>
 
-    <nav class="navbar" *ngIf="!isMobile">
+    <nav class="navbar" *ngIf="!isMobile" aria-label="Main navigation">
 
         <a class="desk-menu-item"
         *ngIf="!isLoggedIn"
         [ngClass]="{ 'guest-item': !isLoggedIn }"
-        [routerLink]="['/sign-in']">Sign In</a>
+        [routerLink]="['/sign-in']" aria-label="Sign in">Sign In</a>
 
         <a class="desk-menu-item"
         *ngIf="!isLoggedIn"
         [ngClass]="{ 'guest-item': !isLoggedIn }"
-        [routerLink]="['/register']">Register</a>
+        [routerLink]="['/register']" aria-label="Register as user">Register</a>
 
         <a class="desk-menu-item"
         *ngIf="isLoggedIn"
         [ngClass]="{ 'user-item': isLoggedIn }"
-        (click)="getMyPages()">My Pages</a>
+        (click)="getMyPages()" aria-label="View my pages">My Pages</a>
 
         <a class="desk-menu-item"
         *ngIf="isLoggedIn && isAdmin"
         [ngClass]="{ 'user-item': isLoggedIn && isAdmin }"
-        [routerLink]="['/dashboard']">Dashboard Admin</a>
+        (click)="getAdminDashboard()" aria-label="View admin dashboard">Dashboard Admin</a>
 
         <a class="desk-menu-item"
         *ngIf="isLoggedIn"
         [ngClass]="{ 'user-item': isLoggedIn }"
-        (click)="logoutUser()">Log Out</a>
+        (click)="logoutUser()" aria-label="Log out">Log Out</a>
 
         <a class="desk-menu-item" href="#">FAQ</a>
 

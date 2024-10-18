@@ -1,7 +1,7 @@
 <div class="flight-list">
 
     <!-- ONE WAY -->
-    <div class="one-way-section">
+    <section class="one-way-section">
         <h3>Departure</h3>
         <div class="search-data" >
             
@@ -16,7 +16,7 @@
         <form [formGroup]="flightSelectionForm">
         
             <div class="flights-table">
-                <table>
+                <table aria-label="Flight options for departure">
                     <thead>
                         <tr>
                             <th>Dep Time</th>
@@ -25,7 +25,7 @@
                             <th>Passengers</th>
                             <th>Direct</th>
                             <th>Seats left</th>
-                            <th>Select</th>
+                            <th aria-label="Select flight in this column">Select</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,9 +34,9 @@
                             <td>{{ flight.duration }}</td>
                             <td>{{ flight.priceTotal }} SEK</td>
                             <td>{{ searchData.departureFlight.passengers }}</td>
-                            <td>&#10004;</td>
+                            <td aria-label="Direct flight">&#10004;</td>
                             <td>{{ flight.availableSeats }}</td>
-                            <td><input type="radio" [value]="i" formControlName="departureFlightIndex"/></td>
+                            <td><input type="radio" [id]="'depdepartureFlight' + i" [value]="i" formControlName="departureFlightIndex"/></td>
                         </tr>
                     </tbody>
                 </table>
@@ -44,7 +44,7 @@
             </div>
         </form>
 
-    </div>
+    </section>
 
    
     <!-- ROUND TRIP  not implemented-->
@@ -94,7 +94,7 @@
      -->
 
     <div class="confirm-btn-section">
-        <button type="btn" class="btn" (click)="confirmSelection()">Confirm</button>
+        <button type="submit" class="btn" (click)="confirmSelection()">Select</button>
     </div>
 </div>
 
