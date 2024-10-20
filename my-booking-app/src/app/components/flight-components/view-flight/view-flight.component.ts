@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FlightOffer } from '../../../shared/models/displayed-flights.model';
 import { ExtractDataService } from '../../../core/services/data-extraction/extract-data.service';
 import { ActivatedRoute } from '@angular/router';
-import { AirportService } from '../../../core/services/lookup-data/airport.service';
-import { AirlineService } from '../../../core/services/lookup-data/airline.service';
 import { BreakpointService } from '../../../core/services/utilities/breakpoint.service';
 import { CommonModule, NgIf } from '@angular/common';
 import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service';
 import { FlightApiService } from '../../../core/services/api/flight-api.service';
 import { BookingComponent } from "../booking/booking.component";
+import { User } from '../../../shared/models/user.model';
+import { FlightOffers } from '../../../shared/models/flight-offer.model';
+import { BookingResponse } from '../../../shared/models/booking.model';
 
 @Component({
   selector: 'app-view-flight',
@@ -29,20 +30,13 @@ export class ViewFlightComponent implements OnInit {
 
   //for flight data
   flight!: FlightOffer;
-  rawFlightData: any;
-  departureAirport!: { city: string, airport: string };
-  arrivalAirport!: { city: string, airport: string };
-  airlineName!: string;
-  departureTime!: Date;
-  arrivalTime!: Date;
+  rawFlightData: FlightOffers[] = [];
   bookingSuccessful: boolean = false;
-  userCredentials: any;
-
+  userCredentials!: User;
+  
   constructor(
     private extractData: ExtractDataService,
     private route: ActivatedRoute,
-    private airportService: AirportService,
-    private airlineService: AirlineService,
     private breakpoint: BreakpointService,
     private userAuth: UserAuthenticationService,
     private apiService: FlightApiService,
@@ -76,9 +70,10 @@ export class ViewFlightComponent implements OnInit {
   }
 
   onConfirmBooking() {
-    return this.apiService.createBooking(this.rawFlightData[0], this.userCredentials).subscribe({
-      next: (response: any) => {
-        if (response && response.bookingId) {
+    const selectedOffer = this.rawFlightData[0];
+    return this.apiService.createBooking(selectedOffer, this.userCredentials).subscribe({
+      next: (response: BookingResponse) => {
+        if (response && response.id) {
           this.bookingSuccessful = true;
           window.alert('Booking successful!');
         } else {

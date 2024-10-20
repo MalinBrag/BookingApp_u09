@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AirportService } from "../lookup-data/airport.service";
+import { ApiFormatFlightSearch, FlightOfferRequest } from "../../../shared/models/flight-offer.model";
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,8 @@ export class OfferQueryService {
         private airportService: AirportService,
     ) {}
 
-    queryBuilder(searchData: any): string {
-        const queryParams: any = {
+    queryBuilder(searchData: FlightOfferRequest): string {
+        const queryParams: ApiFormatFlightSearch = { 
             originLocationCode: this.cityConverter(searchData.departureFlight.locationFrom),
             destinationLocationCode: this.cityConverter(searchData.departureFlight.locationTo),
             departureDate: searchData.departureFlight.departureDate,
@@ -21,16 +22,18 @@ export class OfferQueryService {
             max: 1,
         };
 
-        if (searchData.returnFlight && searchData.returnFlight.returnDate) {
+        /** round trip not implemented */
+       /* if (searchData.returnFlight && searchData.returnFlight.returnDate) {
             queryParams.returnDate = searchData.returnFlight.returnDate;
-        }
+        } */
 
         return this.queryStringBuilder(queryParams);
     }
 
-    queryStringBuilder(queryParams: any): string {
+    queryStringBuilder(queryParams: ApiFormatFlightSearch): string {
         return Object.keys(queryParams)
-            .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(queryParams[key])}`)
+            .map((key) => 
+                `${encodeURIComponent(key)}=${encodeURIComponent(queryParams[key as keyof ApiFormatFlightSearch])}`)
             .join('&');
     }
 

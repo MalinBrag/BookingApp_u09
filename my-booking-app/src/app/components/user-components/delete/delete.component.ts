@@ -47,14 +47,16 @@ export class DeleteComponent implements OnInit {
   onDeleteUser() {
     if (this.user && this.user.id) {
       this.adminAuth.deleteUser(this.user.id).subscribe({
-        next: (response: any) => {
-          if (response.error) {
-            window.alert(response.error);
+        next: (response: string) => { 
+          if (!response) {
+            window.alert('An error occurred while deleting user');
           } else {
+            window.alert('User successfully deleted');
             this.router.navigate(['/manage']);
           }
         },
-        error: (error: any) => {
+        error: (error) => {
+          window.alert('An error occurred while deleting user');
           console.error(error);
         }
       })

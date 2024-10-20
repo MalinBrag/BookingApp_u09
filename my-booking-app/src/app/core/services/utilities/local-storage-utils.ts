@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 export class LocalStorageUtils {
     constructor() { }
 
-    static setItem(key: string, value: any): void {
+    static setItem(key: string, value: string): void {
         if (typeof window !== 'undefined') {
             const stringValue = typeof value === 'string' ? value : JSON.stringify(value);
             localStorage.setItem(key, stringValue);

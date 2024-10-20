@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink, NavigationEnd } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule, NgIf, NgClass } from '@angular/common';
 import { BreakpointService } from '../../../core/services/utilities/breakpoint.service';
 import { DialogFrameService } from '../../../core/services/utilities/dialogframe.service';
@@ -84,11 +84,11 @@ export class HeaderComponent implements OnInit {
   getMyPages() {
     if (this.isLoggedIn) {
       this.userAuth.getProfile().subscribe({
-        next: (response: any) => {
+        next: () => {
           this.router.navigate(['/profile']);
           this.dropdownOpen = false;
         },
-        error: (error: any) => {
+        error: () => {
           window.alert('Error getting profile');
         }
       });

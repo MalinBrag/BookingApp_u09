@@ -10,9 +10,8 @@
         <app-search-form (formSubmit)="handleFormSubmit($event)"></app-search-form>
     </div>
 
-<!--ändra nedan till om INTE isformdataempty-->
     <div class="flight-list" *ngIf="!isFormDataEmpty()">
-        <app-flight-list [searchData]="recievedFormData"></app-flight-list>
+        <app-flight-list *ngIf="recievedFormData" [searchData]="recievedFormData"></app-flight-list>
     </div>
     
 </main>

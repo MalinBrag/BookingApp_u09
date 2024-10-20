@@ -29,4 +29,14 @@ export interface LoginResponse {
     role: string;
 }
 
+export interface EditUser {
+    userId: string;
+    user: User;
+}
+
+export interface RequiredUserData {
+    name: string;
+    email: string;
+    phone: string;
+}
 

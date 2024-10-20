@@ -83,14 +83,11 @@ export class UserAuthenticationService {
   }
 
   getProfile(): Observable<User> {
-    const token = LocalStorageUtils.getItem<string>('token');
-    return this.http.get(`${this.api}/user/profile`).pipe(
-      tap((response: any) => {
-        if (response) {
-          return response;
-        }
+    return this.http.get<User>(`${this.api}/user/profile`).pipe(
+      tap((response) => {
+        return response || {};
       }),
-      catchError(ErrorHandlingUtils.handleError<any>('getProfile'))
+      catchError(ErrorHandlingUtils.handleError<User>('getProfile'))
     );
   }
 

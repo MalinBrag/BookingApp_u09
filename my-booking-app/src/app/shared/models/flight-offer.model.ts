@@ -1,13 +1,23 @@
 export interface FlightOfferRequest {
-    departureFlight: FlightSearch;
     tripType: string;
+    departureFlight: UserFormatFlightSearch;
 }
 
-export interface FlightSearch {
+export interface UserFormatFlightSearch {
     departureDate: string;
     locationFrom: string;
     locationTo: string;
     passengers: string;
+}
+
+export interface ApiFormatFlightSearch {
+    originLocationCode: string;
+    destinationLocationCode: string;
+    departureDate: string;
+    adults: string;
+    nonStop: string;
+    currencyCode: string;
+    max: number;
 }
 
 export interface ConfirmOfferResponse {
@@ -23,10 +33,23 @@ export interface BookingRequirements {
 //jag skickar samma till confirmOffer, som objekt
 export interface FlightOffers {
     id: string;
+    instantTicketingRequired?: boolean;
+    isUpsellOffer?: boolean;
     itineraries: Itinerary[];
+    lastTicketingDate?: string;
+    lastTicketingDateTime?: string;
+    nonHomogeneous?: boolean;
     numberOfBookableSeats: number;
+    oneWay?: boolean;
     price: Price; 
+    PricingOptions?: {
+        fareType?: string[];
+        includedCheckedBagsOnly?: boolean;
+    }
+    source?: string;
     travelerPricings: TravelerPricing[];
+    type?: string;
+    validatingAirlineCodes?: string[];
 }
 
 export interface Price {

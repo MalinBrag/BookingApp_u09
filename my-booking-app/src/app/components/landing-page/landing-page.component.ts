@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SearchFormComponent } from '../flight-components/search-form/search-form.component'; 
 import { CommonModule, NgIf } from '@angular/common';
 import { FlightListComponent } from '../flight-components/flight-list/flight-list.component';
+import { FlightOfferRequest } from '../../shared/models/flight-offer.model';
 
 @Component({
   selector: 'app-landing-page',
@@ -17,20 +18,14 @@ import { FlightListComponent } from '../flight-components/flight-list/flight-lis
 })
 export class LandingPageComponent {
   subtitle = 'Welcome to My Booking App';
-  recievedFormData: any = {};
+  recievedFormData: FlightOfferRequest | null = null;
 
-  handleFormSubmit(event: any) {
+  handleFormSubmit(event: FlightOfferRequest) {
     this.recievedFormData = { ...event };
   }
 
   isFormDataEmpty(): boolean {
-    return Object.keys(this.recievedFormData).length === 0;
-    
+    return this.recievedFormData === null;
   }
-
-
-
-
-
 
 }

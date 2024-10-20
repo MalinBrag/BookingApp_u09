@@ -1,4 +1,5 @@
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
+import { CustomJwtPayload } from '../types/custom-jwt.payload';
 import { Request, Response, NextFunction } from 'express';
 
 export const verifyAdminToken = (req: Request, res: Response, next: NextFunction) => {
@@ -11,14 +12,15 @@ export const verifyAdminToken = (req: Request, res: Response, next: NextFunction
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
+        const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as CustomJwtPayload;
         if (decoded.role !== 'Admin') {
             res.status(401).json({ message: 'Unauthorized: Not an admin' });
             return;
         }
-        (req as any).user = decoded;
+        req.user = decoded;
         next();
-    } catch (error) {
+    } catch (error) {  
+        console.error('Token verification error: ', error);
         res.status(401).json({ message: 'Invalid or expired token' });
         return;
     }

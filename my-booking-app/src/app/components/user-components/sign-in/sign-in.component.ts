@@ -5,6 +5,7 @@ import { UserFormComponent } from '../user-form/user-form.component';
 import { UserAuthenticationService } from '../../../core/services/api/user-authentication.service';
 import { BreakpointService } from '../../../core/services/utilities/breakpoint.service';
 import { FormUtils } from '../../../core/services/utilities/form-utils';
+import { LoginUser, LoginResponse } from '../../../shared/models/user.model';
 
 @Component({
   selector: 'app-sign-in',
@@ -36,10 +37,10 @@ export class SignInComponent implements OnInit {
     })
   }
 
-  onSubmitSignIn(data: any) {
+  onSubmitSignIn(data: LoginUser) {
     this.userAuth.signInUser(data).subscribe(
-      (response: any) => {
-        if (response.error) {
+      (response: LoginResponse) => {
+        if (response && 'error' in response) {
           window.alert(response.error);
         } else {
           this.router.navigate(['']);

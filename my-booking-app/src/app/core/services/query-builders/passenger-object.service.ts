@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Passenger } from "../../../shared/models/passenger.class";
+import { RequiredUserData } from "../../../shared/models/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class passengerObjectService {
 
   constructor() {}
 
-  createPassengers(userData: any, numberOfPassengers: any): any {
+  createPassengers(userData: RequiredUserData, numberOfPassengers: number): Passenger[] { 
     const travelers: Passenger[] = [];
 
     for (let i = 1; i <= numberOfPassengers; i++) {

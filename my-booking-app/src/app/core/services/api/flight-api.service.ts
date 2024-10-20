@@ -6,11 +6,11 @@ import { environment } from '../../../../environments/environment';
 import { OfferQueryService } from '../query-builders/flightOffer-queryBuilder.service';
 import { ExtractDataService } from '../data-extraction/extract-data.service';
 import { passengerObjectService } from '../query-builders/passenger-object.service';
-import { BookedFlight, FlightOffer } from '../../../shared/models/displayed-flights.model';
+import { FlightOffer } from '../../../shared/models/displayed-flights.model';
 import { LocalStorageUtils } from '../utilities/local-storage-utils';
 import { ConfirmOfferResponse, FlightOfferRequest, FlightOffers } from '../../../shared/models/flight-offer.model';
-import { BookingResponse } from '../../../shared/models/booking.model';
-import { User } from '../../../shared/models/user.model';
+import { BookingResponse, FetchBookings } from '../../../shared/models/booking.model';
+import { RequiredUserData, User } from '../../../shared/models/user.model';
 import { ErrorHandlingUtils } from '../utilities/error-handling-utils';
 
 @Injectable({
@@ -26,16 +26,16 @@ export class FlightApiService {
     private passengerService: passengerObjectService,
   ) { }
 
-  getFlights(searchData: FlightOfferRequest): Observable<{ rawResponse: any[], extractedData: { departureFlights: FlightOffer[] } }> {
+  getFlights(searchData: FlightOfferRequest): Observable<{ rawResponse: FlightOffers[], extractedData: { departureFlights: FlightOffer[] } }> {
     const queryString = this.offerQuery.queryBuilder(searchData);
-    return this.http.get<any[]>(`${this.apiUrl}/results`, {
+    return this.http.get<FlightOffers[]>(`${this.apiUrl}/results`, {
       params: new HttpParams({ fromString: queryString })
     }).pipe(
-      map((response: any[]) => ({
+      map((response: FlightOffers[]) => ({
         rawResponse: response,
         extractedData: {  departureFlights: this.extractData.flightOfferData(response)}
       })),
-      catchError(ErrorHandlingUtils.handleError<{ rawResponse: any[], extractedData: { departureFlights: FlightOffer[] } }>('getFlights'))
+      catchError(ErrorHandlingUtils.handleError<{ rawResponse: FlightOffers[], extractedData: { departureFlights: FlightOffer[] } }>('getFlights'))
     );
   }
 
@@ -47,20 +47,29 @@ export class FlightApiService {
 
   createBooking(bookingData: FlightOffers, userData: User): Observable<BookingResponse> {
     const userId = userData.id;
+    console.log(userData);
     const numberOfPassengers = bookingData.travelerPricings.length;
-    const travelers = this.passengerService.createPassengers(userData, numberOfPassengers);
+    const requiredUserData: RequiredUserData = {
+      name: userData.name || '',
+      email: userData.email || '',
+      phone: userData.phone || '',
+    };
+
+    const travelers = this.passengerService.createPassengers(requiredUserData, numberOfPassengers);
     
     if (this.userValidation(userData) === false) {
       window.alert('User validation failed, please log in again');
       throw new Error('User validation failed, please log in again');
     } else {
-      return this.http.post<BookingResponse>(`${this.apiUrl}/create-booking`, { 
+      const result = this.http.post<BookingResponse>(`${this.apiUrl}/create-booking`, { 
         userId: userId,
         bookingData: bookingData,
         travelers: travelers, 
       }).pipe(
         catchError(ErrorHandlingUtils.handleError<BookingResponse>('createBooking'))
       );
+      console.log('i api', result);
+      return result;
     }
   }
 
@@ -75,10 +84,10 @@ export class FlightApiService {
     }
   }
 
-  getBookings(): Observable<BookedFlight> {
+  getBookings(): Observable<FetchBookings[]> {
     const userId = LocalStorageUtils.getItem('userId');
-    return this.http.get<BookedFlight>(`${this.apiUrl}/bookings/${userId}`).pipe(
-      catchError(ErrorHandlingUtils.handleError<BookedFlight>('getBookings'))
+    return this.http.get<FetchBookings[]>(`${this.apiUrl}/bookings/${userId}`).pipe(
+      catchError(ErrorHandlingUtils.handleError<FetchBookings[]>('getBookings', []))
     );
   }
 
