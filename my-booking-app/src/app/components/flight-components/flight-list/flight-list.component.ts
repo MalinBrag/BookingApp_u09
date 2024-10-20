@@ -24,7 +24,7 @@ export class FlightListComponent implements OnInit, OnChanges {
   @Input() searchData!: FlightOfferRequest;
   
   departureFlights: FlightOffer[] = [];
-  rawResponse: any;
+  rawResponse: FlightOffers[] = [];
 
   flightSelectionForm!: FormGroup;
 
@@ -58,11 +58,10 @@ export class FlightListComponent implements OnInit, OnChanges {
 
   loadFlights(data: FlightOfferRequest): void {
     this.apiService.getFlights(data).subscribe(
-      (flights: { rawResponse: any[], extractedData: { departureFlights: FlightOffer[] } }) => {
+      (flights: { rawResponse: FlightOffers[], extractedData: { departureFlights: FlightOffer[] } }) => {
       this.departureFlights = flights.extractedData.departureFlights;
-      this.rawResponse = flights.rawResponse;
+      this.rawResponse = flights.rawResponse; 
     });
-    
   }
 
   confirmSelection(): void {
@@ -74,11 +73,11 @@ export class FlightListComponent implements OnInit, OnChanges {
     const departureFlightIndex = this.flightSelectionForm.get('departureFlightIndex')?.value;
     const selectedRawFlight = this.getSelectedFlightByIndex(departureFlightIndex, this.rawResponse);
     
-    if (!this.isLoggedIn) {  //kan jag redirecta tillbaks hit efter inlogg/register?
+    if (!this.isLoggedIn) {  
       window.alert('Please log in to proceed');
     } else {
       this.apiService.confirmOffer(selectedRawFlight).subscribe({
-        next: (response: any) => {
+        next: () => {
           console.log('Offer confirmed');
         },
         error: (error) => {

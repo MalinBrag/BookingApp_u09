@@ -5,6 +5,7 @@ import { UserAuthenticationService } from '../../../core/services/api/user-authe
 import { FormUtils } from '../../../core/services/utilities/form-utils';
 import { CommonModule, NgIf } from '@angular/common';
 import { BreakpointService } from '../../../core/services/utilities/breakpoint.service';
+import { RegisterUser, LoginResponse } from '../../../shared/models/user.model';
 
 @Component({
   selector: 'app-register',
@@ -43,10 +44,10 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onSubmitRegister(data: any) {
+  onSubmitRegister(data: RegisterUser): void {
     this.userAuth.registerUser(data).subscribe(
-      (response: any) => {
-        if (response.error) {
+      (response: LoginResponse) => {
+        if (response && 'error' in response) {
           window.alert(response.error);
         } else {
           this.router.navigate(['']);

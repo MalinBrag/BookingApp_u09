@@ -13,6 +13,18 @@ export interface BookingData {
     flightOffers: FlightOffers[];
 }
 
+export interface FetchBookings {
+    bookingData: {
+        flightOffers: FlightOffers[];
+        travelers: Passenger[];
+        id: string;
+        type: string;
+    }
+    createdAt: string;
+    userId: string;
+    _id?: string;
+}
+
 
 
 

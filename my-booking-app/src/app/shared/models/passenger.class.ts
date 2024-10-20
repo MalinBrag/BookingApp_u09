@@ -1,3 +1,5 @@
+import { RequiredUserData } from "./user.model";
+
 export class Passenger {
     id: string;
     dateOfBirth: string = '1990-01-01';
@@ -20,7 +22,7 @@ export class Passenger {
       holder: true
     }];
   
-    constructor(id: string, userData?: any) {
+    constructor(id: string, userData?: RequiredUserData) {
       this.id = id;
       if (userData) {
         this.name.firstName = userData.name;

@@ -39,8 +39,8 @@ export class ManageUsersComponent implements OnInit {
       next: (users: User[]) => {
         this.users = users;
       },
-      error: (error: any) => {
-        window.alert('Error loading users');
+      error: (error) => {
+        window.alert('Error loading users: ' + error);
       },
     });
   }

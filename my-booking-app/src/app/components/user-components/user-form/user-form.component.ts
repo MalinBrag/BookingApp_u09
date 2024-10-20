@@ -22,7 +22,7 @@ import { User } from '../../../shared/models/user.model';
 export class UserFormComponent implements OnInit, OnChanges {
   @Input() userData: User | null = null;
   @Input() fields: string[] = [];
-  @Output() formSubmit = new EventEmitter<any>();
+  @Output() formSubmit = new EventEmitter<{ userId?:string, user: User } | User> (); 
   form!: FormGroup;
   isMobile: boolean = false;
   title: string = '';
@@ -76,9 +76,9 @@ export class UserFormComponent implements OnInit, OnChanges {
   }
 
   initializeForm(): void {
-    const formFields: { [key : string]: any } = {};
+    const formFields: { [key : string]: [string, ValidatorFn[]] } = {};
     this.fields.forEach(field => {
-      formFields[field] = ['', Validators.required];
+      formFields[field] = ['', [Validators.required]];
     });
     this.form = this.fb.group(formFields);
     
@@ -88,7 +88,7 @@ export class UserFormComponent implements OnInit, OnChanges {
   }
 
   passwordMatchValidator(): ValidatorFn {
-    return(control: AbstractControl): { [key: string]: any } | null => {
+    return(control: AbstractControl): null | { [key: string]: boolean } => { 
       const password = control.get('password');
       const confirmPassword = control.get('password_confirmation');
       if (password && confirmPassword && password.value !== confirmPassword.value) {

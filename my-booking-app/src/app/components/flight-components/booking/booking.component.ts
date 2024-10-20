@@ -4,6 +4,7 @@ import { FlightApiService } from '../../../core/services/api/flight-api.service'
 import { ExtractDataService } from '../../../core/services/data-extraction/extract-data.service';
 import { BookedFlight } from '../../../shared/models/displayed-flights.model';
 import { Passenger } from '../../../shared/models/passenger.class';
+import { FetchBookings } from '../../../shared/models/booking.model';
 
 @Component({
   selector: 'app-booking',
@@ -29,13 +30,13 @@ export class BookingComponent implements OnInit {
     this.loadMyBookings();
   }
 
-  loadMyBookings() {
+  loadMyBookings(): void {
     this.apiService.getBookings().subscribe({
-      next: (response: any) => {
+      next: (response: FetchBookings[]) => {
         this.bookings = this.extractData.bookedFlightData(response);
         this.showDetails = new Array(this.bookings.length).fill(false);
       },
-      error: (error: any) => {
+      error: (error) => {
         console.error('Error loading bookings', error);
       }
     });

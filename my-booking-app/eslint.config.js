@@ -1,43 +1,52 @@
-// @ts-check
-const eslint = require("@eslint/js");
-const tseslint = require("typescript-eslint");
-const angular = require("angular-eslint");
+import pkg from "globals";
+const { browser } = pkg;
+import pluginJs from "@eslint/js";
+import tseslint from "@typescript-eslint/eslint-plugin";
+import angularEslint from "@angular-eslint/eslint-plugin";
+import angularEslintTemplate from "@angular-eslint/eslint-plugin-template";
+import angularTemplateParser from "@angular-eslint/template-parser";
+import parse from "@typescript-eslint/parser";
 
-module.exports = tseslint.config(
+export default [
   {
     files: ["**/*.ts"],
-    extends: [
-      eslint.configs.recommended,
-      ...tseslint.configs.recommended,
-      ...tseslint.configs.stylistic,
-      ...angular.configs.tsRecommended,
-    ],
-    processor: angular.processInlineTemplates,
+    languageOptions: {
+      globals: browser,
+      parser: parse,
+      parserOptions: {
+        project: "./tsconfig.json",
+        sourceType: "module",
+      },
+    },
+    ignores: ["**/*.spec.ts"],
+    plugins: {
+      "@typescript-eslint": tseslint,
+      "@angular-eslint": angularEslint,
+    },
     rules: {
+      ...pluginJs.configs.recommended.rules,
+      ...tseslint.configs.recommended.rules,
+      ...angularEslint.configs.recommended.rules,
       "@angular-eslint/directive-selector": [
         "error",
-        {
-          type: "attribute",
-          prefix: "app",
-          style: "camelCase",
-        },
+        { type: "attribute", prefix: "app", style: "camelCase" },
       ],
       "@angular-eslint/component-selector": [
         "error",
-        {
-          type: "element",
-          prefix: "app",
-          style: "kebab-case",
-        },
+        { type: "element", prefix: "app", style: "kebab-case" },
       ],
     },
   },
   {
     files: ["**/*.html"],
-    extends: [
-      ...angular.configs.templateRecommended,
-      ...angular.configs.templateAccessibility,
-    ],
-    rules: {},
-  }
-);
+    languageOptions: {
+      parser: angularTemplateParser,
+    },
+    plugins: {
+      "@angular-eslint/template": angularEslintTemplate,
+    },
+    rules: {
+      ...angularEslintTemplate.configs.recommended.rules,
+    },
+  },
+];

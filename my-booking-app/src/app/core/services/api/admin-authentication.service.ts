@@ -45,15 +45,15 @@ export class AdminAuthenticationService {
     this.checkAdminStatus();
     return this.http.put<User>(`${this.api}/admin/edit/${userId}`, updatedData).pipe(
       tap(response => console.log(response)),
-      catchError(ErrorHandlingUtils.handleError<any>('updateUser', null))
+      catchError(ErrorHandlingUtils.handleError<User>('updateUser', undefined))
     );  
   }
 
-  deleteUser(userId: string): Observable<any> {
+  deleteUser(userId: string): Observable<string> {
     this.checkAdminStatus();
-    return this.http.delete(`${this.api}/admin/delete/${userId}`).pipe(
+    return this.http.delete<string>(`${this.api}/admin/delete/${userId}`).pipe(
       tap(response => console.log('User deleted successfully', response)),
-      catchError(ErrorHandlingUtils.handleError<any>('deleteUser', null))
+      catchError(ErrorHandlingUtils.handleError<string>('deleteUser', undefined))
     );
   }
 

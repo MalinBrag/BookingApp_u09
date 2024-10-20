@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AdminAuthenticationService } from '../../../core/services/api/admin-authentication.service';
 import { FormUtils } from '../../../core/services/utilities/form-utils';
 import { BreakpointService } from '../../../core/services/utilities/breakpoint.service';
-import { User } from '../../../shared/models/user.model';
+import { EditUser, User } from '../../../shared/models/user.model';
 
 @Component({
   selector: 'app-edit',
@@ -58,11 +58,11 @@ export class EditComponent implements OnInit {
     })
   }
 
-  onSubmitEdit(event: any) {
+  onSubmitEdit(event: EditUser) {
     const { userId, user } = event;
     this.adminAuth.updateUser(userId, user).subscribe(
-      (response: any) => {
-        if (response.error) {
+      (response: User) => {
+        if (response && 'error' in response) {
           window.alert(response.error);
         } else {
           this.router.navigate(['/manage']);

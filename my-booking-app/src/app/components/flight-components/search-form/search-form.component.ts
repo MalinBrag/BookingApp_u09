@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule ,NgFor, NgIf } from '@angular/common';
+import { FlightOfferRequest } from '../../../shared/models/flight-offer.model';
 
 @Component({
   selector: 'app-search-form',
@@ -16,7 +17,7 @@ import { CommonModule ,NgFor, NgIf } from '@angular/common';
 })
 export class SearchFormComponent implements OnInit {
   searchForm!: FormGroup;
-  @Output() formSubmit = new EventEmitter<any>();
+  @Output() formSubmit = new EventEmitter<FlightOfferRequest>();
   locations = ['Paris', 'Rome', 'Berlin', 'New York', 'London', 'Frankfurt', 'Amsterdam', 'Tokyo', 'Dubai'];
 
   constructor(
@@ -38,6 +39,8 @@ export class SearchFormComponent implements OnInit {
   onSubmit() {
     if (this.searchForm.valid) {
       this.formSubmit.emit(this.searchForm.value);
+    } else {
+      console.warn('Form is invalid');
     }
   }
 
