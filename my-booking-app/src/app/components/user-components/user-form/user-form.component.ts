@@ -22,7 +22,7 @@ import { User } from '../../../shared/models/user.model';
 export class UserFormComponent implements OnInit, OnChanges {
   @Input() userData: User | null = null;
   @Input() fields: string[] = [];
-  @Output() formSubmit = new EventEmitter<{ userId?:string, user: User } | User> (); 
+  @Output() formSubmit = new EventEmitter<any> (); 
   form!: FormGroup;
   isMobile: boolean = false;
   title: string = '';
@@ -117,13 +117,5 @@ export class UserFormComponent implements OnInit, OnChanges {
   closeDialog() {
     this.dialog.closeDialogFrame();
   }
-
- /* closeForm() {
-    this.form.reset();
-    this.router.navigate(['']);
-  }*/
-
-
-
 
 }

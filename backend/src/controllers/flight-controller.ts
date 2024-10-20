@@ -46,7 +46,7 @@ export const flightController = {
                         type: 'flight-offers-pricing', 
                         flightOffers: flightOffers 
                     }
-                }) as any
+                }) as string
             );
             
             res.status(200).json(response.data);

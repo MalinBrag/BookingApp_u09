@@ -100,7 +100,11 @@ export const userController = {
 
     getProfile: async (req: Request, res: Response): Promise<void> => {
         try {
-            const userId: string = (req as any).user.id;
+            const userId: string | undefined = req.user?.id;
+            if (!userId) {
+                res.status(400).json({ message: 'User ID not found' });
+                return;
+            }
             const db = client.db(dbName);
             const collection = db.collection('AuthUsers');
             const user = await collection.findOne({ _id: new ObjectId(userId) });

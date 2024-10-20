@@ -28,9 +28,6 @@ export class TokenExpirationService {
         const alertBeforeExp = 5 * 60 * 1000;
         const alertTime = expiresIn - alertBeforeExp;
 
-        console.log('Token expires in: ', expiresIn);
-        console.log(decodedToken);
-
         if (alertTime > 0) {
             this.tokenExpirationTimer = setTimeout(() => {
                 alert('Your session will expire in 5 minutes.');

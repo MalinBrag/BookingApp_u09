@@ -46,7 +46,8 @@ export class FlightApiService {
   }
 
   createBooking(bookingData: FlightOffers, userData: User): Observable<BookingResponse> {
-    const userId = userData._id;
+    const userId = userData.id;
+    console.log(userData);
     const numberOfPassengers = bookingData.travelerPricings.length;
     const requiredUserData: RequiredUserData = {
       name: userData.name || '',
@@ -60,13 +61,15 @@ export class FlightApiService {
       window.alert('User validation failed, please log in again');
       throw new Error('User validation failed, please log in again');
     } else {
-      return this.http.post<BookingResponse>(`${this.apiUrl}/create-booking`, { 
+      const result = this.http.post<BookingResponse>(`${this.apiUrl}/create-booking`, { 
         userId: userId,
         bookingData: bookingData,
         travelers: travelers, 
       }).pipe(
         catchError(ErrorHandlingUtils.handleError<BookingResponse>('createBooking'))
       );
+      console.log('i api', result);
+      return result;
     }
   }
 
