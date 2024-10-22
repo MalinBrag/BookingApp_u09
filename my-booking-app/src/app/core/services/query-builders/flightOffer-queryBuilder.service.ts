@@ -19,7 +19,7 @@ export class OfferQueryService {
             adults: searchData.departureFlight.passengers,
             nonStop: 'true',
             currencyCode: 'SEK',
-            max: 1,
+            max: 3,
         };
 
         /** round trip not implemented */

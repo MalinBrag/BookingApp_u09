@@ -7,13 +7,18 @@ const dbName = 'u09';
 const amadeus = new Amadeus({
     clientId: process.env.API_KEY as string,
     clientSecret: process.env.API_SECRET as string,
-    hostname: 'test' // Use 'test' for sandbox environment, or 'production' for production
+    hostname: 'test'
 })
 
 export const flightController = {
 
     getFlights: async (req: Request, res: Response): Promise<void> => {
         try {
+            if (!req.query.departureDate) {
+                res.status(400).json({ message: 'Missing required parameters' });
+                return;
+            }
+
             const response = await amadeus.shopping.flightOffersSearch.get({
                 originLocationCode: req.query.originLocationCode as string,
                 destinationLocationCode: req.query.destinationLocationCode as string,
@@ -24,6 +29,7 @@ export const flightController = {
                 currencyCode: req.query.currencyCode as string,
                 max: req.query.max as string
             });
+
             res.status(200).json(response.data);
         } catch (error) {
             console.error('Error fetching flights:', error);
@@ -78,6 +84,7 @@ export const flightController = {
 
             const response = await amadeus.booking.flightOrders.post(JSON.stringify(payload) as any);
             const saveResult = await flightController.saveBookingToDb(userId, response.data);
+
             res.status(200).json({
                 message: 'Booking created and saved successfully',
                 bookingData: response.data,
@@ -108,14 +115,23 @@ export const flightController = {
     },
 
     getBookings: async (req: Request, res: Response): Promise<void> => {
-        console.log('Fetching bookings for user:', req.params.userId);
         try {
             const userId = req.params.userId;
+
+            if (!userId) {
+                res.status(400).json({ message: 'User ID is missing' });
+                return;
+            }
+
             const db = client.db(dbName);
             const collection = db.collection('Bookings');
             const bookings = await collection.find({ userId: userId }).toArray();
 
-            console.log('Bookings:', bookings);
+            if (!bookings || bookings.length === 0) {
+                res.status(404).json({ message: 'No bookings found for this user' });
+                return;
+            }
+          
             res.status(200).json(bookings);
         } catch (error) {
             console.error('Error fetching bookings:', error);

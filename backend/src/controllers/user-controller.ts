@@ -82,7 +82,7 @@ export const userController = {
                 { expiresIn: '1h' }
             );
 
-            res.json({
+            res.status(200).json({
                 message: 'User signed in successfully',
                 token,
                 userId: user._id,
@@ -95,7 +95,7 @@ export const userController = {
     },
 
     logoutUser: async (req: Request, res: Response): Promise<void> => {
-        res.json({ message: 'User logged out successfully' });
+        res.status(200).json({ message: 'User logged out successfully' });
     },
 
     getProfile: async (req: Request, res: Response): Promise<void> => {
@@ -114,7 +114,7 @@ export const userController = {
                 return;
             }
 
-            res.json({
+            res.status(200).json({
                 email: user.email,
                 name: user.name,
                 phone: user.phone,

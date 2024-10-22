@@ -68,7 +68,6 @@ export class FlightApiService {
       }).pipe(
         catchError(ErrorHandlingUtils.handleError<BookingResponse>('createBooking'))
       );
-      console.log('i api', result);
       return result;
     }
   }
