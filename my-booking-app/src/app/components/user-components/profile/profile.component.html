@@ -1,3 +1,4 @@
+<!-- Profile Component Template -->
 <main class="profile">
 
     <div class="content">
@@ -5,6 +6,7 @@
             <h1 class="title">{{ title }}</h1>
         </div>
 
+        <!-- Navigation buttons with redirection links or functions -->
         <div class="buttons">
             <button class="dashboard-btn" [routerLink]="['/bookings']" aria-label="View my bookings">My bookings</button>
             <button class="dashboard-btn" aria-label="Edit my profile information">Edit my info</button>
@@ -13,6 +15,7 @@
         </div>
     </div>
 
+    <!-- Image displayed on desktop devices -->
     <div class="image-container" *ngIf="!isMobile">
         <img class="img" src="assets/images/inside_plane.jpg" alt="View from inside a plane showing passengers" />
     </div>

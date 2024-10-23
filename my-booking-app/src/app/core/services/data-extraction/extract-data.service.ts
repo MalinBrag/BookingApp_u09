@@ -15,6 +15,11 @@ export class ExtractDataService {
     private airlineService: AirlineService,
   ) { }
 
+  /**
+   * Formats the response data from the API to be more user-friendly
+   * @param response 
+   * @returns FlightOffers to be displayed
+   */
   flightOfferData(response: FlightOffers[]): FlightOffer[] {
     return response.map((flight: FlightOffers) => {
       const segment = flight.itineraries[0].segments[0];
@@ -41,6 +46,11 @@ export class ExtractDataService {
     });
   }
 
+  /**
+   * Formats the response data from the API to be more user-friendly
+   * @param response 
+   * @returns BookedFlight to be displayed
+   */
   bookedFlightData(response: any): BookedFlight[] {
     return response.map((booking: any) => {
       const flight = booking.bookingData.flightOffers[0];
@@ -71,6 +81,11 @@ export class ExtractDataService {
     });
   }
 
+  /**
+   * Formats the duration of the flight to be more user-friendly
+   * @param duration 
+   * @returns string
+   */
   formatDuration(duration: string): string {
     const match = duration.match(/PT(\d+H)?(\d+M)?/);
     if (!match) {
@@ -82,17 +97,32 @@ export class ExtractDataService {
     return `${hours}${minutes}`.trim();
   }
 
+  /**
+   * Formats date and time to be more user-friendly
+   * @param dateTime 
+   * @returns string 
+   */
   formatDateTime(dateTime: string): string {
     const [date, time] = dateTime.split('T');
     const formattedDateTime = time.substring(0, 5);
     return `${date} ${formattedDateTime}`;
   }
 
+  /**
+   * Formats the booking ID to be more user-friendly
+   * @param bookingId 
+   * @returns string
+   */
   formatBookingId(bookingId: string): string {
     const decoded = decodeURIComponent(bookingId);
     return decoded.replace(/=/g, ' ');
   }
 
+  /**
+   * Formats the price to be more user-friendly
+   * @param price 
+   * @returns string
+   */
   trimPrice(price: string): string {
     const parsedPrice = parseFloat(price);
     if (Number.isInteger(parsedPrice)) {

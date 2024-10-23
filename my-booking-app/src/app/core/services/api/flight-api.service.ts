@@ -19,6 +19,9 @@ import { ErrorHandlingUtils } from '../utilities/error-handling-utils';
 export class FlightApiService {
   private apiUrl = `${environment.api}/flights`;
   
+// KOLLA CONFIRMOFFERRESPONSE
+
+
   constructor(
     private http: HttpClient,
     private offerQuery: OfferQueryService,

@@ -36,6 +36,10 @@ export class UserFormComponent implements OnInit, OnChanges {
     private formUtils: FormUtils,
   ) {}
 
+  /**
+   * Setting form title based on mode
+   * @param mode 
+   */
   setFormTitle(mode: string) {
     switch (mode) {
       case 'register':
@@ -53,28 +57,45 @@ export class UserFormComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * Load of page
+   */
   ngOnInit(): void {
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
 
+    /**
+     * Get mode (title) of form
+     */
     const mode = this.formUtils.getMode();
+
     this.setFormTitle(mode);
     this.initializeForm();
   }
 
+  /**
+   * On changes of userData, another function is called
+   * @param changes 
+   */
   ngOnChanges(changes: SimpleChanges) {
     if (changes['userData'] && this.userData) {
       this.patchFormWithUserData();
     }
   }
 
+  /**
+   * Patch form with user data if there are changes in some or all fields
+   */
   patchFormWithUserData() {
     if (this.userData) {
       this.form.patchValue(this.userData);
     }
   }
 
+  /**
+   * Initialize form with fields
+   */
   initializeForm(): void {
     const formFields: { [key : string]: [string, ValidatorFn[]] } = {};
     this.fields.forEach(field => {
@@ -87,6 +108,10 @@ export class UserFormComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * Checks if password and password_confirmation match
+   * @returns a validator function
+   */
   passwordMatchValidator(): ValidatorFn {
     return(control: AbstractControl): null | { [key: string]: boolean } => { 
       const password = control.get('password');
@@ -98,6 +123,9 @@ export class UserFormComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * Submitting form if form is valid
+   */
   onSubmit() {
     if (this.form.valid) {
       if (this.userData) {
@@ -114,6 +142,9 @@ export class UserFormComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * Closing dialog frame
+   */
   closeDialog() {
     this.dialog.closeDialogFrame();
   }

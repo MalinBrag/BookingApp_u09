@@ -34,6 +34,9 @@ export class HeaderComponent implements OnInit {
     private userAuth: UserAuthenticationService,
   ) { }
 
+  /**
+   * Load of page
+   */
   ngOnInit(): void {
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
@@ -48,10 +51,16 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  /**
+   * Toggle dropdown menu
+   */
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
   }
 
+  /**
+   * Menu item register, redicreting to register page or providing register fields to modal view
+   */
   registerUser() {
     if (this.isMobile) {
       this.dialog.openDialogFrame(RegisterComponent, {
@@ -63,6 +72,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  /**
+   * Menu item sign-in, redicreting to sign-in page or providing sign-in fields to modal view
+   */
   signInUser() {
     if (this.isMobile) {
       this.dialog.openDialogFrame(SignInComponent, {
@@ -74,6 +86,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  /**
+   * Menu item logout, logging out user and redirecting to home page
+   */
   logoutUser() {
     this.userAuth.logoutUser();
     this.isLoggedIn = false;
@@ -81,6 +96,9 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  /**
+   * Menu item my pages, redirecting to profile page if user is logged in
+   */
   getMyPages() {
     if (this.isLoggedIn) {
       this.userAuth.getProfile().subscribe({
@@ -98,6 +116,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  /**
+   * Menu item admin dashboard, redirecting to admin dashboard if user is admin
+   */
   getAdminDashboard() {
     if (this.isAdmin) {
       this.router.navigate(['/dashboard']);

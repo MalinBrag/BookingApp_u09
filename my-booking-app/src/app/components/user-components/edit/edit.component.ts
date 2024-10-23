@@ -31,6 +31,9 @@ export class EditComponent implements OnInit {
     private route: ActivatedRoute,
   ) { }
 
+  /**
+   * Load of page
+   */
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     
@@ -40,6 +43,9 @@ export class EditComponent implements OnInit {
       window.alert('User not found');
     }
 
+    /**
+     * Set the mode (title) of the form
+     */
     this.formUtils.setMode(this.mode);
 
     this.breakpoint.isMobile$.subscribe(isMobile => {
@@ -47,6 +53,10 @@ export class EditComponent implements OnInit {
     })
   }
 
+  /**
+   * Display of selected user
+   * @param userId 
+   */
   fetchUser(userId: string) {
     this.adminAuth.getUser(userId).subscribe({
       next: (user: User) => {
@@ -58,6 +68,10 @@ export class EditComponent implements OnInit {
     })
   }
 
+  /**
+   * Submitting the updated user data to the API and redirecting to the list once approved
+   * @param event 
+   */
   onSubmitEdit(event: EditUser) {
     const { userId, user } = event;
     this.adminAuth.updateUser(userId, user).subscribe(

@@ -25,6 +25,9 @@ export class ProfileComponent implements OnInit {
     private userAuth: UserAuthenticationService,
   ) { }
 
+  /**
+   * Load of page
+   */
   ngOnInit(): void {
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
@@ -35,6 +38,9 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * Logout user
+   */
   logout() {
     this.userAuth.logoutUser();
     this.isLoggedIn = false;

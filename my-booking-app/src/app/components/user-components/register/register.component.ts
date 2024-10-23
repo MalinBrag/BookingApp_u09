@@ -31,12 +31,19 @@ export class RegisterComponent implements OnInit {
     private breakpoint: BreakpointService,
   ) { }
 
+  /**
+   * Load of page
+   */
   ngOnInit(): void {
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
 
+    /**
+     * Set the mode (title) of the form
+     */
     this.formUtils.setMode(this.mode);
+
     this.route.queryParams.subscribe(params => {
       if (params['isAdmin']) {
         this.fields.push('role');
@@ -44,6 +51,10 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  /**
+   * Submitting the form data to the API and waiting for response
+   * @param data 
+   */
   onSubmitRegister(data: RegisterUser): void {
     this.userAuth.registerUser(data).subscribe(
       (response: LoginResponse) => {

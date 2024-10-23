@@ -1,11 +1,16 @@
+<!-- User Form Component Template -->
+
+<!-- Form with Angular Reactive Forms binding -->
 <form [formGroup]="form" class="form-group">
 
+    <!-- Close button for modal -->
     <div *ngIf="isMobile" class="closable" data-closable>
         <button class="close-btn" aria-label="Close alert" type="button" mat-button (click)="closeDialog()" data-close>
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
+    <!-- All possible fields below -->
     <div class="form-content">
         <div class="title">
             <h1>{{ title }}</h1>
@@ -52,6 +57,7 @@
             </div>
         </div>
 
+        <!-- Submit button -->
         <div class="btn-container">
             <button type="submit" class="submit-btn" (click)="onSubmit()">Submit</button>
         </div>

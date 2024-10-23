@@ -1,3 +1,7 @@
+/**
+ * Interfaces for different kinds of user operations
+ */
+
 export interface User {
     id?: string;
     name?: string;

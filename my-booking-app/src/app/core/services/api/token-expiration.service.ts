@@ -12,6 +12,11 @@ export class TokenExpirationService {
 
     tokenExpired$ = this.tokenExpiredSubject.asObservable();
 
+    /**
+     * Checks if the token is expired
+     * @param token 
+     * @returns a boolean
+     */
     isTokenExpired(token: string): boolean {
         const decodedToken: DecodedToken = jwtDecode(token);
         const expirationDate = new Date(0);
@@ -19,6 +24,10 @@ export class TokenExpirationService {
         return expirationDate < new Date();
     }
     
+    /**
+     * Sets a timer to alert the user when the token is about to expire
+     * @param token 
+     */
     setTokenExpirationTimer(token: string): void {
         const decodedToken: DecodedToken = jwtDecode(token); 
         const expirationDate = new Date(0);
@@ -36,6 +45,9 @@ export class TokenExpirationService {
         }
     }
 
+    /**
+     * Clears the token expiration timer
+     */
     clearTokenExpTimer(): void {
         if (this.tokenExpirationTimer) {
             clearTimeout(this.tokenExpirationTimer);

@@ -9,6 +9,12 @@ export class passengerObjectService {
 
   constructor() {}
 
+  /**
+   * Creates a new passenger object for each passenger
+   * @param userData 
+   * @param numberOfPassengers 
+   * @returns An array of passenger objects
+   */
   createPassengers(userData: RequiredUserData, numberOfPassengers: number): Passenger[] { 
     const travelers: Passenger[] = [];
 

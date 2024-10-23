@@ -1,8 +1,10 @@
-export interface FlightOfferRequest {
-    tripType: string;
-    departureFlight: UserFormatFlightSearch;
-}
+/**
+ * Interfaces for flight offers as returned or accepted by the Amadeus API
+ */
 
+/**
+ * How the form search data is sent
+ */
 export interface UserFormatFlightSearch {
     departureDate: string;
     locationFrom: string;
@@ -10,6 +12,9 @@ export interface UserFormatFlightSearch {
     passengers: string;
 }
 
+/**
+ * How the API expects the data to be formatted
+ */
 export interface ApiFormatFlightSearch {
     originLocationCode: string;
     destinationLocationCode: string;
@@ -20,17 +25,18 @@ export interface ApiFormatFlightSearch {
     max: number;
 }
 
-export interface ConfirmOfferResponse {
-    bookingRequirements: BookingRequirements;
-    flightOffers: FlightOffers[];
-    type: string;
-}
-export interface BookingRequirements {
-    emailAddressRequired: boolean;
-    mobilePhoneNumberRequired: boolean;
+/**
+ * How the first request is being sent
+ */
+export interface FlightOfferRequest {
+    tripType: string;
+    departureFlight: UserFormatFlightSearch;
 }
 
-//jag skickar samma till confirmOffer, som objekt
+/**
+ * Flight offers returned by the API
+ * The format the selected flight needs to be sent to the API confirming pricing and availability
+ */
 export interface FlightOffers {
     id: string;
     instantTicketingRequired?: boolean;
@@ -51,6 +57,24 @@ export interface FlightOffers {
     type?: string;
     validatingAirlineCodes?: string[];
 }
+
+/**
+ * Response from the API after confirming pricing and availability
+ */
+export interface ConfirmOfferResponse {
+    bookingRequirements: BookingRequirements;
+    flightOffers: FlightOffers[];
+    type: string;
+}
+
+export interface BookingRequirements {
+    emailAddressRequired: boolean;
+    mobilePhoneNumberRequired: boolean;
+}
+
+/**
+ * Interfaces needed to extract relevant data
+ */
 
 export interface Price {
     currency: string;

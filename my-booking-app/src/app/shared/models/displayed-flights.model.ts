@@ -1,6 +1,12 @@
-//för att displaya i browsern
 import { Passenger } from './passenger.class';
 
+/**
+ * Interfaces of flights in the format they are displayed in the browser
+ */
+
+/**
+ * Flight offers
+ */
 export interface FlightOffer {
     flightNumber: string;
     airlineName: string;
@@ -21,6 +27,9 @@ export interface FlightOffer {
     numberOfPassengers: number;
 }
 
+/**
+ * Booked flights
+ */
 export interface BookedFlight {
     createdOn: string;
     bookingId: string;

@@ -13,6 +13,11 @@ export class AdminAuthGuard implements CanActivate {
         private router: Router,
     ) { }
 
+
+    /**
+     * Determines whether the user is an admin or not and activates the route accordingly
+     * @returns an observable of a boolean
+     */
     canActivate(): Observable<boolean> {
         return this.userAuth.isAdmin$.pipe(
             map(isAdmin => {
