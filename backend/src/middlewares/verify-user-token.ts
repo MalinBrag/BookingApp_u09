@@ -2,6 +2,13 @@ import jwt from 'jsonwebtoken';
 import { CustomJwtPayload } from '../types/custom-jwt.payload';
 import { Request, Response, NextFunction } from 'express';
 
+/**
+ * Verifies the user token
+ * @param req 
+ * @param res 
+ * @param next 
+ * @returns decoded token
+ */
 export const verifyUserToken = (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;
     const token = authHeader?.split(' ')[1];

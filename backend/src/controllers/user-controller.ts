@@ -8,6 +8,12 @@ const dbName = 'u09';
 
 export const userController = {
 
+    /**
+     * Registers a new user in the database
+     * @param req 
+     * @param res 
+     * @returns a token, user ID and role
+     */
     registerUser: async (req: Request, res: Response): Promise<void> => {
         const { name, email, phone, password, role = 'User' } = req.body;
 
@@ -54,6 +60,12 @@ export const userController = {
         }
     },
 
+    /**
+     * Checks if the user exists and the password is correct
+     * @param req 
+     * @param res 
+     * @returns a token, user ID and role
+     */
     signInUser: async (req: Request, res: Response): Promise<void> => {
         const { email, password } = req.body;
 
@@ -94,10 +106,21 @@ export const userController = {
         }
     },
 
+    /**
+     * Logs out the user
+     * @param req 
+     * @param res 
+     */
     logoutUser: async (req: Request, res: Response): Promise<void> => {
         res.status(200).json({ message: 'User logged out successfully' });
     },
 
+    /**
+     * Gets the user data from the database
+     * @param req 
+     * @param res 
+     * @returns user data
+     */
     getProfile: async (req: Request, res: Response): Promise<void> => {
         try {
             const userId: string | undefined = req.user?.id;

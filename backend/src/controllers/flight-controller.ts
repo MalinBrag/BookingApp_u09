@@ -4,6 +4,9 @@ import { client } from "../config/db";
 
 const dbName = 'u09';
 
+/**
+ * Create a new instance of the Amadeus API client
+ */
 const amadeus = new Amadeus({
     clientId: process.env.API_KEY as string,
     clientSecret: process.env.API_SECRET as string,
@@ -12,6 +15,12 @@ const amadeus = new Amadeus({
 
 export const flightController = {
 
+    /**
+     * Get flight offers based on the provided query parameters
+     * @param req 
+     * @param res 
+     * @returns an array of flight offers
+     */
     getFlights: async (req: Request, res: Response): Promise<void> => {
         try {
             if (!req.query.departureDate) {
@@ -37,6 +46,12 @@ export const flightController = {
         }
     },
 
+    /**
+     * Confirm pricing and availability of the selected flight offers
+     * @param req 
+     * @param res 
+     * @returns a string confirmation of the flight offer
+     */
     confirmPricing: async (req: Request, res: Response): Promise<void> => {
         try {
             const flightOffers = req.body;
@@ -62,6 +77,12 @@ export const flightController = {
         }
     },
 
+    /**
+     * Create a booking with the Amadeus API and save it to the database
+     * @param req 
+     * @param res 
+     * @returns the booking data from the API and the inserted booking ID
+     */
     createBooking: async (req: Request, res: Response): Promise<void> => {
         try {
             const userId = req.body.userId;
@@ -96,6 +117,12 @@ export const flightController = {
         }
     },
 
+    /**
+     * Save the booking data to the database
+     * @param userId 
+     * @param bookingData 
+     * @returns the result of the insert operation
+     */
     saveBookingToDb: async (userId: string, bookingData: object) => {
         try {
             const db = client.db(dbName);
@@ -114,6 +141,12 @@ export const flightController = {
         }
     },
 
+    /**
+     * Gets all bookings from the database, for a specific user
+     * @param req 
+     * @param res 
+     * @returns an array of bookings
+     */
     getBookings: async (req: Request, res: Response): Promise<void> => {
         try {
             const userId = req.params.userId;

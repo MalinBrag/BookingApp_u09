@@ -19,9 +19,6 @@ import { ErrorHandlingUtils } from '../utilities/error-handling-utils';
 export class FlightApiService {
   private apiUrl = `${environment.api}/flights`;
   
-// KOLLA CONFIRMOFFERRESPONSE
-
-
   constructor(
     private http: HttpClient,
     private offerQuery: OfferQueryService,
@@ -29,6 +26,11 @@ export class FlightApiService {
     private passengerService: passengerObjectService,
   ) { }
 
+  /**
+   * Get flights from the API, based on the search criteria
+   * @param searchData 
+   * @returns an array of FlightOffer objects
+   */
   getFlights(searchData: FlightOfferRequest): Observable<{ rawResponse: FlightOffers[], extractedData: { departureFlights: FlightOffer[] } }> {
     const queryString = this.offerQuery.queryBuilder(searchData);
     return this.http.get<FlightOffers[]>(`${this.apiUrl}/results`, {
@@ -42,12 +44,23 @@ export class FlightApiService {
     );
   }
 
+  /**
+   * Confirm price and availability of selected offer
+   * @param selectedOffer 
+   * @returns ConfirmOfferResponse object
+   */
   confirmOffer(selectedOffer: FlightOffers[]): Observable<ConfirmOfferResponse> {
     return this.http.post<ConfirmOfferResponse>(`${this.apiUrl}/confirm-offer`, selectedOffer).pipe(
       catchError(ErrorHandlingUtils.handleError<ConfirmOfferResponse>('confirmOffer'))
     )
   }
 
+  /**
+   * Creates a booking based on the selected offer and user data
+   * @param bookingData 
+   * @param userData 
+   * @returns BookingResponse object
+   */
   createBooking(bookingData: FlightOffers, userData: User): Observable<BookingResponse> {
     const userId = userData.id;
     console.log(userData);
@@ -75,6 +88,11 @@ export class FlightApiService {
     }
   }
 
+  /**
+   * Validates the user data so that the booking will be created for the correct user
+   * @param userData 
+   * @returns boolean
+   */
   userValidation(userData: User): boolean {
     const storedUserId = LocalStorageUtils.getItem('userId');
     const userId = userData.id;
@@ -86,6 +104,10 @@ export class FlightApiService {
     }
   }
 
+  /**
+   * Get all bookings for the current user
+   * @returns an array of FetchBookings objects
+   */
   getBookings(): Observable<FetchBookings[]> {
     const userId = LocalStorageUtils.getItem('userId');
     return this.http.get<FetchBookings[]>(`${this.apiUrl}/bookings/${userId}`).pipe(

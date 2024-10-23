@@ -4,6 +4,9 @@ import { verifyUserToken } from "../middlewares/verify-user-token";
 
 const flightRouter = Router();
 
+/**
+ * Routes for the flight search and booking, some routes are protected by the verifyUserToken middleware
+ */
 flightRouter.get('/results', flightController.getFlights);
 flightRouter.post('/confirm-offer', flightController.confirmPricing);
 
