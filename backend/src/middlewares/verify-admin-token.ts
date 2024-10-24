@@ -24,7 +24,7 @@ export const verifyAdminToken = (req: Request, res: Response, next: NextFunction
             res.status(401).json({ message: 'Unauthorized: Not an admin' });
             return;
         }
-        req.user = decoded;
+        (req as any).user = decoded;
         next();
     } catch (error) {  
         console.error('Token verification error: ', error);
