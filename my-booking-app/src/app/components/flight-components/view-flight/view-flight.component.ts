@@ -82,7 +82,7 @@ export class ViewFlightComponent implements OnInit {
     const selectedOffer = this.rawFlightData[0];
     return this.apiService.createBooking(selectedOffer, this.userCredentials).subscribe({
       next: (response: BookingResponse) => {
-        if (response && response.id) {
+        if (response && response.bookingId) {
           this.bookingSuccessful = true;
           window.alert('Booking successful!');
         } else {

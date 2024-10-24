@@ -11,7 +11,7 @@ import { Passenger } from './passenger.class';
  */
 export interface BookingResponse {
     bookingData: BookingData[];
-    id: string;
+    bookingId: string;
     travelers: Passenger[];
 }
 

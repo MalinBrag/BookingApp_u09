@@ -77,14 +77,13 @@ export class FlightApiService {
       window.alert('User validation failed, please log in again');
       throw new Error('User validation failed, please log in again');
     } else {
-      const result = this.http.post<BookingResponse>(`${this.apiUrl}/create-booking`, { 
+      return this.http.post<BookingResponse>(`${this.apiUrl}/create-booking`, { 
         userId: userId,
         bookingData: bookingData,
         travelers: travelers, 
       }).pipe(
         catchError(ErrorHandlingUtils.handleError<BookingResponse>('createBooking'))
       );
-      return result;
     }
   }
 
