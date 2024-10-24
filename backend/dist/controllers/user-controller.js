@@ -7,49 +7,104 @@ exports.userController = void 0;
 const mongodb_1 = require("mongodb");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const client = new mongodb_1.MongoClient(process.env.MONGO_URI || '');
+const db_1 = require("../config/db");
 const dbName = 'u09';
 exports.userController = {
     registerUser: async (req, res) => {
-        await client.connect();
-        const { name, email, password, password_confirmation } = req.body;
+        const { name, email, phone, password, role = 'User' } = req.body;
         try {
             const hashedPassword = await bcrypt_1.default.hash(password, 10);
-            const db = client.db(dbName);
+            const db = db_1.client.db(dbName);
             const collection = db.collection('AuthUsers');
             const existingUser = await collection.findOne({ email });
             if (existingUser) {
-                return res.status(400).json({ message: 'User email already exists' });
+                res.status(400).json({ message: 'User email already exists' });
+                return;
             }
-            await collection.insertOne({ name, email, password: hashedPassword });
-            return res.status(201).json({ message: 'User registered successfully' });
+            const newUser = await collection.insertOne({
+                name,
+                email,
+                phone,
+                password: hashedPassword,
+                role: role || 'user'
+            });
+            const userId = newUser.insertedId;
+            const token = jsonwebtoken_1.default.sign({
+                id: userId,
+                email,
+                role: role || 'user',
+            }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            res.status(201).json({
+                message: 'User registered successfully',
+                token,
+                userId,
+                role: role || 'user',
+            });
         }
         catch (error) {
             console.error(error);
-            return res.status(500).json({ message: 'Server error during registration' });
+            res.status(500).json({ message: 'Server error during registration' });
         }
     },
     signInUser: async (req, res) => {
-        await client.connect();
         const { email, password } = req.body;
         try {
-            const db = client.db(dbName);
+            const db = db_1.client.db(dbName);
             const collection = db.collection('AuthUsers');
             const user = await collection.findOne({ email });
             if (!user) {
-                return res.status(400).json({ message: 'User not found' });
+                res.status(400).json({ message: 'User not found' });
+                return;
             }
-            const token = jsonwebtoken_1.default.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, {
-                expiresIn: '1h',
-            });
-            return res.json({
+            const isMatch = await bcrypt_1.default.compare(password, user.password);
+            if (!isMatch) {
+                res.status(400).json({ message: 'Invalid credentials' });
+                return;
+            }
+            const token = jsonwebtoken_1.default.sign({
+                id: user._id,
+                role: user.role,
+            }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            res.json({
                 message: 'User signed in successfully',
                 token,
+                userId: user._id,
+                role: user.role,
             });
         }
         catch (error) {
             console.error(error);
-            return res.status(500).json({ message: 'Server error during sign in' });
+            res.status(500).json({ message: 'Server error during sign in' });
+        }
+    },
+    logoutUser: async (req, res) => {
+        res.json({ message: 'User logged out successfully' });
+    },
+    getProfile: async (req, res) => {
+        try {
+            const userId = req.user?.id;
+            if (!userId) {
+                res.status(400).json({ message: 'User ID not found' });
+                return;
+            }
+            const db = db_1.client.db(dbName);
+            const collection = db.collection('AuthUsers');
+            const user = await collection.findOne({ _id: new mongodb_1.ObjectId(userId) });
+            if (!user) {
+                res.status(400).json({ message: 'User not found' });
+                return;
+            }
+            res.json({
+                email: user.email,
+                name: user.name,
+                phone: user.phone,
+                role: user.role,
+                id: user._id,
+            });
+        }
+        catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Server error during profile retrieval' });
         }
     },
 };
