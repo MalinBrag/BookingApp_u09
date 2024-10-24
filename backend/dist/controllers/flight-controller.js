@@ -7,14 +7,27 @@ exports.flightController = void 0;
 const amadeus_1 = __importDefault(require("amadeus"));
 const db_1 = require("../config/db");
 const dbName = 'u09';
+/**
+ * Create a new instance of the Amadeus API client
+ */
 const amadeus = new amadeus_1.default({
     clientId: process.env.API_KEY,
     clientSecret: process.env.API_SECRET,
-    hostname: 'test' // Use 'test' for sandbox environment, or 'production' for production
+    hostname: 'test'
 });
 exports.flightController = {
+    /**
+     * Get flight offers based on the provided query parameters
+     * @param req
+     * @param res
+     * @returns an array of flight offers
+     */
     getFlights: async (req, res) => {
         try {
+            if (!req.query.departureDate) {
+                res.status(400).json({ message: 'Missing required parameters' });
+                return;
+            }
             const response = await amadeus.shopping.flightOffersSearch.get({
                 originLocationCode: req.query.originLocationCode,
                 destinationLocationCode: req.query.destinationLocationCode,
@@ -32,6 +45,12 @@ exports.flightController = {
             res.status(500).json({ message: 'Server error during fetching flights' });
         }
     },
+    /**
+     * Confirm pricing and availability of the selected flight offers
+     * @param req
+     * @param res
+     * @returns a string confirmation of the flight offer
+     */
     confirmPricing: async (req, res) => {
         try {
             const flightOffers = req.body;
@@ -52,6 +71,12 @@ exports.flightController = {
             res.status(500).json({ message: 'Server error during confirming pricing' });
         }
     },
+    /**
+     * Create a booking with the Amadeus API and save it to the database
+     * @param req
+     * @param res
+     * @returns the booking data from the API and the inserted booking ID
+     */
     createBooking: async (req, res) => {
         try {
             const userId = req.body.userId;
@@ -82,6 +107,12 @@ exports.flightController = {
             res.status(500).json({ message: 'Server error during creating booking' });
         }
     },
+    /**
+     * Save the booking data to the database
+     * @param userId
+     * @param bookingData
+     * @returns the result of the insert operation
+     */
     saveBookingToDb: async (userId, bookingData) => {
         try {
             const db = db_1.client.db(dbName);
@@ -99,14 +130,26 @@ exports.flightController = {
             throw new Error('Error saving booking to database');
         }
     },
+    /**
+     * Gets all bookings from the database, for a specific user
+     * @param req
+     * @param res
+     * @returns an array of bookings
+     */
     getBookings: async (req, res) => {
-        console.log('Fetching bookings for user:', req.params.userId);
         try {
             const userId = req.params.userId;
+            if (!userId) {
+                res.status(400).json({ message: 'User ID is missing' });
+                return;
+            }
             const db = db_1.client.db(dbName);
             const collection = db.collection('Bookings');
             const bookings = await collection.find({ userId: userId }).toArray();
-            console.log('Bookings:', bookings);
+            if (!bookings || bookings.length === 0) {
+                res.status(404).json({ message: 'No bookings found for this user' });
+                return;
+            }
             res.status(200).json(bookings);
         }
         catch (error) {

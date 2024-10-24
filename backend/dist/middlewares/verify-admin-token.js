@@ -5,6 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyAdminToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+/**
+ * Verifies the token and checks if the user is an admin
+ * @param req
+ * @param res
+ * @param next
+ * @returns decoded token
+ */
 const verifyAdminToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
     const token = authHeader?.split(' ')[1];

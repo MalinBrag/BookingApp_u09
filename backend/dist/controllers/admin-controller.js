@@ -5,6 +5,11 @@ const mongodb_1 = require("mongodb");
 const db_1 = require("../config/db");
 const dbName = "u09";
 exports.adminController = {
+    /**
+     * Gets all users from the database
+     * @param req
+     * @param res
+     */
     getAllUsers: async (req, res) => {
         try {
             const db = db_1.client.db(dbName);
@@ -17,6 +22,12 @@ exports.adminController = {
             res.status(500).json({ message: 'Server error during fetching users' });
         }
     },
+    /**
+     * Gets a single user from the database based on the userId
+     * @param req
+     * @param res
+     * @returns user data
+     */
     getUser: async (req, res) => {
         try {
             const { userId } = req.params;
@@ -34,6 +45,12 @@ exports.adminController = {
             res.status(500).json({ message: 'Server error during fetching user' });
         }
     },
+    /**
+     * Updates a user in the database
+     * @param req
+     * @param res
+     * @returns the updated user data
+     */
     updateUser: async (req, res) => {
         try {
             const { userId } = req.params;
@@ -52,6 +69,12 @@ exports.adminController = {
             res.status(500).json({ message: 'Server error during updating user' });
         }
     },
+    /**
+     * Deletes a user from the database
+     * @param req
+     * @param res
+     * @returns a string message
+     */
     deleteUser: async (req, res) => {
         try {
             const { userId } = req.params;

@@ -10,6 +10,9 @@ dotenv_1.default.config();
 const uri = process.env.MONGO_URI || '';
 const client = new mongodb_1.MongoClient(uri);
 exports.client = client;
+/**
+ * Connects to the database
+ */
 const connect_db = async () => {
     try {
         await client.connect();

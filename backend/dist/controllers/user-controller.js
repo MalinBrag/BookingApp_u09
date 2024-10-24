@@ -10,6 +10,12 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const db_1 = require("../config/db");
 const dbName = 'u09';
 exports.userController = {
+    /**
+     * Registers a new user in the database
+     * @param req
+     * @param res
+     * @returns a token, user ID and role
+     */
     registerUser: async (req, res) => {
         const { name, email, phone, password, role = 'User' } = req.body;
         try {
@@ -32,13 +38,13 @@ exports.userController = {
             const token = jsonwebtoken_1.default.sign({
                 id: userId,
                 email,
-                role: role || 'user',
+                role: role || 'User',
             }, process.env.JWT_SECRET, { expiresIn: '1h' });
             res.status(201).json({
                 message: 'User registered successfully',
                 token,
                 userId,
-                role: role || 'user',
+                role: role || 'User',
             });
         }
         catch (error) {
@@ -46,6 +52,12 @@ exports.userController = {
             res.status(500).json({ message: 'Server error during registration' });
         }
     },
+    /**
+     * Checks if the user exists and the password is correct
+     * @param req
+     * @param res
+     * @returns a token, user ID and role
+     */
     signInUser: async (req, res) => {
         const { email, password } = req.body;
         try {
@@ -63,9 +75,10 @@ exports.userController = {
             }
             const token = jsonwebtoken_1.default.sign({
                 id: user._id,
+                email: user.email,
                 role: user.role,
             }, process.env.JWT_SECRET, { expiresIn: '1h' });
-            res.json({
+            res.status(200).json({
                 message: 'User signed in successfully',
                 token,
                 userId: user._id,
@@ -77,12 +90,23 @@ exports.userController = {
             res.status(500).json({ message: 'Server error during sign in' });
         }
     },
+    /**
+     * Logs out the user
+     * @param req
+     * @param res
+     */
     logoutUser: async (req, res) => {
-        res.json({ message: 'User logged out successfully' });
+        res.status(200).json({ message: 'User logged out successfully' });
     },
+    /**
+     * Gets the user data from the database
+     * @param req
+     * @param res
+     * @returns user data
+     */
     getProfile: async (req, res) => {
         try {
-            const userId = req.user?.id;
+            const userId = req.user.id;
             if (!userId) {
                 res.status(400).json({ message: 'User ID not found' });
                 return;
@@ -94,7 +118,7 @@ exports.userController = {
                 res.status(400).json({ message: 'User not found' });
                 return;
             }
-            res.json({
+            res.status(200).json({
                 email: user.email,
                 name: user.name,
                 phone: user.phone,
