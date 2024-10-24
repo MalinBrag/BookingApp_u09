@@ -4,6 +4,9 @@ import { verifyAdminToken } from '../middlewares/verify-admin-token';
 
 const adminRouter = Router();
 
+/**
+ * Routes for admin, passes through verifyAdminToken middleware
+ */
 adminRouter.get('/users/all', verifyAdminToken, adminController.getAllUsers);
 adminRouter.get('/users/:userId', verifyAdminToken, adminController.getUser);
 adminRouter.put('/edit/:userId', verifyAdminToken, adminController.updateUser);

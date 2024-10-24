@@ -6,6 +6,9 @@ dotenv.config();
 const uri: string = process.env.MONGO_URI || '';
 const client = new MongoClient(uri);
 
+/**
+ * Connects to the database
+ */
 export const connect_db = async () => {
     try {
         await client.connect();

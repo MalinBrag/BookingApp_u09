@@ -13,6 +13,11 @@ export class UserAuthGuard implements CanActivate {
         private router: Router,
     ) { }
 
+    
+    /**
+     * Determines whether the user is logged in or not and activates the route accordingly
+     * @returns an observable of a boolean / promise of a boolean / boolean
+     */
     canActivate(): Observable<boolean> | Promise<boolean> | boolean {
         return this.userAuth.isLoggedIn$.pipe(
             map(isLoggedIn => {

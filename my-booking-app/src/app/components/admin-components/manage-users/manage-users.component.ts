@@ -30,10 +30,16 @@ export class ManageUsersComponent implements OnInit {
     private adminAuth: AdminAuthenticationService,
   ) { }
 
+  /**
+   * Load of page
+   */
   ngOnInit(): void {
     this.loadUsers();
   }
 
+  /**
+   * Load all users
+   */
   loadUsers() {
     this.adminAuth.getAllUsers().subscribe({
       next: (users: User[]) => {

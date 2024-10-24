@@ -1,4 +1,7 @@
+<!-- View Flight Component Template -->
 <main class="view-flight">
+
+    <!-- Display of the selected flight -->
     <div class="page-content">
         <div title-container>
             <h2 class="title">{{ title }}</h2>
@@ -6,6 +9,7 @@
         </div>
 
         <div class="table-wrapper">   
+            <!-- Details of the flight -->
             <table aria-label="Flight details for selected flight">
 
                 <tr>
@@ -51,13 +55,17 @@
 
             </table>
         </div>
+
+        <!-- Submit button to book -->
         <button *ngIf="!bookingSuccessful" type="button" class="book-btn" (click)="onConfirmBooking()" aria-label="Confirm flight booking">Confirm booking</button>
     </div>
 
+    <!-- Image displayed on desktop devices -->
     <div *ngIf="!isMobile" class="image-container">
         <img class="img" src="assets/images/airport-inside.jpg" alt="Inside an airport terminal with passengers" />
     </div>
 
+    <!--- If booking is successful, display booking component below -->
     <div *ngIf="bookingSuccessful">
         <app-booking></app-booking>
     </div>

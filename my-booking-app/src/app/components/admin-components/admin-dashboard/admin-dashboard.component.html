@@ -1,10 +1,13 @@
+<!-- Admin Dashboard Component Template -->
 <main class="dashboard">
 
+    <!-- Content displayed on all devices -->
     <div class="content">
         <div class="header">
             <h1 class="title">{{ title }}</h1>
         </div>
 
+        <!-- Navigation buttons with redirection links or functions -->
         <div class="buttons">
             <button class="dashboard-btn" (click)="registerUser()">Add user or admin</button>
             <button class="dashboard-btn" (click)="manageUsers()">Manage Users</button>
@@ -13,6 +16,7 @@
         </div>
     </div>
 
+    <!-- Image displayed on desktop devices -->
     <div class="image-container" *ngIf="!isMobile">
         <img class="img" src="assets/images/inside_plane.jpg" alt="View from inside a plane showing passengers" />
     </div>

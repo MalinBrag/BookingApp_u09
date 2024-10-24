@@ -20,10 +20,18 @@ export class LandingPageComponent {
   subtitle = 'Welcome to My Booking App';
   recievedFormData: FlightOfferRequest | null = null;
 
+  /**
+   * Handle form submission from search form component
+   * @param event - The form data emitted from the search form component
+   */
   handleFormSubmit(event: FlightOfferRequest) {
     this.recievedFormData = { ...event };
   }
 
+  /**
+   * Check if the form data is empty
+   * @returns boolean
+   */
   isFormDataEmpty(): boolean {
     return this.recievedFormData === null;
   }

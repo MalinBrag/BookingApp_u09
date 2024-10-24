@@ -35,27 +35,44 @@ export class FlightListComponent implements OnInit, OnChanges {
     private router: Router
   ) { }
 
+  /**
+   * Load of page
+   */
   ngOnInit(): void {
     this.initializeForm();
     this.loadFlights(this.searchData);
 
+    /**
+     * Check if user is logged in
+     */
     this.userAuth.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
     });
   }
 
+  /**
+   * Load of flights when input data changes
+   * @param changes 
+   */
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['searchData'] && changes['searchData'].currentValue) {
       this.loadFlights(this.searchData);
     }
   }
 
+  /**
+   * Initialize form
+   */
   initializeForm(): void {
     this.flightSelectionForm = this.fb.group({
       departureFlightIndex: [null, Validators.required],
     });
   }
 
+  /**
+   * Load of flights
+   * @param data 
+   */
   loadFlights(data: FlightOfferRequest): void {
     this.apiService.getFlights(data).subscribe(
       (flights: { rawResponse: FlightOffers[], extractedData: { departureFlights: FlightOffer[] } }) => {
@@ -64,6 +81,11 @@ export class FlightListComponent implements OnInit, OnChanges {
     });
   }
 
+  /**
+   * Only logged in users can proceed with selected flight
+   * Sends selected flight to API to confirm pricing and availability
+   * @returns confirmation of selected flight and what user info is needed to book
+   */
   confirmSelection(): void {
     if (this.flightSelectionForm.invalid) {
       window.alert('Please select a flight to proceed');
@@ -88,6 +110,11 @@ export class FlightListComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * If pricing and availability is confirmed, user is redirected to view flight page
+   * @param selectedFlight 
+   * @returns the flight to display
+   */
   onFlightSelect(selectedFlight: FlightOffers[]): void {
     if (!selectedFlight) {
       return;

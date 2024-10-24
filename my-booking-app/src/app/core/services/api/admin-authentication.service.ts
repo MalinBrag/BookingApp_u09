@@ -18,6 +18,9 @@ export class AdminAuthenticationService {
     private http: HttpClient,
   ) { }
 
+  /**
+   * Checks the localstorage set token if the user is an admin
+   */
   checkAdminStatus(): void {
     const role = LocalStorageUtils.getItem<string>('role');
     if (role !== 'Admin') {
@@ -25,6 +28,11 @@ export class AdminAuthenticationService {
     }
   }
 
+  /**
+   * Checks admin status and sends a request to the server to get a user by id
+   * @param userId 
+   * @returns Observable of a user
+   */
   getUser(userId: string): Observable<User> {
     this.checkAdminStatus();
     return this.http.get<User>(`${this.api}/admin/users/${userId}`).pipe(
@@ -33,6 +41,10 @@ export class AdminAuthenticationService {
     );
   }
 
+  /**
+   * Checks admin status and sends a request to the server to get all users
+   * @returns Observable of all users
+   */
   getAllUsers(): Observable<User[]> {
     this.checkAdminStatus();
     return this.http.get<User[]>(`${this.api}/admin/users/all`).pipe(
@@ -41,6 +53,12 @@ export class AdminAuthenticationService {
     );
   }
 
+  /**
+   * Checks admin status and sends a request to the server to update a user
+   * @param userId 
+   * @param updatedData 
+   * @returns Observable of a user
+   */
   updateUser(userId: string, updatedData: Partial<User>): Observable<User> {
     this.checkAdminStatus();
     return this.http.put<User>(`${this.api}/admin/edit/${userId}`, updatedData).pipe(
@@ -49,6 +67,11 @@ export class AdminAuthenticationService {
     );  
   }
 
+  /**
+   * Checks admin status and sends a request to the server to delete a user
+   * @param userId 
+   * @returns a string message 
+   */
   deleteUser(userId: string): Observable<string> {
     this.checkAdminStatus();
     return this.http.delete<string>(`${this.api}/admin/delete/${userId}`).pipe(
@@ -57,6 +80,10 @@ export class AdminAuthenticationService {
     );
   }
 
+  /**
+   * Fetches the token set in localstorage
+   * @returns the token from local storage
+   */
   getToken(): string | null {
     return LocalStorageUtils.getItem<string>('token');
   }

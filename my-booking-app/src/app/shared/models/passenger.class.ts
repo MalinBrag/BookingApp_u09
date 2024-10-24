@@ -1,5 +1,9 @@
 import { RequiredUserData } from "./user.model";
 
+/**
+ * Passenger class with some default values and a constructor that takes an id and a userData object
+ */
+
 export class Passenger {
     id: string;
     dateOfBirth: string = '1990-01-01';

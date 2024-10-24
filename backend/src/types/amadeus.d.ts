@@ -1,3 +1,7 @@
+/**
+ * This file is used to define the types of the Amadeus API.
+ */
+
 declare module "amadeus" {
 
     export default class Amadeus {

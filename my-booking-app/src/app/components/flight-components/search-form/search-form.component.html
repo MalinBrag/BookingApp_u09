@@ -1,5 +1,9 @@
+<!-- Search Form Component Template -->
+
+<!-- Form with Angular Reactive Forms binding -->
 <form [formGroup]="searchForm" class="form">
 
+    <!--- Section to choose one way or round trip flights, round trips not yet implemented -->
     <fieldset class="radio-btn-section" aria-label="Trip type">
 
         <div class="one-way">
@@ -16,7 +20,10 @@
         
     </fieldset>
 
+    <!-- Departure flight section for user input -->
     <div formGroupName="departureFlight" class="formgroup">
+
+        <!-- Date selection -->
         <div class="date-section">
             <div class="date-from">
                 <label for="departureDate">Departure date:</label>
@@ -38,6 +45,8 @@
             <label for="expandDates">Show flights close to selected date</label>
         </div>
         -->
+
+        <!-- From-location selection -->
         <div class="location-section">
 
             <div class="location-from">
@@ -48,6 +57,7 @@
                 </select>
             </div>
 
+            <!-- To-location selection -->
             <div class="location-to">
                 <label for="locationTo">To destination</label>
                 <select id="locationTo" formControlName="locationTo" required aria-required="true">
@@ -57,6 +67,7 @@
             </div>
         </div>
 
+        <!-- Number of passengers selection -->
         <div class="passenger-section">
             <label for="passengers">Passengers</label>
             <input type="number" id="passengers" formControlName="passengers" required min="1" max="10" aria-required="true" aria-describedby="passengerHelp">
@@ -64,6 +75,7 @@
         </div>
     </div>
 
+    <!-- Submit button that triggers the onSubmit function -->
     <button type="submit" class="submit-btn" (click)="onSubmit()">Check availability</button>
 
 </form>

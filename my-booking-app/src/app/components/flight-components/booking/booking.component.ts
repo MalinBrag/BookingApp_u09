@@ -26,10 +26,16 @@ export class BookingComponent implements OnInit {
     private extractData: ExtractDataService,
   ) { }
 
+  /**
+   * Load of page
+   */
   ngOnInit(): void {
     this.loadMyBookings();
   }
 
+  /**
+   * Load all bookings of the user
+   */
   loadMyBookings(): void {
     this.apiService.getBookings().subscribe({
       next: (response: FetchBookings[]) => {
@@ -42,6 +48,10 @@ export class BookingComponent implements OnInit {
     });
   }
 
+  /**
+   * Function to expand the details of a booking
+   * @param index 
+   */
   toggleDetails(index: number) {
     this.showDetails[index] = !this.showDetails[index];
   }

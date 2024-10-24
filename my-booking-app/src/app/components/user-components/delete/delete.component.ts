@@ -23,6 +23,9 @@ export class DeleteComponent implements OnInit {
     private route: ActivatedRoute,
   ) { }
   
+  /**
+   * Load of page
+   */
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     
@@ -33,6 +36,10 @@ export class DeleteComponent implements OnInit {
     }
   }
 
+  /**
+   * Display the selectd user
+   * @param userId 
+   */
   fetchUser(userId: string) { 
     this.adminAuth.getUser(userId).subscribe({
       next: (user: User) => {
@@ -44,6 +51,9 @@ export class DeleteComponent implements OnInit {
     })
   }
 
+  /**
+   * Delete the selected user and redirect to list
+   */
   onDeleteUser() {
     if (this.user && this.user.id) {
       this.adminAuth.deleteUser(this.user.id).subscribe({

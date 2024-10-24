@@ -6,6 +6,9 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * Service to check if the screen is mobile
+ */
 export class BreakpointService {
   isMobile$: Observable<boolean>;
 

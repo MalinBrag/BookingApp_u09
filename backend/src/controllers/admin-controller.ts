@@ -6,6 +6,11 @@ const dbName = "u09";
 
 export const adminController = {
 
+    /**
+     * Gets all users from the database
+     * @param req 
+     * @param res 
+     */
     getAllUsers: async (req: Request, res: Response): Promise<void> => {
         try {
             const db = client.db(dbName);
@@ -18,6 +23,12 @@ export const adminController = {
         }
     },
 
+    /**
+     * Gets a single user from the database based on the userId
+     * @param req 
+     * @param res 
+     * @returns user data
+     */
     getUser: async (req: Request, res: Response): Promise<void> => {
         try {
             const { userId } = req.params;
@@ -37,6 +48,12 @@ export const adminController = {
         }
     },
 
+    /**
+     * Updates a user in the database
+     * @param req 
+     * @param res 
+     * @returns the updated user data
+     */
     updateUser: async (req: Request, res: Response): Promise<void> => {
         try {
             const { userId } = req.params;
@@ -63,6 +80,12 @@ export const adminController = {
         }
     },
 
+    /**
+     * Deletes a user from the database
+     * @param req 
+     * @param res 
+     * @returns a string message
+     */
     deleteUser: async (req: Request, res: Response): Promise<void> => {
         try {
             const { userId } = req.params;

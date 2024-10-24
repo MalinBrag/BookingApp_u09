@@ -27,6 +27,9 @@ export class AdminDashboardComponent implements OnInit {
     private userAuth: UserAuthenticationService,
   ) { }
 
+  /**
+   * Load of page
+   */
   ngOnInit(): void {
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
@@ -41,14 +44,23 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
+  /**
+   * Redirect admin to register page with admin flag, to be able to create new admin
+   */
   registerUser() {
     this.router.navigate(['register'], { queryParams: { isAdmin: true } });
   }
   
+  /**
+   * Redirect admin to manage users page
+   */
   manageUsers() {
     this.router.navigate(['manage']);
   }
 
+  /**
+   * Logout
+   */
   logout() {
     this.userAuth.logoutUser();
     this.isLoggedIn = false;

@@ -28,7 +28,6 @@ export class ViewFlightComponent implements OnInit {
   isMobile: boolean = false;
   isLoggedIn: boolean = false;
 
-  //for flight data
   flight!: FlightOffer;
   rawFlightData: FlightOffers[] = [];
   bookingSuccessful: boolean = false;
@@ -42,6 +41,9 @@ export class ViewFlightComponent implements OnInit {
     private apiService: FlightApiService,
   ) {}
 
+  /**
+   * Load of page
+   */
   ngOnInit(): void {
     this.breakpoint.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
@@ -55,6 +57,9 @@ export class ViewFlightComponent implements OnInit {
     this.getUserCredentials();
   }
 
+  /**
+   * Extract the data passed to this component to display it in a readable format
+   */
   extractAndLoadFlightData(): void {
     this.route.queryParams.subscribe(params => {
       const flightData = params['flight'];
@@ -69,6 +74,10 @@ export class ViewFlightComponent implements OnInit {
     });
   }
 
+  /**
+   * Book the selected flight
+   * @returns a booking response
+   */
   onConfirmBooking() {
     const selectedOffer = this.rawFlightData[0];
     return this.apiService.createBooking(selectedOffer, this.userCredentials).subscribe({
@@ -84,6 +93,9 @@ export class ViewFlightComponent implements OnInit {
     });
   }
 
+  /**
+   * Get the user credentials for the logged in user
+   */
   getUserCredentials() {
     this.userAuth.getProfile().subscribe({
       next: (response) => {

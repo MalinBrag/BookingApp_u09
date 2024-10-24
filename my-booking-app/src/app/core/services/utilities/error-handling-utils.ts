@@ -7,7 +7,12 @@ import { Observable, of } from "rxjs";
 export class ErrorHandlingUtils {
     constructor() { }
 
-    // API errors
+  /**
+   * Errorhandling for http requests
+   * @param operation 
+   * @param result 
+   * @returns an observable of the result
+   */
   static handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(`${operation} failed: ${error.message}`);

@@ -1,8 +1,11 @@
+<!-- Flight List Component Template -->
 <div class="flight-list">
 
     <!-- ONE WAY -->
     <section class="one-way-section">
         <h3>Departure</h3>
+
+        <!-- Display of locations and date -->
         <div class="search-data" >
             
             <ul>
@@ -13,10 +16,12 @@
 
         </div>
 
+        <!-- Display of flight options in a table, made in a form to be able to choose flight with radio buttons -->
         <form [formGroup]="flightSelectionForm">
         
             <div class="flights-table">
                 <table aria-label="Flight options for departure">
+                    <!-- Table header -->
                     <thead>
                         <tr>
                             <th>Dep Time</th>
@@ -28,6 +33,7 @@
                             <th aria-label="Select flight in this column">Select</th>
                         </tr>
                     </thead>
+                    <!-- Display of flights with option to choose one -->
                     <tbody>
                         <tr *ngFor="let flight of departureFlights; let i = index">
                             <td>{{ flight.departureDateTime }}</td>
@@ -93,6 +99,7 @@
     </div>
      -->
 
+    <!-- Confirm button -->
     <div class="confirm-btn-section">
         <button type="submit" class="btn" (click)="confirmSelection()">Select</button>
     </div>

@@ -1,15 +1,20 @@
+<!-- Landing Page Component Template -->
 <main class="landing-page">
     
+    <!-- Subheader section with title and description -->
     <div class="subheader">
         <h2 class="h2">{{ subtitle }}</h2>
         <p class="description">Book your next appointment with us</p>
         <h2 class="h2">Book Now</h2>
     </div>
-    
+
+    <!-- Search Form component to handle user input -->
     <div class="form-container">
         <app-search-form (formSubmit)="handleFormSubmit($event)"></app-search-form>
+        <!-- When the form is submitter, it triggers handleFormSubmit method -->
     </div>
 
+    <!-- Flight List component is shown only if there is recieved form data from the search form -->
     <div class="flight-list" *ngIf="!isFormDataEmpty()">
         <app-flight-list *ngIf="recievedFormData" [searchData]="recievedFormData"></app-flight-list>
     </div>

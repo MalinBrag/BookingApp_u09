@@ -1,8 +1,10 @@
+<!-- Manage Users Component Template -->
 <main class="manage-users">
     <div class="header">
         <h1 class="title">{{ title }}</h1>
     </div>
 
+    <!-- List display of all users -->
     <div class="users-table">
         <table>
             <thead>
@@ -21,6 +23,7 @@
                     <td>{{ user.email }}</td>
                     <td>{{ user.phone }}</td>
                     <td>{{ user.role }}</td>
+                    <!-- Option to edit or delete users -->
                     <td><button class="edit-btn" [routerLink]="['/edit', user.id]" aria-label="Edit user">Edit</button></td>
                     <td><button class="delete-btn" [routerLink]="['/delete', user.id]" aria-label="Delete user">Delete</button></td>
                 </tr>

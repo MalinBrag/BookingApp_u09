@@ -24,7 +24,17 @@ export class SearchFormComponent implements OnInit {
     private fb: FormBuilder,
   ) { }
 
+/**
+ * Load of page
+ */
   ngOnInit(): void {
+    this.initializeForm();
+  }
+
+  /**
+   * Initialize form with relevant fields
+   */
+  initializeForm() {
     this.searchForm = this.fb.group({
       tripType: ['one-way'],
       departureFlight: this.fb.group({
@@ -36,6 +46,9 @@ export class SearchFormComponent implements OnInit {
     });
   }
 
+  /**
+   * Submit form and pass the form value to parent component
+   */
   onSubmit() {
     if (this.searchForm.valid) {
       this.formSubmit.emit(this.searchForm.value);

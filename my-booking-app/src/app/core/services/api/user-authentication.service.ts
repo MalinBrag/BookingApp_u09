@@ -31,10 +31,19 @@ export class UserAuthenticationService {
     });
   }
 
+  /**
+   * Checks if the user role is an admin or not
+   * @returns boolean
+   */
   isAdmin(): boolean {
     return this.isAdminSubject.getValue();
   }
 
+  /**
+   * Function to register a new user
+   * @param user 
+   * @returns LoginResponse
+   */
   registerUser(user: RegisterUser): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.api}/user/register`, user).pipe(
       tap((response: LoginResponse) => {
@@ -46,6 +55,11 @@ export class UserAuthenticationService {
     );
   }
 
+  /**
+   * Function to sign in a user
+   * @param user 
+   * @returns LoginResponse
+   */
   signInUser(user: LoginUser): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.api}/user/sign-in`, user).pipe(
       tap((response: LoginResponse) => this.handleLoginResponse(response)),
@@ -53,6 +67,10 @@ export class UserAuthenticationService {
     );
   }
 
+  /**
+   * Stores the login response in local storage and sets the token expiration timer
+   * @param response 
+   */
   private handleLoginResponse(response: LoginResponse): void {
     const { token, userId, role } = response; 
 
@@ -68,6 +86,9 @@ export class UserAuthenticationService {
     this.tokenService.setTokenExpirationTimer(token);
   }
 
+  /**
+   * Logs out the user by sending a request to the server and clearing local storage
+   */
   logoutUser(): void {
     this.http.post(`${this.api}/user/logout`, {}).pipe(
       tap(() => {
@@ -82,6 +103,10 @@ export class UserAuthenticationService {
     ).subscribe();
   }
 
+  /**
+   * Gets the user profile
+   * @returns Observable of a user
+   */
   getProfile(): Observable<User> {
     return this.http.get<User>(`${this.api}/user/profile`).pipe(
       tap((response) => {
@@ -91,6 +116,9 @@ export class UserAuthenticationService {
     );
   }
 
+  /**
+   * Checks the localstorage set token if the user is logged in
+   */
   checkLoginStatus(): void {
     const token = LocalStorageUtils.getItem<string>('token');
     if (token) {
@@ -98,6 +126,9 @@ export class UserAuthenticationService {
     }
   }
 
+  /**
+   * Checks the localstorage set token if the user is an admin
+   */
   checkAdminStatus(): void {
     const role = LocalStorageUtils.getItem<string>('role');
     if (role === 'Admin') {
@@ -105,14 +136,26 @@ export class UserAuthenticationService {
     }
   }
 
+  /**
+   * Gets the user role
+   * @returns the user role from local storage
+   */
   getRole(): string | null {
     return LocalStorageUtils.getItem<string>('role');
   }
 
+  /**
+   * Gets the token
+   * @returns the token from local storage
+   */
   getToken(): string | null {
     return LocalStorageUtils.getItem<string>('token');
   }
 
+  /**
+   * Gets the user id
+   * @returns the user id from local storage
+   */
   getUserId(): string | null {
     return LocalStorageUtils.getItem<string>('userId');
   }

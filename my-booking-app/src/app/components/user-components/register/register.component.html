@@ -1,7 +1,10 @@
+<!-- Register Component Template -->
 <section class="register">
+    <!-- Importing the user form with relevant fields -->
     <app-user-form class="form" [fields]="fields" (formSubmit)="onSubmitRegister($event)">
     </app-user-form>
 
+     <!-- Image displayed on desktop devices -->
     <div *ngIf="!isMobile" class="image-container">
         <img class="img" src="assets/images/walking.jpg" alt="A woman walking surrounded by Italian buildings" />
     </div>

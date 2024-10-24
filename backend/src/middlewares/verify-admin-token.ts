@@ -2,6 +2,13 @@ import jwt from 'jsonwebtoken';
 import { CustomJwtPayload } from '../types/custom-jwt.payload';
 import { Request, Response, NextFunction } from 'express';
 
+/**
+ * Verifies the token and checks if the user is an admin
+ * @param req 
+ * @param res 
+ * @param next 
+ * @returns decoded token
+ */
 export const verifyAdminToken = (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;
     const token = authHeader?.split(' ')[1];

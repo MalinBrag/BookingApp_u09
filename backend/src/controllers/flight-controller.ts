@@ -4,16 +4,30 @@ import { client } from "../config/db";
 
 const dbName = 'u09';
 
+/**
+ * Create a new instance of the Amadeus API client
+ */
 const amadeus = new Amadeus({
     clientId: process.env.API_KEY as string,
     clientSecret: process.env.API_SECRET as string,
-    hostname: 'test' // Use 'test' for sandbox environment, or 'production' for production
+    hostname: 'test'
 })
 
 export const flightController = {
 
+    /**
+     * Get flight offers based on the provided query parameters
+     * @param req 
+     * @param res 
+     * @returns an array of flight offers
+     */
     getFlights: async (req: Request, res: Response): Promise<void> => {
         try {
+            if (!req.query.departureDate) {
+                res.status(400).json({ message: 'Missing required parameters' });
+                return;
+            }
+
             const response = await amadeus.shopping.flightOffersSearch.get({
                 originLocationCode: req.query.originLocationCode as string,
                 destinationLocationCode: req.query.destinationLocationCode as string,
@@ -24,6 +38,7 @@ export const flightController = {
                 currencyCode: req.query.currencyCode as string,
                 max: req.query.max as string
             });
+
             res.status(200).json(response.data);
         } catch (error) {
             console.error('Error fetching flights:', error);
@@ -31,6 +46,12 @@ export const flightController = {
         }
     },
 
+    /**
+     * Confirm pricing and availability of the selected flight offers
+     * @param req 
+     * @param res 
+     * @returns a string confirmation of the flight offer
+     */
     confirmPricing: async (req: Request, res: Response): Promise<void> => {
         try {
             const flightOffers = req.body;
@@ -56,6 +77,12 @@ export const flightController = {
         }
     },
 
+    /**
+     * Create a booking with the Amadeus API and save it to the database
+     * @param req 
+     * @param res 
+     * @returns the booking data from the API and the inserted booking ID
+     */
     createBooking: async (req: Request, res: Response): Promise<void> => {
         try {
             const userId = req.body.userId;
@@ -78,6 +105,7 @@ export const flightController = {
 
             const response = await amadeus.booking.flightOrders.post(JSON.stringify(payload) as any);
             const saveResult = await flightController.saveBookingToDb(userId, response.data);
+
             res.status(200).json({
                 message: 'Booking created and saved successfully',
                 bookingData: response.data,
@@ -89,6 +117,12 @@ export const flightController = {
         }
     },
 
+    /**
+     * Save the booking data to the database
+     * @param userId 
+     * @param bookingData 
+     * @returns the result of the insert operation
+     */
     saveBookingToDb: async (userId: string, bookingData: object) => {
         try {
             const db = client.db(dbName);
@@ -107,15 +141,30 @@ export const flightController = {
         }
     },
 
+    /**
+     * Gets all bookings from the database, for a specific user
+     * @param req 
+     * @param res 
+     * @returns an array of bookings
+     */
     getBookings: async (req: Request, res: Response): Promise<void> => {
-        console.log('Fetching bookings for user:', req.params.userId);
         try {
             const userId = req.params.userId;
+
+            if (!userId) {
+                res.status(400).json({ message: 'User ID is missing' });
+                return;
+            }
+
             const db = client.db(dbName);
             const collection = db.collection('Bookings');
             const bookings = await collection.find({ userId: userId }).toArray();
 
-            console.log('Bookings:', bookings);
+            if (!bookings || bookings.length === 0) {
+                res.status(404).json({ message: 'No bookings found for this user' });
+                return;
+            }
+          
             res.status(200).json(bookings);
         } catch (error) {
             console.error('Error fetching bookings:', error);

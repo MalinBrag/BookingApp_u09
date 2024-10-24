@@ -11,6 +11,12 @@ export class DialogFrameService {
     private dialog: MatDialog,
   ) { }
 
+  /**
+   * Opens the modal dialog frame
+   * @param component 
+   * @param data 
+   * @returns dialog reference
+   */
   openDialogFrame<T>(component: T, data?: { fields?: any }): Observable<any> {
     const dialogRef: MatDialogRef<any> = this.dialog.open(component as any);
     
@@ -22,6 +28,9 @@ export class DialogFrameService {
     return dialogRef.afterClosed();
   } 
 
+  /**
+   * Closes the modal dialog frame
+   */
   closeDialogFrame() {
     this.dialog.closeAll();
   }

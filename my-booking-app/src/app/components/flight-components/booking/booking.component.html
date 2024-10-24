@@ -1,9 +1,13 @@
+<!-- Booking Component Template -->
 <main class="my-bookings-page">
+
+    <!-- Each booking is displayed in a table -->
     <div class="flight-table-wrapper">
         <table *ngFor="let booking of bookings; let i = index" class="flight-table" aria-label="Booking details table">
             <thead>
                 <tr class="tr-booking-id">
                     
+                    <!-- Expand booking by clicking on the title -->
                     <th class="th-booking-id">
                         <button (click)="toggleDetails(i)" [attr.aria-expanded]="showDetails[i]" [attr.aria-controls]="'booking-details-' + i">Booking ID</button>
                     </th>
@@ -57,6 +61,7 @@
                     <td>{{ booking.createdOn }}</td>
                 </tr>
                 <tr>
+                    <!-- This table row contains a nested table for each passenger of the flight -->
                     <td colspan="2" class="passengers-table-wrapper">
                         <!--nested table below-->
                         <table class="passengers-table" *ngFor="let passenger of booking.passengers" [attr.aria-label]="'Passenger details for booking ' + booking.bookingId">
@@ -83,6 +88,7 @@
             </tbody>
         </table>
         
+        <!-- Message to display if there are no bookings -->
         <p *ngIf="bookings.length === 0">No bookings found.</p>
     </div>
 

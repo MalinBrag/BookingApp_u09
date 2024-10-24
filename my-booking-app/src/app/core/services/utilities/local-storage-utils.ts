@@ -6,6 +6,11 @@ import { Injectable } from "@angular/core";
 export class LocalStorageUtils {
     constructor() { }
 
+    /**
+     * Stringifies and item and sets it in local storage
+     * @param key 
+     * @param value 
+     */
     static setItem(key: string, value: string): void {
         if (typeof window !== 'undefined') {
             const stringValue = typeof value === 'string' ? value : JSON.stringify(value);
@@ -13,6 +18,11 @@ export class LocalStorageUtils {
         } 
     }
     
+    /**
+     * Gets an item from local storage, parses it and returns it
+     * @param key 
+     * @returns an item from local storage
+     */
     static getItem<T>(key: string): T | null {
         if (typeof window !== 'undefined') {
             const storedValue = localStorage.getItem(key);
@@ -31,27 +41,24 @@ export class LocalStorageUtils {
         return null;
     }
 
+    /**
+     * Removes an item from local storage
+     * @param key 
+     */
     static removeItem(key: string): void {
         if (typeof window !== 'undefined') {
             localStorage.removeItem(key);
         }
     }
 
+    /**
+     * Clears all items from local storage
+     */
     static clear(): void {
         if (typeof window !== 'undefined') {
             localStorage.clear();
         }
     }
-
-    static hasKey(key: string): boolean {
-        if (typeof window !== 'undefined') {
-            return localStorage.getItem(key) !== null;
-        }
-        return false;
-    }
-
-
-
 
 }
 

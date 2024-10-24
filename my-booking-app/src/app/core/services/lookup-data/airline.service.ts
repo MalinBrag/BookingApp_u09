@@ -3,6 +3,9 @@ import { Injectable } from "@angular/core";
 @Injectable({
     providedIn: 'root'
 })
+/**
+ * Service to provide airline information regarding IATA codes
+ */
 export class AirlineService {
     private airlines = [
         { name: 'Air France', code: 'AF' },
@@ -29,6 +32,11 @@ export class AirlineService {
         { name: 'JetBlue Airways', code: 'B6' },
     ];
 
+    /**
+     * Returns the airline name for the given IATA code
+     * @param code 
+     * @returns string
+     */
     getAirlineByCode(code: string): string {
         const matchingAirline = this.airlines.find(airline => airline.code.toLowerCase() === code.toLowerCase());
         return matchingAirline ? matchingAirline.name : code;

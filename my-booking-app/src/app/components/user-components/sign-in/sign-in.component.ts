@@ -29,7 +29,13 @@ export class SignInComponent implements OnInit {
     private formUtils: FormUtils,
   ) { }
 
+  /**
+   * Load of page
+   */
   ngOnInit(): void {
+    /**
+     * Set the mode (title) of the form
+     */
     this.formUtils.setMode(this.mode);
 
     this.breakpoint.isMobile$.subscribe(isMobile => {
@@ -37,6 +43,10 @@ export class SignInComponent implements OnInit {
     })
   }
 
+  /**
+   * Sumitting the form data to the API and waiting for response
+   * @param data 
+   */
   onSubmitSignIn(data: LoginUser) {
     this.userAuth.signInUser(data).subscribe(
       (response: LoginResponse) => {

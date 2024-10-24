@@ -1,6 +1,11 @@
+<!-- Delete Component Template -->
 <main class="delete">
+
     <div class="header-container">
+        <!-- Confirmation questions -->
         <h3 class="title">Are you sure you want to delete user?</h3>
+
+        <!-- Display of selected user -->
         <div class="user">
             <label for="name">Name:</label>
             <p>{{ user?.name }}</p>
@@ -11,6 +16,7 @@
         </div>
     </div>
 
+    <!-- Delete user or return to list -->
     <div class="btn-container">
         <button class="delete-btn" (click)="onDeleteUser()" [attr.aria-label]="'Delete user ' + (user?.name || '')">Yes, delete</button>
         <button class="return-btn" [routerLink]="['/manage']" aria-label="Return to manage users page">No, return</button>

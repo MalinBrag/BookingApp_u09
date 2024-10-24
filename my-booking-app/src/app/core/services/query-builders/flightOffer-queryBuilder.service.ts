@@ -11,6 +11,11 @@ export class OfferQueryService {
         private airportService: AirportService,
     ) {}
 
+    /**
+     * Generates a query string for the flight search, based on the search data
+     * @param searchData 
+     * @returns a string with the query parameters for the flight search
+     */
     queryBuilder(searchData: FlightOfferRequest): string {
         const queryParams: ApiFormatFlightSearch = { 
             originLocationCode: this.cityConverter(searchData.departureFlight.locationFrom),
@@ -19,7 +24,7 @@ export class OfferQueryService {
             adults: searchData.departureFlight.passengers,
             nonStop: 'true',
             currencyCode: 'SEK',
-            max: 1,
+            max: 3,
         };
 
         /** round trip not implemented */
@@ -30,6 +35,11 @@ export class OfferQueryService {
         return this.queryStringBuilder(queryParams);
     }
 
+    /**
+     * Builds the formatted query string for the flight search
+     * @param queryParams 
+     * @returns a formatted string
+     */
     queryStringBuilder(queryParams: ApiFormatFlightSearch): string {
         return Object.keys(queryParams)
             .map((key) => 
@@ -37,6 +47,11 @@ export class OfferQueryService {
             .join('&');
     }
 
+    /**
+     * Returns the city name from the airport IATA code
+     * @param city 
+     * @returns string
+     */
     cityConverter(city: string): string {
         return this.airportService.getCode(city);
     }
