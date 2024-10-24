@@ -34,7 +34,7 @@ export const userController = {
                     email, 
                     phone,
                     password: hashedPassword, 
-                    role: role || 'user'
+                    role: role || 'User'
                 });
             
             const userId = newUser.insertedId;
@@ -42,7 +42,7 @@ export const userController = {
                 { 
                     id: userId, 
                     email,
-                    role: role || 'user',
+                    role: role || 'User',
                 }, 
                 process.env.JWT_SECRET as string, 
                 { expiresIn: '1h' }
@@ -52,7 +52,7 @@ export const userController = {
                 message: 'User registered successfully', 
                 token,
                 userId,
-                role: role || 'user',
+                role: role || 'User',
             });
         } catch (error) {
             console.error(error);
@@ -88,6 +88,7 @@ export const userController = {
             const token = jwt.sign(
                 { 
                     id: user._id, 
+                    email: user.email,
                     role: user.role, 
                 }, 
                 process.env.JWT_SECRET as string, 
