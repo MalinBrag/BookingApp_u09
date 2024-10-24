@@ -12,8 +12,11 @@ RUN npm run build:ssr
 
 FROM node:18-alpine as production
 
-COPY --from=build /my-booking-app/dist/my-booking-app/browser /my-booking-app/dist/my-booking-app/browser
+WORKDIR /my-booking-app
 
-CMD ["node", "dist/my-booking-app/browser/server/main.js"]
+COPY --from=build /my-booking-app/dist/my-booking-app/browser ./dist/my-booking-app/browser
+COPY --from=build /my-booking-app/dist/my-booking-app/server ./dist/my-booking-app/server
+
+CMD ["node", "dist/my-booking-app/server/main.server.mjs"]
 
 
