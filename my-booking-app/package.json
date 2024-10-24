@@ -4,6 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "build:ssr": "ng build --configuration=production && ng run my-booking-app:server",
+    "serve:ssr": "node dist/my-booking-app/server/main.js",
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
