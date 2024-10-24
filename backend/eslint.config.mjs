@@ -15,6 +15,7 @@ export default [
         Response: "off",
       }
     },
+    ignores: ["node_modules", "dist"],
     plugins: {
       "@typescript-eslint": tseslint,
     },

@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node dist/server.js",
     "build": "tsc",
+    "prestart": "npm run build",
     "dev": "nodemon --watch 'src/**/*.ts' --exec ts-node src/server.ts",
     "lint": "eslint . --ext .ts"
   },
@@ -35,7 +36,6 @@
     "globals": "^15.11.0",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.2",
-    "typescript-eslint": "^8.10.0"
+    "typescript": "^5.6.3"
   }
 }
