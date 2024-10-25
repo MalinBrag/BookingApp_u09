@@ -30,7 +30,8 @@
     {
       "name": "database-api",
       "urls": [
-        "localhost:3000/api/**"
+        "localhost:3000/api/**",
+        "backend-production-a88c.up.railway.app/api"
       ],
       "cacheConfig": {
         "strategy": "performance",

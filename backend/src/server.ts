@@ -13,7 +13,8 @@ const port = process.env.PORT || 3000;
 
 //middleware
 app.use(cors({
-    origin: 'http://localhost:4200',
+    origin: 'https://frontend-production-391a.up.railway.app',
+    //origin: 'http://localhost:4200',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
