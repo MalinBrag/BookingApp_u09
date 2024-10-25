@@ -8,15 +8,17 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build:ssr
+RUN npm run build --configuration=production
 
-FROM node:18-alpine as production
+FROM nginx:alpine
 
-WORKDIR /my-booking-app
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY --from=build /my-booking-app/dist/my-booking-app/browser ./dist/my-booking-app/browser
-COPY --from=build /my-booking-app/dist/my-booking-app/server ./dist/my-booking-app/server
+COPY --from=build /my-booking-app/dist/my-booking-app/browser /usr/share/nginx/html
+COPY --from=build /my-booking-app/dist/my-booking-app/server /usr/share/nginx/html
 
-CMD ["node", "dist/my-booking-app/server/main.server.mjs"]
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
 
 
