@@ -13,9 +13,7 @@ const port = process.env.PORT || 3000;
 
 //middleware
 app.use(cors({
-    origin: process.env.NODE_ENV === 'production' 
-    ? 'https://frontend-production-391a.up.railway.app'
-    : 'http://localhost:4200',
+    origin: 'https://frontend-production-391a.up.railway.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
     credentials: true
