@@ -1,0 +1,4740 @@
+[
+  {
+    "_id": "670e53a45b0c35f942ea2ba7",
+    "userId": "6702d0c7840f72449e569b38",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f3cfJ39fYEAAstAlw%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "LBOEKI",
+          "creationDate": "2024-10-15T11:36:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-20",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "FCO",
+                    "terminal": "1",
+                    "at": "2024-10-20T08:35:00"
+                  },
+                  "arrival": {
+                    "iataCode": "CDG",
+                    "terminal": "2B",
+                    "at": "2024-10-20T10:45:00"
+                  },
+                  "carrierCode": "AZ",
+                  "number": "316",
+                  "aircraft": {
+                    "code": "32Q"
+                  },
+                  "duration": "PT2H10M",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 99,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "1905.00",
+            "base": "898.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "1905.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "AZ"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "1905.00",
+                "base": "898.00",
+                "taxes": [
+                  {
+                    "amount": "27.00",
+                    "code": "EX"
+                  },
+                  {
+                    "amount": "85.00",
+                    "code": "HB"
+                  },
+                  {
+                    "amount": "192.00",
+                    "code": "IT"
+                  },
+                  {
+                    "amount": "17.00",
+                    "code": "MJ"
+                  },
+                  {
+                    "amount": "38.00",
+                    "code": "VT"
+                  },
+                  {
+                    "amount": "148.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "500.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "359.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "SOLG8C1",
+                  "brandedFare": "ECOLIGHT",
+                  "class": "S",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "malin",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2020-01-01",
+              "expiryDate": "2025-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736000000"
+              }
+            ],
+            "emailAddress": "malinbragazzi@gmail.com"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-15T11:36:04.077Z"
+  },
+  {
+    "_id": "670e7dcae5f7e023076355ba",
+    "userId": "6704ec11896f3cef262bb203",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f3cXYzD%2FAHAAr0AlE%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "LCF7PO",
+          "creationDate": "2024-10-15T14:35:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-15",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "CDG",
+                    "terminal": "2B",
+                    "at": "2024-10-20T06:10:00"
+                  },
+                  "arrival": {
+                    "iataCode": "FCO",
+                    "terminal": "1",
+                    "at": "2024-10-20T08:10:00"
+                  },
+                  "carrierCode": "AZ",
+                  "number": "317",
+                  "aircraft": {
+                    "code": "32N"
+                  },
+                  "duration": "PT2H",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 99,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "1928.00",
+            "base": "898.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "1928.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "AZ"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "1928.00",
+                "base": "898.00",
+                "taxes": [
+                  {
+                    "amount": "203.00",
+                    "code": "FR"
+                  },
+                  {
+                    "amount": "13.00",
+                    "code": "IZ"
+                  },
+                  {
+                    "amount": "17.00",
+                    "code": "O4"
+                  },
+                  {
+                    "amount": "149.00",
+                    "code": "QX"
+                  },
+                  {
+                    "amount": "148.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "500.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "382.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "SOLGFR1",
+                  "brandedFare": "ECOLIGHT",
+                  "class": "S",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "jakob",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2020-01-01",
+              "expiryDate": "2025-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736111111"
+              }
+            ],
+            "emailAddress": "jacke@jacke.se"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-15T14:35:54.085Z"
+  },
+  {
+    "_id": "670e7df8e5f7e023076355bb",
+    "userId": "6704ec11896f3cef262bb203",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f3cXYLcw8FAAtFAm0%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "LCFVGU",
+          "creationDate": "2024-10-15T14:36:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-15",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "CDG",
+                    "terminal": "2B",
+                    "at": "2024-10-20T06:10:00"
+                  },
+                  "arrival": {
+                    "iataCode": "FCO",
+                    "terminal": "1",
+                    "at": "2024-10-20T08:10:00"
+                  },
+                  "carrierCode": "AZ",
+                  "number": "317",
+                  "aircraft": {
+                    "code": "32N"
+                  },
+                  "duration": "PT2H",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 99,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "1928.00",
+            "base": "898.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "1928.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "AZ"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "1928.00",
+                "base": "898.00",
+                "taxes": [
+                  {
+                    "amount": "203.00",
+                    "code": "FR"
+                  },
+                  {
+                    "amount": "13.00",
+                    "code": "IZ"
+                  },
+                  {
+                    "amount": "17.00",
+                    "code": "O4"
+                  },
+                  {
+                    "amount": "149.00",
+                    "code": "QX"
+                  },
+                  {
+                    "amount": "148.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "500.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "382.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "SOLGFR1",
+                  "brandedFare": "ECOLIGHT",
+                  "class": "S",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "jakob",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2020-01-01",
+              "expiryDate": "2025-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736111111"
+              }
+            ],
+            "emailAddress": "jacke@jacke.se"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-15T14:36:40.204Z"
+  },
+  {
+    "_id": "670f9594374214803443201e",
+    "userId": "67054ba0b3b4aa025ebe75ca",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f38TB19DcBAArKAjM%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "LH5AO4",
+          "creationDate": "2024-10-16T10:29:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-27",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "AMS",
+                    "at": "2024-11-03T14:25:00"
+                  },
+                  "arrival": {
+                    "iataCode": "NRT",
+                    "terminal": "1",
+                    "at": "2024-11-04T11:45:00"
+                  },
+                  "carrierCode": "KL",
+                  "number": "861",
+                  "aircraft": {
+                    "code": "772"
+                  },
+                  "duration": "PT13H20M",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 406,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "49344.00",
+            "base": "42432.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "49344.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "AF"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "16448.00",
+                "base": "14144.00",
+                "taxes": [
+                  {
+                    "amount": "194.00",
+                    "code": "CJ"
+                  },
+                  {
+                    "amount": "279.00",
+                    "code": "RN"
+                  },
+                  {
+                    "amount": "330.00",
+                    "code": "VV"
+                  },
+                  {
+                    "amount": "273.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "1228.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "803.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "KRL6BBLA",
+                  "brandedFare": "LIGHT",
+                  "class": "K",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            },
+            {
+              "travelerId": "2",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "16448.00",
+                "base": "14144.00",
+                "taxes": [
+                  {
+                    "amount": "194.00",
+                    "code": "CJ"
+                  },
+                  {
+                    "amount": "279.00",
+                    "code": "RN"
+                  },
+                  {
+                    "amount": "330.00",
+                    "code": "VV"
+                  },
+                  {
+                    "amount": "273.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "1228.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "803.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "KRL6BBLA",
+                  "brandedFare": "LIGHT",
+                  "class": "K",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            },
+            {
+              "travelerId": "3",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "16448.00",
+                "base": "14144.00",
+                "taxes": [
+                  {
+                    "amount": "194.00",
+                    "code": "CJ"
+                  },
+                  {
+                    "amount": "279.00",
+                    "code": "RN"
+                  },
+                  {
+                    "amount": "330.00",
+                    "code": "VV"
+                  },
+                  {
+                    "amount": "273.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "1228.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "803.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "KRL6BBLA",
+                  "brandedFare": "LIGHT",
+                  "class": "K",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "Nina",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2020-01-01",
+              "expiryDate": "2025-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736222222"
+              }
+            ],
+            "emailAddress": "nina@nina.se"
+          }
+        },
+        {
+          "id": "2",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "Nina",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2020-01-01",
+              "expiryDate": "2025-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736222222"
+              }
+            ],
+            "emailAddress": "nina@nina.se"
+          }
+        },
+        {
+          "id": "3",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "Nina",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2020-01-01",
+              "expiryDate": "2025-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736222222"
+              }
+            ],
+            "emailAddress": "nina@nina.se"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-16T10:29:40.705Z"
+  },
+  {
+    "_id": "670fb2fe374214803443201f",
+    "userId": "6702d0c7840f72449e569b38",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f38fANi3ACAAuJAnc%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "LHMVXB",
+          "creationDate": "2024-10-16T12:35:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-17",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "FCO",
+                    "terminal": "1",
+                    "at": "2024-10-27T21:30:00"
+                  },
+                  "arrival": {
+                    "iataCode": "CDG",
+                    "terminal": "2B",
+                    "at": "2024-10-27T23:40:00"
+                  },
+                  "carrierCode": "AZ",
+                  "number": "332",
+                  "aircraft": {
+                    "code": "32N"
+                  },
+                  "duration": "PT2H10M",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 99,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "1701.00",
+            "base": "694.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "1701.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "AZ"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "1701.00",
+                "base": "694.00",
+                "taxes": [
+                  {
+                    "amount": "27.00",
+                    "code": "EX"
+                  },
+                  {
+                    "amount": "85.00",
+                    "code": "HB"
+                  },
+                  {
+                    "amount": "192.00",
+                    "code": "IT"
+                  },
+                  {
+                    "amount": "17.00",
+                    "code": "MJ"
+                  },
+                  {
+                    "amount": "38.00",
+                    "code": "VT"
+                  },
+                  {
+                    "amount": "148.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "500.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "359.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "QOLG8C1",
+                  "brandedFare": "ECOLIGHT",
+                  "class": "Q",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "malin",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2020-01-01",
+              "expiryDate": "2025-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736000000"
+              }
+            ],
+            "emailAddress": "malinbragazzi@gmail.com"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-16T12:35:10.073Z"
+  },
+  {
+    "_id": "670fea2e3742148034432020",
+    "userId": "67054ba0b3b4aa025ebe75ca",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f38fS29PYDAAshAlg%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "LIK9KN",
+          "creationDate": "2024-10-16T16:30:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-17",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "CDG",
+                    "terminal": "2B",
+                    "at": "2024-10-27T06:10:00"
+                  },
+                  "arrival": {
+                    "iataCode": "FCO",
+                    "terminal": "1",
+                    "at": "2024-10-27T08:10:00"
+                  },
+                  "carrierCode": "AZ",
+                  "number": "317",
+                  "aircraft": {
+                    "code": "32N"
+                  },
+                  "duration": "PT2H",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 99,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "1724.00",
+            "base": "694.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "1724.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "AZ"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "1724.00",
+                "base": "694.00",
+                "taxes": [
+                  {
+                    "amount": "203.00",
+                    "code": "FR"
+                  },
+                  {
+                    "amount": "13.00",
+                    "code": "IZ"
+                  },
+                  {
+                    "amount": "17.00",
+                    "code": "O4"
+                  },
+                  {
+                    "amount": "149.00",
+                    "code": "QX"
+                  },
+                  {
+                    "amount": "148.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "500.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "382.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "QOLGFR1",
+                  "brandedFare": "ECOLIGHT",
+                  "class": "Q",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "Nina",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2020-01-01",
+              "expiryDate": "2025-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736222222"
+              }
+            ],
+            "emailAddress": "nina@nina.se"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-16T16:30:38.228Z"
+  },
+  {
+    "_id": "6710c3532942b1aae0b91e90",
+    "userId": "67054ba0b3b4aa025ebe75ca",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f38bWwNI8CAArNAkE%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "LM897Z",
+          "creationDate": "2024-10-17T07:57:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-19",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "CDG",
+                    "terminal": "2B",
+                    "at": "2024-11-03T06:10:00"
+                  },
+                  "arrival": {
+                    "iataCode": "FCO",
+                    "terminal": "1",
+                    "at": "2024-11-03T08:10:00"
+                  },
+                  "carrierCode": "AZ",
+                  "number": "317",
+                  "aircraft": {
+                    "code": "32N"
+                  },
+                  "duration": "PT2H",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 99,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "1633.00",
+            "base": "603.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "1633.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "AZ"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "1633.00",
+                "base": "603.00",
+                "taxes": [
+                  {
+                    "amount": "203.00",
+                    "code": "FR"
+                  },
+                  {
+                    "amount": "13.00",
+                    "code": "IZ"
+                  },
+                  {
+                    "amount": "17.00",
+                    "code": "O4"
+                  },
+                  {
+                    "amount": "149.00",
+                    "code": "QX"
+                  },
+                  {
+                    "amount": "148.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "500.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "382.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "XOLGFR1",
+                  "brandedFare": "ECOLIGHT",
+                  "class": "X",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "Nina",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736222222"
+              }
+            ],
+            "emailAddress": "nina@nina.se"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-17T07:57:07.890Z"
+  },
+  {
+    "_id": "6710c3bc2942b1aae0b91e91",
+    "userId": "67054ba0b3b4aa025ebe75ca",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f38bUICo8CAAtYAno%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "LM8RWZ",
+          "creationDate": "2024-10-17T07:58:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-19",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "CDG",
+                    "terminal": "2B",
+                    "at": "2024-11-03T06:10:00"
+                  },
+                  "arrival": {
+                    "iataCode": "FCO",
+                    "terminal": "1",
+                    "at": "2024-11-03T08:10:00"
+                  },
+                  "carrierCode": "AZ",
+                  "number": "317",
+                  "aircraft": {
+                    "code": "32N"
+                  },
+                  "duration": "PT2H",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 99,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "1633.00",
+            "base": "603.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "1633.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "AZ"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "1633.00",
+                "base": "603.00",
+                "taxes": [
+                  {
+                    "amount": "203.00",
+                    "code": "FR"
+                  },
+                  {
+                    "amount": "13.00",
+                    "code": "IZ"
+                  },
+                  {
+                    "amount": "17.00",
+                    "code": "O4"
+                  },
+                  {
+                    "amount": "149.00",
+                    "code": "QX"
+                  },
+                  {
+                    "amount": "148.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "500.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "382.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "XOLGFR1",
+                  "brandedFare": "ECOLIGHT",
+                  "class": "X",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "Nina",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736222222"
+              }
+            ],
+            "emailAddress": "nina@nina.se"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-17T07:58:52.586Z"
+  },
+  {
+    "_id": "6711466e37fbd2e55e115cf1",
+    "userId": "6702d0c7840f72449e569b38",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f38fdw8vQBAAtIAmA%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "LOHBIL",
+          "creationDate": "2024-10-17T17:16:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-18",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "JFK",
+                    "terminal": "8",
+                    "at": "2024-11-02T23:25:00"
+                  },
+                  "arrival": {
+                    "iataCode": "LHR",
+                    "terminal": "3",
+                    "at": "2024-11-03T10:25:00"
+                  },
+                  "carrierCode": "AS",
+                  "number": "6906",
+                  "aircraft": {
+                    "code": "77W"
+                  },
+                  "operating": {
+                    "carrierCode": "AA"
+                  },
+                  "duration": "PT7H",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 295,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "9842.00",
+            "base": "9170.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "9842.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": true
+          },
+          "validatingAirlineCodes": [
+            "AS"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "4921.00",
+                "base": "4585.00",
+                "taxes": [
+                  {
+                    "amount": "58.00",
+                    "code": "AY"
+                  },
+                  {
+                    "amount": "231.00",
+                    "code": "US"
+                  },
+                  {
+                    "amount": "47.00",
+                    "code": "XF"
+                  }
+                ],
+                "refundableTaxes": "58.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "SLN0A4M5",
+                  "class": "S",
+                  "includedCheckedBags": {
+                    "quantity": 1
+                  }
+                }
+              ]
+            },
+            {
+              "travelerId": "2",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "4921.00",
+                "base": "4585.00",
+                "taxes": [
+                  {
+                    "amount": "58.00",
+                    "code": "AY"
+                  },
+                  {
+                    "amount": "231.00",
+                    "code": "US"
+                  },
+                  {
+                    "amount": "47.00",
+                    "code": "XF"
+                  }
+                ],
+                "refundableTaxes": "58.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "SLN0A4M5",
+                  "class": "S",
+                  "includedCheckedBags": {
+                    "quantity": 1
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "malin",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736000000"
+              }
+            ],
+            "emailAddress": "malinbragazzi@gmail.com"
+          }
+        },
+        {
+          "id": "2",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "malin",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736000000"
+              }
+            ],
+            "emailAddress": "malinbragazzi@gmail.com"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-17T17:16:30.355Z"
+  },
+  {
+    "_id": "67115c7a37fbd2e55e115cf2",
+    "userId": "67058f248dc1f1541c6aaa17",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f38Q%2F2NgkHAAtwAmo%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "LOSK4W",
+          "creationDate": "2024-10-17T18:50:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-18",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "LHR",
+                    "terminal": "2",
+                    "at": "2024-11-16T07:25:00"
+                  },
+                  "arrival": {
+                    "iataCode": "JFK",
+                    "terminal": "5",
+                    "at": "2024-11-16T10:40:00"
+                  },
+                  "carrierCode": "B6",
+                  "number": "2220",
+                  "aircraft": {
+                    "code": "32Q"
+                  },
+                  "duration": "PT8H15M",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 295,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "13658.00",
+            "base": "6792.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "13658.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "B6"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "6829.00",
+                "base": "3396.00",
+                "taxes": [
+                  {
+                    "amount": "1196.00",
+                    "code": "GB"
+                  },
+                  {
+                    "amount": "664.00",
+                    "code": "UB"
+                  },
+                  {
+                    "amount": "231.00",
+                    "code": "US"
+                  },
+                  {
+                    "amount": "39.00",
+                    "code": "XA"
+                  },
+                  {
+                    "amount": "73.00",
+                    "code": "XY"
+                  },
+                  {
+                    "amount": "75.00",
+                    "code": "YC"
+                  },
+                  {
+                    "amount": "1155.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "3433.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "UL4LEWL1",
+                  "brandedFare": "DN",
+                  "class": "L",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            },
+            {
+              "travelerId": "2",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "6829.00",
+                "base": "3396.00",
+                "taxes": [
+                  {
+                    "amount": "1196.00",
+                    "code": "GB"
+                  },
+                  {
+                    "amount": "664.00",
+                    "code": "UB"
+                  },
+                  {
+                    "amount": "231.00",
+                    "code": "US"
+                  },
+                  {
+                    "amount": "39.00",
+                    "code": "XA"
+                  },
+                  {
+                    "amount": "73.00",
+                    "code": "XY"
+                  },
+                  {
+                    "amount": "75.00",
+                    "code": "YC"
+                  },
+                  {
+                    "amount": "1155.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "3433.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "UL4LEWL1",
+                  "brandedFare": "DN",
+                  "class": "L",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "frippan",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736333333"
+              }
+            ],
+            "emailAddress": "frippan@frippan.se"
+          }
+        },
+        {
+          "id": "2",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "frippan",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736333333"
+              }
+            ],
+            "emailAddress": "frippan@frippan.se"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-17T18:50:34.982Z"
+  },
+  {
+    "_id": "67115db037fbd2e55e115cf3",
+    "userId": "67058f248dc1f1541c6aaa17",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f38Q%2BxsPAHAAs7AlQ%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "LOT88O",
+          "creationDate": "2024-10-17T18:55:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-17",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "CDG",
+                    "terminal": "2B",
+                    "at": "2024-10-27T06:10:00"
+                  },
+                  "arrival": {
+                    "iataCode": "FCO",
+                    "terminal": "1",
+                    "at": "2024-10-27T08:10:00"
+                  },
+                  "carrierCode": "AZ",
+                  "number": "317",
+                  "aircraft": {
+                    "code": "32N"
+                  },
+                  "duration": "PT2H",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 99,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "1724.00",
+            "base": "694.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "1724.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "AZ"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "1724.00",
+                "base": "694.00",
+                "taxes": [
+                  {
+                    "amount": "203.00",
+                    "code": "FR"
+                  },
+                  {
+                    "amount": "13.00",
+                    "code": "IZ"
+                  },
+                  {
+                    "amount": "17.00",
+                    "code": "O4"
+                  },
+                  {
+                    "amount": "149.00",
+                    "code": "QX"
+                  },
+                  {
+                    "amount": "148.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "500.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "382.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "QOLGFR1",
+                  "brandedFare": "ECOLIGHT",
+                  "class": "Q",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "frippan",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736333333"
+              }
+            ],
+            "emailAddress": "frippan@frippan.se"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-17T18:55:44.250Z"
+  },
+  {
+    "_id": "6713c1aa0a8a99bfe7633820",
+    "userId": "67054ba0b3b4aa025ebe75ca",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f3iTJ19gsEAAtFAmM%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "LZ5CNQ",
+          "creationDate": "2024-10-19T14:26:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-27",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "FCO",
+                    "terminal": "1",
+                    "at": "2024-10-27T21:30:00"
+                  },
+                  "arrival": {
+                    "iataCode": "CDG",
+                    "terminal": "2B",
+                    "at": "2024-10-27T23:40:00"
+                  },
+                  "carrierCode": "AZ",
+                  "number": "332",
+                  "aircraft": {
+                    "code": "32N"
+                  },
+                  "duration": "PT2H10M",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 99,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "3810.00",
+            "base": "1796.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "3810.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "AZ"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "1905.00",
+                "base": "898.00",
+                "taxes": [
+                  {
+                    "amount": "27.00",
+                    "code": "EX"
+                  },
+                  {
+                    "amount": "85.00",
+                    "code": "HB"
+                  },
+                  {
+                    "amount": "192.00",
+                    "code": "IT"
+                  },
+                  {
+                    "amount": "17.00",
+                    "code": "MJ"
+                  },
+                  {
+                    "amount": "38.00",
+                    "code": "VT"
+                  },
+                  {
+                    "amount": "148.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "500.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "359.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "SOLG8C1",
+                  "brandedFare": "ECOLIGHT",
+                  "class": "S",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            },
+            {
+              "travelerId": "2",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "1905.00",
+                "base": "898.00",
+                "taxes": [
+                  {
+                    "amount": "27.00",
+                    "code": "EX"
+                  },
+                  {
+                    "amount": "85.00",
+                    "code": "HB"
+                  },
+                  {
+                    "amount": "192.00",
+                    "code": "IT"
+                  },
+                  {
+                    "amount": "17.00",
+                    "code": "MJ"
+                  },
+                  {
+                    "amount": "38.00",
+                    "code": "VT"
+                  },
+                  {
+                    "amount": "148.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "500.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "359.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "SOLG8C1",
+                  "brandedFare": "ECOLIGHT",
+                  "class": "S",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "Nina",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736222222"
+              }
+            ],
+            "emailAddress": "nina@nina.se"
+          }
+        },
+        {
+          "id": "2",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "Nina",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736222222"
+              }
+            ],
+            "emailAddress": "nina@nina.se"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-19T14:26:50.032Z"
+  },
+  {
+    "_id": "671508a50a8a99bfe7633822",
+    "userId": "6702d0c7840f72449e569b38",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f3NfOOcI8CAAspAm0%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "M6KXGZ",
+          "creationDate": "2024-10-20T13:41:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-23",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "FCO",
+                    "terminal": "1",
+                    "at": "2024-11-02T11:00:00"
+                  },
+                  "arrival": {
+                    "iataCode": "CDG",
+                    "terminal": "2B",
+                    "at": "2024-11-02T13:15:00"
+                  },
+                  "carrierCode": "AZ",
+                  "number": "318",
+                  "aircraft": {
+                    "code": "32S"
+                  },
+                  "duration": "PT2H15M",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 99,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "1701.00",
+            "base": "694.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "1701.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "AZ"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "1701.00",
+                "base": "694.00",
+                "taxes": [
+                  {
+                    "amount": "27.00",
+                    "code": "EX"
+                  },
+                  {
+                    "amount": "85.00",
+                    "code": "HB"
+                  },
+                  {
+                    "amount": "192.00",
+                    "code": "IT"
+                  },
+                  {
+                    "amount": "17.00",
+                    "code": "MJ"
+                  },
+                  {
+                    "amount": "38.00",
+                    "code": "VT"
+                  },
+                  {
+                    "amount": "148.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "500.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "359.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "QOLG8C1",
+                  "brandedFare": "ECOLIGHT",
+                  "class": "Q",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "malin",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736000000"
+              }
+            ],
+            "emailAddress": "malinbragazzi@gmail.com"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-20T13:41:57.003Z"
+  },
+  {
+    "_id": "67152ca0293b30c61344c700",
+    "userId": "6702d0c7840f72449e569b38",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f3NTd38%2FUBAAqmAkA%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "M77FML",
+          "creationDate": "2024-10-20T16:15:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-24",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "CDG",
+                    "terminal": "2B",
+                    "at": "2024-11-03T06:10:00"
+                  },
+                  "arrival": {
+                    "iataCode": "FCO",
+                    "terminal": "1",
+                    "at": "2024-11-03T08:10:00"
+                  },
+                  "carrierCode": "AZ",
+                  "number": "317",
+                  "aircraft": {
+                    "code": "32N"
+                  },
+                  "duration": "PT2H",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 99,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "1724.00",
+            "base": "694.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "1724.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "AZ"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "1724.00",
+                "base": "694.00",
+                "taxes": [
+                  {
+                    "amount": "203.00",
+                    "code": "FR"
+                  },
+                  {
+                    "amount": "13.00",
+                    "code": "IZ"
+                  },
+                  {
+                    "amount": "17.00",
+                    "code": "O4"
+                  },
+                  {
+                    "amount": "149.00",
+                    "code": "QX"
+                  },
+                  {
+                    "amount": "148.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "500.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "382.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "QOLGFR1",
+                  "brandedFare": "ECOLIGHT",
+                  "class": "Q",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "malin",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736000000"
+              }
+            ],
+            "emailAddress": "malinbragazzi@gmail.com"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-20T16:15:28.164Z"
+  },
+  {
+    "_id": "67153d6c293b30c61344c701",
+    "userId": "67054ba0b3b4aa025ebe75ca",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f3NfcIDfUDAAspAmo%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "M7HUUN",
+          "creationDate": "2024-10-20T17:27:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-11-03",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "LHR",
+                    "at": "2024-11-03T09:00:00"
+                  },
+                  "arrival": {
+                    "iataCode": "FCO",
+                    "at": "2024-11-03T11:00:00"
+                  },
+                  "carrierCode": "6X",
+                  "number": "9925",
+                  "aircraft": {
+                    "code": "738"
+                  },
+                  "duration": "PT1H",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 128,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "2106.00",
+            "base": "1630.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "2106.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": true
+          },
+          "validatingAirlineCodes": [
+            "6X"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "2106.00",
+                "base": "1630.00",
+                "taxes": [
+                  {
+                    "amount": "177.00",
+                    "code": "GB"
+                  },
+                  {
+                    "amount": "299.00",
+                    "code": "UB"
+                  }
+                ],
+                "refundableTaxes": "476.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "YCOMPARE",
+                  "brandedFare": "ECPLTE",
+                  "class": "Y",
+                  "includedCheckedBags": {
+                    "quantity": 1
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "Nina",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736222222"
+              }
+            ],
+            "emailAddress": "nina@nina.com"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-20T17:27:08.703Z"
+  },
+  {
+    "_id": "67153fc8293b30c61344c702",
+    "userId": "67054ba0b3b4aa025ebe75ca",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f3Nfd0dzcDAArPAjc%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "M7IGG6",
+          "creationDate": "2024-10-20T17:37:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-11-03",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "LHR",
+                    "at": "2024-11-03T09:00:00"
+                  },
+                  "arrival": {
+                    "iataCode": "FCO",
+                    "at": "2024-11-03T11:00:00"
+                  },
+                  "carrierCode": "6X",
+                  "number": "9925",
+                  "aircraft": {
+                    "code": "738"
+                  },
+                  "duration": "PT1H",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 128,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "2106.00",
+            "base": "1630.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "2106.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": true
+          },
+          "validatingAirlineCodes": [
+            "6X"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "2106.00",
+                "base": "1630.00",
+                "taxes": [
+                  {
+                    "amount": "177.00",
+                    "code": "GB"
+                  },
+                  {
+                    "amount": "299.00",
+                    "code": "UB"
+                  }
+                ],
+                "refundableTaxes": "476.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "YCOMPARE",
+                  "brandedFare": "ECPLTE",
+                  "class": "Y",
+                  "includedCheckedBags": {
+                    "quantity": 1
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "Nina",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736222222"
+              }
+            ],
+            "emailAddress": "nina@nina.com"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-20T17:37:12.136Z"
+  },
+  {
+    "_id": "67153ff621db544f529af95d",
+    "userId": "67054ba0b3b4aa025ebe75ca",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f3NfcMNPcGAAriAkY%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "M7IQ7K",
+          "creationDate": "2024-10-20T17:37:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-11-03",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "LHR",
+                    "at": "2024-11-03T09:00:00"
+                  },
+                  "arrival": {
+                    "iataCode": "FCO",
+                    "at": "2024-11-03T11:00:00"
+                  },
+                  "carrierCode": "6X",
+                  "number": "9925",
+                  "aircraft": {
+                    "code": "738"
+                  },
+                  "duration": "PT1H",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 128,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "2106.00",
+            "base": "1630.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "2106.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": true
+          },
+          "validatingAirlineCodes": [
+            "6X"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "2106.00",
+                "base": "1630.00",
+                "taxes": [
+                  {
+                    "amount": "177.00",
+                    "code": "GB"
+                  },
+                  {
+                    "amount": "299.00",
+                    "code": "UB"
+                  }
+                ],
+                "refundableTaxes": "476.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "YCOMPARE",
+                  "brandedFare": "ECPLTE",
+                  "class": "Y",
+                  "includedCheckedBags": {
+                    "quantity": 1
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "Nina",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736222222"
+              }
+            ],
+            "emailAddress": "nina@nina.com"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-20T17:37:58.265Z"
+  },
+  {
+    "_id": "6715405be740575582d2a9a9",
+    "userId": "67054ba0b3b4aa025ebe75ca",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f3Nff09PEEAAryAlE%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "M7IILI",
+          "creationDate": "2024-10-20T17:39:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "1"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-11-03",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "LHR",
+                    "at": "2024-11-03T09:00:00"
+                  },
+                  "arrival": {
+                    "iataCode": "FCO",
+                    "at": "2024-11-03T11:00:00"
+                  },
+                  "carrierCode": "6X",
+                  "number": "9925",
+                  "aircraft": {
+                    "code": "738"
+                  },
+                  "duration": "PT1H",
+                  "id": "1",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 128,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "2106.00",
+            "base": "1630.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "2106.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": true
+          },
+          "validatingAirlineCodes": [
+            "6X"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "2106.00",
+                "base": "1630.00",
+                "taxes": [
+                  {
+                    "amount": "177.00",
+                    "code": "GB"
+                  },
+                  {
+                    "amount": "299.00",
+                    "code": "UB"
+                  }
+                ],
+                "refundableTaxes": "476.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "1",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "YCOMPARE",
+                  "brandedFare": "ECPLTE",
+                  "class": "Y",
+                  "includedCheckedBags": {
+                    "quantity": 1
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "Nina",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736222222"
+              }
+            ],
+            "emailAddress": "nina@nina.com"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-20T17:39:39.032Z"
+  },
+  {
+    "_id": "67176b630defd4d74ebf6e17",
+    "userId": "6704ec11896f3cef262bb203",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f3dQ8zD3IFAAtIAl4%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "MGV7RE",
+          "creationDate": "2024-10-22T09:07:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "3"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "3",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-11-10",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "CDG",
+                    "terminal": "2F",
+                    "at": "2024-11-10T18:15:00"
+                  },
+                  "arrival": {
+                    "iataCode": "AMS",
+                    "at": "2024-11-10T19:35:00"
+                  },
+                  "carrierCode": "AF",
+                  "number": "1440",
+                  "aircraft": {
+                    "code": "223"
+                  },
+                  "duration": "PT1H20M",
+                  "id": "3",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 56,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "3660.00",
+            "base": "2296.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "3660.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "AF"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "1830.00",
+                "base": "1148.00",
+                "taxes": [
+                  {
+                    "amount": "203.00",
+                    "code": "FR"
+                  },
+                  {
+                    "amount": "13.00",
+                    "code": "IZ"
+                  },
+                  {
+                    "amount": "17.00",
+                    "code": "O4"
+                  },
+                  {
+                    "amount": "153.00",
+                    "code": "QX"
+                  },
+                  {
+                    "amount": "273.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "23.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "386.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "3",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "TYS0BALA",
+                  "brandedFare": "LIGHT",
+                  "class": "T",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            },
+            {
+              "travelerId": "2",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "1830.00",
+                "base": "1148.00",
+                "taxes": [
+                  {
+                    "amount": "203.00",
+                    "code": "FR"
+                  },
+                  {
+                    "amount": "13.00",
+                    "code": "IZ"
+                  },
+                  {
+                    "amount": "17.00",
+                    "code": "O4"
+                  },
+                  {
+                    "amount": "153.00",
+                    "code": "QX"
+                  },
+                  {
+                    "amount": "273.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "23.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "386.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "3",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "TYS0BALA",
+                  "brandedFare": "LIGHT",
+                  "class": "T",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "jakob",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736111111"
+              }
+            ],
+            "emailAddress": "jacke@jacke.se"
+          }
+        },
+        {
+          "id": "2",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "jakob",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736111111"
+              }
+            ],
+            "emailAddress": "jacke@jacke.se"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-22T09:07:47.716Z"
+  },
+  {
+    "_id": "671a2ac7fc46387c7e44a04f",
+    "userId": "6702d0c7840f72449e569b38",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f3DQ4xCXUHAAt7Amo%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "MST4UG",
+          "creationDate": "2024-10-24T11:08:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "3"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "3",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-26",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "FCO",
+                    "terminal": "1",
+                    "at": "2024-11-10T08:35:00"
+                  },
+                  "arrival": {
+                    "iataCode": "CDG",
+                    "terminal": "2B",
+                    "at": "2024-11-10T10:50:00"
+                  },
+                  "carrierCode": "AZ",
+                  "number": "316",
+                  "aircraft": {
+                    "code": "32N"
+                  },
+                  "duration": "PT2H15M",
+                  "id": "3",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 99,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "1627.00",
+            "base": "617.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "1627.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "AZ"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "1627.00",
+                "base": "617.00",
+                "taxes": [
+                  {
+                    "amount": "27.00",
+                    "code": "EX"
+                  },
+                  {
+                    "amount": "86.00",
+                    "code": "HB"
+                  },
+                  {
+                    "amount": "192.00",
+                    "code": "IT"
+                  },
+                  {
+                    "amount": "17.00",
+                    "code": "MJ"
+                  },
+                  {
+                    "amount": "38.00",
+                    "code": "VT"
+                  },
+                  {
+                    "amount": "148.00",
+                    "code": "YQ"
+                  },
+                  {
+                    "amount": "502.00",
+                    "code": "YR"
+                  }
+                ],
+                "refundableTaxes": "360.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "3",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "XOLG8C1",
+                  "brandedFare": "ECOLIGHT",
+                  "class": "X",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "malin",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736000000"
+              }
+            ],
+            "emailAddress": "malinbragazzi@gmail.com"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-24T11:08:55.935Z"
+  },
+  {
+    "_id": "671a2c9bfc46387c7e44a051",
+    "userId": "671a2bb7fc46387c7e44a050",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f3DQ72inQEAAu7An0%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "MSSJYA",
+          "creationDate": "2024-10-24T11:16:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "2"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "2",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-25",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "JFK",
+                    "terminal": "4",
+                    "at": "2024-11-09T18:30:00"
+                  },
+                  "arrival": {
+                    "iataCode": "LHR",
+                    "terminal": "3",
+                    "at": "2024-11-10T06:25:00"
+                  },
+                  "carrierCode": "VS",
+                  "number": "4",
+                  "aircraft": {
+                    "code": "339"
+                  },
+                  "duration": "PT6H55M",
+                  "id": "3",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 295,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "2562.00",
+            "base": "537.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "2562.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "VS"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "2562.00",
+                "base": "537.00",
+                "taxes": [
+                  {
+                    "amount": "59.00",
+                    "code": "AY"
+                  },
+                  {
+                    "amount": "234.00",
+                    "code": "US"
+                  },
+                  {
+                    "amount": "47.00",
+                    "code": "XF"
+                  },
+                  {
+                    "amount": "1685.00",
+                    "code": "YQ"
+                  }
+                ],
+                "refundableTaxes": "59.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "3",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "NLW79SB7",
+                  "brandedFare": "LIGHT",
+                  "class": "T",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "knut",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736999999"
+              }
+            ],
+            "emailAddress": "knut@knut.se"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-24T11:16:43.078Z"
+  },
+  {
+    "_id": "671a2d33fc46387c7e44a052",
+    "userId": "671a2bb7fc46387c7e44a050",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f3DQ7x8PIHAAupAns%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "MSTHJO",
+          "creationDate": "2024-10-24T11:19:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "2"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "2",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-25",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "JFK",
+                    "terminal": "4",
+                    "at": "2024-11-09T18:30:00"
+                  },
+                  "arrival": {
+                    "iataCode": "LHR",
+                    "terminal": "3",
+                    "at": "2024-11-10T06:25:00"
+                  },
+                  "carrierCode": "VS",
+                  "number": "4",
+                  "aircraft": {
+                    "code": "339"
+                  },
+                  "duration": "PT6H55M",
+                  "id": "3",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 295,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "2562.00",
+            "base": "537.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "2562.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "VS"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "2562.00",
+                "base": "537.00",
+                "taxes": [
+                  {
+                    "amount": "59.00",
+                    "code": "AY"
+                  },
+                  {
+                    "amount": "234.00",
+                    "code": "US"
+                  },
+                  {
+                    "amount": "47.00",
+                    "code": "XF"
+                  },
+                  {
+                    "amount": "1685.00",
+                    "code": "YQ"
+                  }
+                ],
+                "refundableTaxes": "59.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "3",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "NLW79SB7",
+                  "brandedFare": "LIGHT",
+                  "class": "T",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "knut",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736999999"
+              }
+            ],
+            "emailAddress": "knut@knut.se"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-24T11:19:15.249Z"
+  },
+  {
+    "_id": "671a2d75fc46387c7e44a053",
+    "userId": "671a2bb7fc46387c7e44a050",
+    "bookingData": {
+      "type": "flight-order",
+      "id": "eJzTd9f3DQ41dgkGAAtmAmU%3D",
+      "queuingOfficeId": "NCE4D31SB",
+      "associatedRecords": [
+        {
+          "reference": "MSU3DS",
+          "creationDate": "2024-10-24T11:20:00.000",
+          "originSystemCode": "GDS",
+          "flightOfferId": "2"
+        }
+      ],
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "2",
+          "source": "GDS",
+          "nonHomogeneous": false,
+          "lastTicketingDate": "2024-10-25",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "JFK",
+                    "terminal": "4",
+                    "at": "2024-11-09T18:30:00"
+                  },
+                  "arrival": {
+                    "iataCode": "LHR",
+                    "terminal": "3",
+                    "at": "2024-11-10T06:25:00"
+                  },
+                  "carrierCode": "VS",
+                  "number": "4",
+                  "aircraft": {
+                    "code": "339"
+                  },
+                  "duration": "PT6H55M",
+                  "id": "3",
+                  "numberOfStops": 0,
+                  "co2Emissions": [
+                    {
+                      "weight": 295,
+                      "weightUnit": "KG",
+                      "cabin": "ECONOMY"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "SEK",
+            "total": "2562.00",
+            "base": "537.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "2562.00",
+            "billingCurrency": "SEK"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": false
+          },
+          "validatingAirlineCodes": [
+            "VS"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "SEK",
+                "total": "2562.00",
+                "base": "537.00",
+                "taxes": [
+                  {
+                    "amount": "59.00",
+                    "code": "AY"
+                  },
+                  {
+                    "amount": "234.00",
+                    "code": "US"
+                  },
+                  {
+                    "amount": "47.00",
+                    "code": "XF"
+                  },
+                  {
+                    "amount": "1685.00",
+                    "code": "YQ"
+                  }
+                ],
+                "refundableTaxes": "59.00"
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "3",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "NLW79SB7",
+                  "brandedFare": "LIGHT",
+                  "class": "T",
+                  "includedCheckedBags": {
+                    "quantity": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1990-01-01",
+          "gender": "FEMALE",
+          "name": {
+            "firstName": "knut",
+            "lastName": "Smith"
+          },
+          "documents": [
+            {
+              "number": "123456789",
+              "issuanceDate": "2021-01-01",
+              "expiryDate": "2026-01-01",
+              "issuanceCountry": "SE",
+              "issuanceLocation": "Stockholm",
+              "nationality": "SE",
+              "birthPlace": "Stockholm",
+              "documentType": "PASSPORT",
+              "holder": true
+            }
+          ],
+          "contact": {
+            "purpose": "STANDARD",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "46",
+                "number": "0736999999"
+              }
+            ],
+            "emailAddress": "knut@knut.se"
+          }
+        }
+      ],
+      "ticketingAgreement": {
+        "option": "CONFIRM"
+      },
+      "automatedProcess": [
+        {
+          "code": "IMMEDIATE",
+          "queue": {
+            "number": "0",
+            "category": "0"
+          },
+          "officeId": "NCE4D31SB"
+        }
+      ]
+    },
+    "createdAt": "2024-10-24T11:20:21.965Z"
+  }
+]

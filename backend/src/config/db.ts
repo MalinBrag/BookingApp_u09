@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const uri: string = process.env.MONGO_URI || '';
-const client = new MongoClient(uri);
+const client = new MongoClient(uri, { ssl: false });
 let isConnected = false;
 
 /**

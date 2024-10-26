@@ -1,0 +1,46 @@
+[
+  {
+    "_id": "6702d0c7840f72449e569b38",
+    "name": "malin",
+    "email": "malinbragazzi@gmail.com",
+    "password": "$2b$10$olcQN3w5pxLUCZssJok4ouacrF7Y5iM2C6LB14GI5C56AsPObtv66",
+    "role": "Admin",
+    "id": "6702d0c7840f72449e569b38",
+    "phone": "0736000000"
+  },
+  {
+    "_id": "6704ec11896f3cef262bb203",
+    "name": "jakob",
+    "email": "jacke@jacke.se",
+    "password": "$2b$10$OkqNacjY5zeJQcYCDOreZegrRVnKOFQsUEjMxgLtDjo/hHBd/8zRu",
+    "role": "User",
+    "id": "6704ec11896f3cef262bb203",
+    "phone": "0736111111"
+  },
+  {
+    "_id": "67054ba0b3b4aa025ebe75ca",
+    "name": "Nina",
+    "email": "nina@nina.com",
+    "password": "$2b$10$3sUz2ShwzhxRjnRKTWxP4.J6d83qy3jGTUfrdy9e0S1Nwkk8qQgqa",
+    "role": "User",
+    "id": "67054ba0b3b4aa025ebe75ca",
+    "phone": "0736222222"
+  },
+  {
+    "_id": "67058f248dc1f1541c6aaa17",
+    "name": "frippan",
+    "email": "frippan@frippan.se",
+    "password": "$2b$10$3DmQ/16EXwQa8l/.9VUAzu7n1.oHbeoBrA0FBqY6.KF72rVQQtRfO",
+    "role": "Admin",
+    "id": "67058f248dc1f1541c6aaa17",
+    "phone": "0736333333"
+  },
+  {
+    "_id": "671a2bb7fc46387c7e44a050",
+    "name": "knut",
+    "email": "knut@knut.se",
+    "phone": "0736999999",
+    "password": "$2b$10$Qg99152p35MgrSr.39L.BeU4xTOpGRYniQafjpR.Q0uI9vFrbMHyS",
+    "role": "User"
+  }
+]
