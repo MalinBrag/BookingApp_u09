@@ -34,7 +34,7 @@ export const userController = {
                     email, 
                     phone,
                     password: hashedPassword, 
-                    role: role || 'user'
+                    role: role || 'User'
                 });
             
             const userId = newUser.insertedId;
