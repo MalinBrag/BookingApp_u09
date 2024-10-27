@@ -9,7 +9,7 @@ export const adminAuthInterceptor: HttpInterceptorFn = (req, next) => {
     const adminAuth: AdminAuthenticationService = inject(AdminAuthenticationService);
     const token = adminAuth.getToken();
 
-    if (token) {
+    if (token && navigator.onLine) {
         const cloned = req.clone({
             headers: req.headers.set('Authorization', `Bearer ${token}`)
         });

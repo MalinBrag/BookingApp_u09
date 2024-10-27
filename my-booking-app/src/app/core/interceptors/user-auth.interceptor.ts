@@ -9,7 +9,7 @@ export const userAuthInterceptor: HttpInterceptorFn = (req, next) => {
     const userAuth: UserAuthenticationService = inject(UserAuthenticationService);
     const token = userAuth.getToken();
 
-    if (token) {
+    if (token && navigator.onLine) {
         const cloned = req.clone({
             headers: req.headers.set('Authorization', `Bearer ${token}`)
         });

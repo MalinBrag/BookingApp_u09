@@ -19,6 +19,7 @@ export class SearchFormComponent implements OnInit {
   searchForm!: FormGroup;
   @Output() formSubmit = new EventEmitter<FlightOfferRequest>();
   locations = ['Paris', 'Rome', 'Berlin', 'New York', 'London', 'Frankfurt', 'Amsterdam', 'Tokyo', 'Dubai'];
+  private storageKey = 'flightSearchFormData';
 
   constructor(
     private fb: FormBuilder,
@@ -29,6 +30,7 @@ export class SearchFormComponent implements OnInit {
  */
   ngOnInit(): void {
     this.initializeForm();
+    this.loadFormData();
   }
 
   /**
@@ -46,12 +48,21 @@ export class SearchFormComponent implements OnInit {
     });
   }
 
+  loadFormData() {
+    const storedData = localStorage.getItem(this.storageKey);
+    if (storedData) {
+      this.searchForm.patchValue(JSON.parse(storedData));
+    }
+  }
+
   /**
    * Submit form and pass the form value to parent component
    */
   onSubmit() {
     if (this.searchForm.valid) {
-      this.formSubmit.emit(this.searchForm.value);
+      const formData = this.searchForm.value;
+      this.formSubmit.emit(formData);
+      localStorage.setItem(this.storageKey, JSON.stringify(formData));
     } else {
       console.warn('Form is invalid');
     }
