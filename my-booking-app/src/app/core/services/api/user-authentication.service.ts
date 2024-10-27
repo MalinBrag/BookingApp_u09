@@ -97,7 +97,7 @@ export class UserAuthenticationService {
         //LocalStorageUtils.removeItem('role');
 
         this.isLoggedInSubject.next(false);
-        localStorage.clear();
+        //localStorage.clear();
       }),
       catchError(ErrorHandlingUtils.handleError<void>('logoutUser'))
     ).subscribe();
