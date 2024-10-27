@@ -30,6 +30,21 @@
                 "glob": "**/*",
                 "input": "src/assets/",
                 "output": "/assets"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "public/",
+                "output": "/"
+              },
+              {
+                "glob": "manifest.webmanifest",
+                "input": "public/",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "public/icons/",
+                "output": "/icons"
               }
             ],
             "styles": [
@@ -104,6 +119,21 @@
                 "glob": "**/*",
                 "input": "src/assets/",
                 "output": "/assets"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "public/",
+                "output": "/"
+              },
+              {
+                "glob": "manifest.webmanifest",
+                "input": "public/",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "public/icons/",
+                "output": "/icons"
               }
             ],
             "styles": [
