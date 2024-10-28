@@ -35,7 +35,7 @@
         "https://backend-production-a88c.up.railway.app/api/**"
       ],
       "cacheConfig": {
-        "strategy": "cacheFirst",
+        "strategy": "freshness",
         "maxSize": 100,
         "maxAge": "6h",
         "timeout": "10s"
@@ -47,7 +47,7 @@
         "https://test.api.amadeus.com/v1/**"
       ],
       "cacheConfig": {
-        "strategy": "cacheFirst",
+        "strategy": "freshness",
         "maxSize": 100,
         "maxAge": "6h",
         "timeout": "10s"
