@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule ,NgFor, NgIf } from '@angular/common';
 import { FlightOfferRequest } from '../../../shared/models/flight-offer.model';
+import { LocalStorageUtils } from '../../../core/services/utilities/local-storage-utils';
 
 @Component({
   selector: 'app-search-form',
@@ -49,9 +50,9 @@ export class SearchFormComponent implements OnInit {
   }
 
   loadFormData() {
-    const storedData = localStorage.getItem(this.storageKey);
+    const storedData = LocalStorageUtils.getItem(this.storageKey);
     if (storedData) {
-      this.searchForm.patchValue(JSON.parse(storedData));
+      this.searchForm.patchValue(storedData);
     }
   }
 
@@ -62,7 +63,7 @@ export class SearchFormComponent implements OnInit {
     if (this.searchForm.valid) {
       const formData = this.searchForm.value;
       this.formSubmit.emit(formData);
-      localStorage.setItem(this.storageKey, JSON.stringify(formData));
+      LocalStorageUtils.setItem(this.storageKey, JSON.stringify(formData));
     } else {
       console.warn('Form is invalid');
     }

@@ -31,8 +31,7 @@
     {
       "name": "database-api",
       "urls": [
-        "/api/**",
-        "https://backend-production-a88c.up.railway.app/api/*"
+        "https://backend-production-a88c.up.railway.app/api/**"
       ],
       "cacheConfig": {
         "strategy": "staleWhileRevalidate",

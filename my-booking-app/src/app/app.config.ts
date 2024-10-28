@@ -16,12 +16,11 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([userAuthInterceptor, adminAuthInterceptor]),
       withFetch()
-    ), provideAnimationsAsync(), provideServiceWorker('ngsw-worker.js', {
-            enabled: !isDevMode(),
-            registrationStrategy: 'registerWhenStable:30000'
-          }), provideServiceWorker('ngsw-worker.js', {
-            enabled: !isDevMode(),
-            registrationStrategy: 'registerWhenStable:30000'
-          }),
+    ), 
+    provideAnimationsAsync(), 
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ]
 };
