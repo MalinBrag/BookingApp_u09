@@ -92,12 +92,12 @@ export class UserAuthenticationService {
   logoutUser(): void {
     this.http.post(`${this.api}/user/logout`, {}).pipe(
       tap(() => {
-        //LocalStorageUtils.removeItem('token');
-        //LocalStorageUtils.removeItem('userId');
-        //LocalStorageUtils.removeItem('role');
+        LocalStorageUtils.removeItem('token');
+        LocalStorageUtils.removeItem('userId');
+        LocalStorageUtils.removeItem('role');
 
         this.isLoggedInSubject.next(false);
-        //localStorage.clear();
+        localStorage.clear();
       }),
       catchError(ErrorHandlingUtils.handleError<void>('logoutUser'))
     ).subscribe();

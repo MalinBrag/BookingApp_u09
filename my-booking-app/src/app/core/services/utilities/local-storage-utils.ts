@@ -45,20 +45,20 @@ export class LocalStorageUtils {
      * Removes an item from local storage
      * @param key 
      */
-   /* static removeItem(key: string): void {
+    static removeItem(key: string): void {
         if (typeof window !== 'undefined') {
             localStorage.removeItem(key);
         }
-    }*/
+    }
 
     /**
      * Clears all items from local storage
      */
-   /* static clear(): void {
+    static clear(): void {
         if (typeof window !== 'undefined') {
             localStorage.clear();
         }
-    }*/
+    }
 
 }
 
