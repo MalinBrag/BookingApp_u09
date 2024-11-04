@@ -38,19 +38,19 @@
         "strategy": "freshness",
         "maxSize": 100,
         "maxAge": "6h",
-        "timeout": "50s"
+        "timeout": "10s"
       }
     },
     {
-      "name": "amadeus-api",
+      "name": "flight-search-api",
       "urls": [
-        "https://test.api.amadeus.com/v1/**"
+        "https://backend-production-a88c.up.railway.app/api/flights/results?*"
       ],
       "cacheConfig": {
-        "strategy": "freshness",
-        "maxSize": 100,
+        "strategy": "staleWhileRevalidate",
+        "maxSize": 5,
         "maxAge": "6h",
-        "timeout": "50s"
+        "timeout": "10s"
       }
     }
   ]
