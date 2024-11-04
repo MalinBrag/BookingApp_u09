@@ -1,0 +1,57 @@
+{
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.csr.html",
+          "/index.html",
+          "/manifest.webmanifest",
+          "/*.css",
+          "/*.js"
+        ]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**",
+          "/**/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "database-api",
+      "urls": [
+        "https://backend-production-a88c.up.railway.app/api/**"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize": 100,
+        "maxAge": "6h",
+        "timeout": "10s"
+      }
+    },
+    {
+      "name": "flight-search-api",
+      "urls": [
+        "https://backend-production-a88c.up.railway.app/api/flights/results?*"
+      ],
+      "cacheConfig": {
+        "strategy": "staleWhileRevalidate",
+        "maxSize": 5,
+        "maxAge": "6h",
+        "timeout": "10s"
+      }
+    }
+  ]
+}

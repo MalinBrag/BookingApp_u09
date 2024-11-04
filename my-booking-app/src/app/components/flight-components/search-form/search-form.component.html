@@ -1,7 +1,7 @@
 <!-- Search Form Component Template -->
 
 <!-- Form with Angular Reactive Forms binding -->
-<form [formGroup]="searchForm" class="form">
+<form [formGroup]="searchForm" class="form" (ngSubmit)="onSubmit()">
 
     <!--- Section to choose one way or round trip flights, round trips not yet implemented -->
     <fieldset class="radio-btn-section" aria-label="Trip type">
@@ -76,6 +76,6 @@
     </div>
 
     <!-- Submit button that triggers the onSubmit function -->
-    <button type="submit" class="submit-btn" (click)="onSubmit()">Check availability</button>
+    <button type="submit" class="submit-btn">Check availability</button>
 
 </form>

@@ -125,7 +125,6 @@ export const userController = {
     getProfile: async (req: Request, res: Response): Promise<void> => {
         try {
             const userId: string = (req as any).user.id;
-
             if (!userId) {
                 res.status(400).json({ message: 'User ID not found' });
                 return;
