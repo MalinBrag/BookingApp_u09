@@ -42,7 +42,6 @@ jobs:
           npx ng build --configuration production \
             --base-href "/${{ github.event.repository.name }}/" \
             --prerender=false \
-            --service-worker=false
 
       - name: Add SPA fallback
         run: cp my-booking-app/dist/my-booking-app/browser/index.html my-booking-app/dist/my-booking-app/browser/404.html
